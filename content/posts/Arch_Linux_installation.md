@@ -402,6 +402,6 @@ A minimal Arch installation has now been completed. The subsequent task involves
 
 ### Bonus (a few `pacman` tweaks)
 
-A short `pacman` configuration section is also available in my [WSL Arch installation guide](https://br4z.github.io/blog/posts/how_to_install_Arch_Linux_in_WSL.html#configure-pacman-conf), covering small quality-of-life improvements such as `ILoveCandy`, `VerbosePkgLists` and `ParallelDownloads`.
+A short `pacman` configuration section is also available in my [WSL Arch installation guide](https:///blog/posts/how_to_install_Arch_Linux_in_WSL.html#configure-pacman-conf), covering small quality-of-life improvements such as `ILoveCandy`, `VerbosePkgLists` and `ParallelDownloads`.
 
 It may be a useful reference for readers who want a slightly nicer package management experience, or for those introducing Arch Linux to someone who is still not ready to commit to the full installation ritual.

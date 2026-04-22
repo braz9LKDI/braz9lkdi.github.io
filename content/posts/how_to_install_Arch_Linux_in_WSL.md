@@ -10,9 +10,9 @@ tags:
 
 # How to install Arch Linux in WSL
 
-[A previous post](https://br4z.github.io/blog/posts/Arch_Linux_installation.html) covered the full bare-metal Arch Linux installation. This version takes the shorter route: Arch Linux now provides an official WSL image and Microsoft's current WSL flow installs Linux distributions directly from Windows, with new installs using WSL 2 by default. Complete software liberation has not yet occurred, Windows is still the landlord, but this is still a very respectable first step toward the ceremonial title of **"Arch Linux user"**.
+[A previous post](https:///blog/posts/Arch_Linux_installation.html) covered the full bare-metal Arch Linux installation. This version takes the shorter route: Arch Linux now provides an official WSL image and Microsoft's current WSL flow installs Linux distributions directly from Windows, with new installs using WSL 2 by default. Complete software liberation has not yet occurred, Windows is still the landlord, but this is still a very respectable first step toward the ceremonial title of **"Arch Linux user"**.
 
-Because this is WSL, the usual bare-metal chores like booting an ISO, partitioning disks, installing a boot loader and generally negotiating with firmware, are not part of the process here. [The earlier guide](https://br4z.github.io/blog/posts/Arch_Linux_installation.html) remains the reference for that full installation path; this one focuses only on the WSL variant.
+Because this is WSL, the usual bare-metal chores like booting an ISO, partitioning disks, installing a boot loader and generally negotiating with firmware, are not part of the process here. [The earlier guide](https:///blog/posts/Arch_Linux_installation.html) remains the reference for that full installation path; this one focuses only on the WSL variant.
 
 ## What is needed first?
 
@@ -201,4 +201,4 @@ This keeps `pacman` readable, enables concurrent downloads and adds a quick disk
 
 That is the whole process. No USB installer was needed and no partition table was touched. Windows is still technically in charge, so total freedom remains a future milestone, but an important symbolic threshold has now been crossed: Arch Linux is running, `pacman` is ready, the mirrors are sane and the badge of "Arch Linux user" has been earned, at least provisionally.
 
-For the full native installation path, [the earlier bare-metal guide](https://br4z.github.io/blog/posts/Arch_Linux_installation.html) remains the companion piece to this one.
+For the full native installation path, [the earlier bare-metal guide](https:///blog/posts/Arch_Linux_installation.html) remains the companion piece to this one.

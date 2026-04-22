@@ -9,7 +9,7 @@ tags:
 
 # Hyprland setup
 
-This guide builds upon the foundation established in my ["Arch Linux installation"](https://br4z.github.io/blog/posts/Arch_Linux_installation.html) post. Assuming you have completed those steps, you should now have a clean base system. Below, we will cover the essential packages required to transform that minimal base into a fully functional Hyprland desktop environment.
+This guide builds upon the foundation established in my ["Arch Linux installation"](https:///blog/posts/Arch_Linux_installation.html) post. Assuming you have completed those steps, you should now have a clean base system. Below, we will cover the essential packages required to transform that minimal base into a fully functional Hyprland desktop environment.
 
 > Disclaimer: software packages update frequently, which may alter the configuration process. I aim to maintain the accuracy of this guide, similar to my previous Arch Linux post.
 

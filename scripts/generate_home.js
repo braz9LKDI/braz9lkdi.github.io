@@ -1,6 +1,6 @@
 import fs from "fs"
 
-const PROJECTS_FILE = "./assets/data/projects.json"
+const PROJECTS_FILE = "./content/projects.json"
 const OUTPUT_FILE = "./index.html"
 const TEMPLATE_FILE = "./template.html"
 

@@ -11,7 +11,7 @@ tags:
 
 # Basic Visual Studio Code configuration
 
-Visual Studio Code ranks among the most popular text editors due to its ease of use and extensive community support (themes, extensions, tutorials). The following configurations, applied via `settings.json`, have proven particularly useful. GUI configuration remains an option.
+VS Code ranks among the most popular text editors due to its ease of use and extensive community support (themes, extensions, tutorials). The following configurations, applied via `settings.json`, have proven particularly useful. GUI configuration remains an option.
 
 ## `setting.json`
 

@@ -38,7 +38,7 @@ After downloading and extracting **w64devkit**, add its binaries to the system P
 
 ## Running programs
 
-The **Code Runner** extension for Visual Studio Code is recommended. Configuration entries in the `settings.json` file follow.
+The **Code Runner** extension for VS Code is recommended. Configuration entries in the `settings.json` file follow.
 
 > For non-VS Code environments, equivalent shell commands are provided.
 

@@ -1,0 +1,9 @@
+{
+  // https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
+  "default": true,
+  "MD013": false, // Line length, let Prettier handle wrapping
+  "MD025": { "front_matter_title": "" }, // Blog front matter title and visible H1 may both exist
+  "MD028": false, // Separate blockquote callouts are intentional in posts
+  "MD007": { "indent": 4 }, // Match Prettier with tabWidth 4
+  "MD041": false, // First line does not have to be a top-level heading
+}

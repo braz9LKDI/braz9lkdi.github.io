@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A practical, step-by-step guide to install Arch Linux in WSL.">
+	<title>How to install Arch Linux in WSL - Brandon's Blog</title>
+
+	<link rel="stylesheet" href="/assets/fonts/fontawesome/all.min.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+	<link rel="stylesheet" href="/css/blog.css" />
+	<link rel="stylesheet" href="/css/post.css" />
+
+	<link rel="icon" href="/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
+	<link rel="icon" href="/favicon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+</head>
+<body>
+	<header>
+		<nav>
+			<div class="left">
+				<a href="/">Brandon</a>
+			</div>
+			<div class="right">
+				<a href="/">
+					<i class="fa-solid fa-house"></i>
+					<span>home</span>
+				</a>
+				<a href="/blog/" class="active">
+					<i class="fa-solid fa-pen"></i>
+					<span>blog</span>
+				</a>
+				<a href="/#contact">
+					<i class="fa-solid fa-envelope"></i>
+					<span>contact</span>
+				</a>
+			</div>
+		</nav>
+	</header>
+	<main>
+		<article class="post">
+			<a href="/blog/" class="back-link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Return to all posts</a>
+			<header class="post-header">
+				<div class="post-meta">
+					<span class="date">March 24, 2026</span>
+				</div>
+			</header>
+			<div class="post-content">
+				<h1>How to install Arch Linux in WSL</h1>
+<p><a href="https:///blog/posts/Arch_Linux_installation.html">A previous post</a> covered the full bare-metal Arch Linux installation. This version takes the shorter route: Arch Linux now provides an official WSL image and Microsoft&#39;s current WSL flow installs Linux distributions directly from Windows, with new installs using WSL 2 by default. Complete software liberation has not yet occurred, Windows is still the landlord, but this is still a very respectable first step toward the ceremonial title of <strong>&quot;Arch Linux user&quot;</strong>.</p>
+<p>Because this is WSL, the usual bare-metal chores like booting an ISO, partitioning disks, installing a boot loader and generally negotiating with firmware, are not part of the process here. <a href="https:///blog/posts/Arch_Linux_installation.html">The earlier guide</a> remains the reference for that full installation path; this one focuses only on the WSL variant.</p>
+<h2>What is needed first?</h2>
+<p>Install WSL with the following command:</p>
+<pre><code class="language-ps1">wsl --install
+</code></pre>
+<blockquote>
+<p>Distributions installed through that flow use WSL 2 by default. Arch&#39;s official WSL image is intended for WSL 2, not WSL 1.</p>
+</blockquote>
+<p>If WSL is already installed, updating it first is still a good idea:</p>
+<pre><code class="language-ps1">wsl --update
+</code></pre>
+<h2>Install Arch Linux</h2>
+<p>Once WSL is available, Arch Linux can be installed directly from PowerShell using the official image:</p>
+<pre><code class="language-ps1">wsl --install archlinux
+</code></pre>
+<p>If the installation stalls at 0.0%, Microsoft recommends retrying with the web-download option:wsw</p>
+<pre><code class="language-ps1">wsl --install --web-download -d archlinux
+</code></pre>
+<p>After installation, Arch can be launched from the Start menu or from PowerShell with:</p>
+<pre><code class="language-ps1">wsl -d archlinux
+</code></pre>
+<p>The installed version can be checked with:</p>
+<pre><code class="language-ps1">wsl --list --verbose
+</code></pre>
+<p>Arch should appear there as a WSL 2 distribution.</p>
+<h2>First boot</h2>
+<p>On the current Arch WSL setup, the initial configuration is handled before a non-root default user is defined, so the first round of setup is most naturally performed from that administrative session. A root password should be set before the default user is changed, so recovery remains easy if the user configuration ever goes sideways.</p>
+<pre><code class="language-bash">passwd
+</code></pre>
+<h2>Update the system and improve mirrors</h2>
+<p>Even inside WSL, Arch remains Arch. The first job is therefore a full system upgrade, along with a few useful packages for day-to-day life. The mirror refresh and user-setup flow below follows the same general approach as the earlier Arch installation guide, adapted for WSL.</p>
+<pre><code class="language-bash">pacman -Syu --needed sudo git base-devel reflector nvim
+</code></pre>
+<blockquote>
+<p>Yes, you will install Neovim, what did you expect? you are a &quot;Arch Linux user&quot; now.</p>
+</blockquote>
+<p>Once that completes, the mirror list can be refreshed for faster downloads:</p>
+<pre><code class="language-bash">cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+reflector --verbose --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+pacman -Syyu
+</code></pre>
+<blockquote>
+<p>That second sync is not strictly dramatic, but it does ensure the newly selected mirrors are used immediately.</p>
+</blockquote>
+<h2>Create a regular user</h2>
+<p>Living forever as <code>root</code> is efficient in the same way juggling knives is efficient: technically possible, rarely advisable. A normal user should therefore be created, added to the wheel group and granted sudo access.</p>
+<pre><code class="language-bash">useradd -m -G wheel &lt;username&gt;
+passwd &lt;username&gt;
+EDITOR=nvim visudo
+</code></pre>
+<p>Inside <code>visudo</code>, the line that grants sudo privileges to the <code>wheel</code> group should be uncommented.</p>
+<h3>Time zone</h3>
+<ol>
+<li><p><code>timedatectl list-timezones</code>: list available time-zone identifiers.</p>
+<blockquote>
+<p>A specific entry may be located with grep, for example: <code>timedatectl list-timezones | grep Bogota</code>.</p>
+</blockquote>
+</li>
+<li><p><code>timedatectl set-timezone &lt;time zone&gt;</code>: the desired time zone is applied (e.g., <code>America/Bogota</code>).</p>
+</li>
+<li><p><code>timedatectl set-ntp true</code>.</p>
+</li>
+</ol>
+<h2>Locales and console</h2>
+<ol>
+<li><p>Uncomment <code>en_US.UTF-8</code> in <code>/etc/locale.gen</code>, then run <code>locale-gen</code>.</p>
+</li>
+<li><p>Create <code>/etc/locale.conf</code> containing <code>LANG=en_US.UTF-8</code>.</p>
+</li>
+<li><p>Add <code>KEYMAP=us</code> in <code>/etc/vconsole.conf</code>.</p>
+</li>
+</ol>
+<h2>Recommended <code>/etc/wsl.conf</code> settings</h2>
+<p>ArchWiki recommends setting the default WSL user in <code>/etc/wsl.conf</code> after the account has been created.</p>
+<p>A minimal wsl.conf for that purpose looks like this:</p>
+<pre><code class="language-ini">[user]
+default=&lt;username&gt;
+</code></pre>
+<p>It can also be written in one shot:</p>
+<pre><code class="language-bash">cat &gt; /etc/wsl.conf &lt;&lt;EOF
+[user]
+default=&lt;username&gt;
+EOF
+</code></pre>
+<h2>Restart WSL cleanly</h2>
+<p>After <code>wsl.conf</code> is changed, the distribution should be closed and WSL should be restarted from PowerShell so the new settings are applied.</p>
+<p>First, leave the Arch session:</p>
+<pre><code class="language-bash">exit
+</code></pre>
+<p>Then, in PowerShell:</p>
+<pre><code class="language-bash">wsl --shutdown
+wsl -d archlinux
+</code></pre>
+<p>If everything is configured correctly, the next session should open as the newly created user rather than <code>root</code>.</p>
+<h2>Recommendations</h2>
+<p>For better performance, Linux-side projects should be kept inside the Linux filesystem, such as <code>/home/&lt;username&gt;/</code>projects, rather than under <code>/mnt/c</code>. Microsoft recommends using the Linux filesystem for Linux tools because file operations are faster there.</p>
+<h2>Configure <code>/etc/wsl.conf</code></h2>
+<p>A more complete <code>wsl.conf</code> can be used to make Arch on WSL feel a little less like a guest and a little more like a proper home. In the example below, systemd is enabled, the regular account is made the default login, Windows drives are mounted with Linux metadata support and Windows path entries are kept out of the shell environment.</p>
+<pre><code class="language-ini">[boot]
+systemd=true
+
+[user]
+default=&lt;username&gt;
+
+[automount]
+enabled=true
+options=&quot;metadata,umask=022&quot;
+
+[interop]
+appendWindowsPath=false
+</code></pre>
+<p>This configuration is especially nice for day-to-day use. The shell environment stays tidier, file ownership on mounted Windows drives becomes more predictable and the regular user account is used automatically instead of dropping into root every time.</p>
+<h2 id="configure-pacman-conf">Configure `/etc/pacman.conf`</h2>
+<p>A few small tweaks in <code>/etc/pacman.conf</code> can make <code>pacman</code> feel a little nicer in day-to-day use. Faster downloads can be enabled, package lists can be made easier to read and one completely unnecessary but spiritually important option can also be added: <code>ILoveCandy</code>.</p>
+<p>A sensible configuration under the <code>[options]</code> section looks like this:</p>
+<pre><code class="language-ini">Color
+VerbosePkgLists
+ParallelDownloads = 5
+ILoveCandy
+CheckSpace
+# NoProgressBar
+</code></pre>
+<p>This keeps <code>pacman</code> readable, enables concurrent downloads and adds a quick disk-space check before installations.</p>
+<hr>
+<p>That is the whole process. No USB installer was needed and no partition table was touched. Windows is still technically in charge, so total freedom remains a future milestone, but an important symbolic threshold has now been crossed: Arch Linux is running, <code>pacman</code> is ready, the mirrors are sane and the badge of &quot;Arch Linux user&quot; has been earned, at least provisionally.</p>
+<p>For the full native installation path, <a href="https:///blog/posts/Arch_Linux_installation.html">the earlier bare-metal guide</a> remains the companion piece to this one.</p>
+
+			</div>
+			<a href="/blog/" class="back-link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Return to all posts</a>
+		</article>
+	</main>
+	<footer>
+		<p>Created by Brandon</p>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="How to generate an SSH key, add it to GitHub, and test authentication for secure repository access.">
+	<title>Connection to GitHub via SSH - Brandon's Blog</title>
+
+	<link rel="stylesheet" href="/assets/fonts/fontawesome/all.min.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+	<link rel="stylesheet" href="/css/blog.css" />
+	<link rel="stylesheet" href="/css/post.css" />
+
+	<link rel="icon" href="/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
+	<link rel="icon" href="/favicon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+</head>
+<body>
+	<header>
+		<nav>
+			<div class="left">
+				<a href="/">Brandon</a>
+			</div>
+			<div class="right">
+				<a href="/">
+					<i class="fa-solid fa-house"></i>
+					<span>home</span>
+				</a>
+				<a href="/blog/" class="active">
+					<i class="fa-solid fa-pen"></i>
+					<span>blog</span>
+				</a>
+				<a href="/#contact">
+					<i class="fa-solid fa-envelope"></i>
+					<span>contact</span>
+				</a>
+			</div>
+		</nav>
+	</header>
+	<main>
+		<article class="post">
+			<a href="/blog/" class="back-link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Return to all posts</a>
+			<header class="post-header">
+				<div class="post-meta">
+					<span class="date">June 10, 2025</span>
+				</div>
+			</header>
+			<div class="post-content">
+				<h1>Connection to GitHub via SSH</h1>
+<ol>
+<li><p>Generate a key.</p>
+<pre><code class="language-bash">ssh-keygen
+</code></pre>
+<blockquote>
+<p><code>ssh-keygen</code> is a utility from the &quot;openssh&quot; package; if the command is not found, the package is likely not installed.</p>
+</blockquote>
+<blockquote>
+<p>By default, the RSA algorithm is used.</p>
+</blockquote>
+<blockquote>
+<p>It is recommended to include a comment with the associated email address for easy identification.</p>
+</blockquote>
+<p> Running this command prompts for the save location (default: <code>/home/&lt;user&gt;/.ssh/</code>) and for a passphrase (serving as the key&#39;s password).</p>
+<blockquote>
+<p>The passphrase will be required later.</p>
+</blockquote>
+<p> Upon completion, two files will be created: the private key (no extension) and the public key (<code>.pub</code>).</p>
+</li>
+<li><p>Add the key to GitHub.</p>
+<ol>
+<li><p>Navigate to Settings.</p>
+</li>
+<li><p>Select SSH and GPG keys.</p>
+</li>
+<li><p>Click New SSH key:</p>
+<ol>
+<li><p>Enter a descriptive title.</p>
+</li>
+<li><p>Choose &quot;Authentication key&quot; as the type.</p>
+</li>
+<li><p>Paste the contents of the <code>.pub</code> into the &quot;Key&quot; field.</p>
+</li>
+</ol>
+</li>
+<li><p>Add SSH key.</p>
+</li>
+</ol>
+</li>
+<li><p>Test the connection.</p>
+<ol>
+<li><p><code>ssh -T git@github.com</code>.</p>
+</li>
+<li><p>At the prompt &quot;Are you sure you want to continue connecting (yes/no)?&quot;, write &quot;yes&quot;.</p>
+</li>
+</ol>
+<p> A successful setup will display: &quot;Hi USERNAME! You&#39;ve successfully authenticated, but GitHub does not provide shell access&quot;.</p>
+<blockquote>
+<p>If this message does not appear, the key has not been added correctly.</p>
+</blockquote>
+<blockquote>
+<p>Entering the passphrase will be required for each repository interaction.</p>
+</blockquote>
+</li>
+</ol>
+
+			</div>
+			<a href="/blog/" class="back-link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Return to all posts</a>
+		</article>
+	</main>
+	<footer>
+		<p>Created by Brandon</p>
+	</footer>
+</body>
+</html>

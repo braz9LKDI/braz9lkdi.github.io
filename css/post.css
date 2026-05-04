@@ -1,0 +1,163 @@
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  margin: 30px 0 20px;
+  color: var(--blue);
+  font-weight: 600;
+  border: 2px solid var(--blue);
+  border-radius: 5px;
+  transition: 0.5s;
+}
+
+.back-link:hover {
+  color: var(--red);
+  border-color: var(--red);
+  transform: translateX(-3px);
+}
+
+.back-link i {
+  transition: 0.5s;
+}
+
+.back-link:hover i {
+  transform: translateX(-3px);
+}
+
+.post > .back-link:last-of-type {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+
+.post-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3 {
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.post-content h1 {
+  font-size: var(--fs-xxl);
+}
+
+.post-content h2 {
+  font-size: var(--fs-xl);
+}
+
+.post-content h3 {
+  font-size: var(--fs-lg);
+}
+
+.post-content p {
+  margin-bottom: 15px;
+}
+
+.post-content blockquote {
+  border-left: 4px solid var(--blue);
+  padding-left: 20px;
+  margin: 15px 0;
+  font-style: italic;
+  color: var(--white);
+}
+
+.post-content code:not(pre code) {
+  background-color: var(--light-blue);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+.post-content pre {
+  background-color: var(--light-black);
+  color: var(--light-white);
+  padding: 15px;
+  border-radius: 5px;
+  overflow-x: auto;
+  margin: 15px 0;
+}
+
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+}
+
+.post-content th,
+.post-content td {
+  border: 1px solid var(--white);
+  padding: 10px;
+  text-align: left;
+}
+
+.post-content th {
+  background-color: var(--blue);
+  color: var(--light-white);
+}
+
+.post-content a {
+  color: var(--blue);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+  transition: color 0.2s ease;
+}
+
+.post-content a:hover {
+  color: var(--red);
+}
+
+.post-content a:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ----------------------------- LIST FORMATTING ---------------------------- */
+
+/* Better spacing for list items with nested content */
+.post-content li {
+  margin-bottom: 10px;
+}
+
+.post-content li:last-child {
+  margin-bottom: 0;
+}
+
+/* Nested content in list items */
+.post-content li > blockquote,
+.post-content li > pre,
+.post-content li > p + blockquote,
+.post-content li > p + pre {
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+/* Nested lists */
+.post-content li > ol,
+.post-content li > ul {
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+/* Code blocks following list items */
+.post-content li > p + pre {
+  margin-left: 0;
+}
+
+/* Multiple paragraphs in list items */
+.post-content li > p + p {
+  margin-top: 10px;
+}

@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A practical, step-by-step guide to install Arch Linux from a blank drive to a clean, bootable system.">
+	<title>Hyprland setup - Brandon's Blog</title>
+
+	<link rel="stylesheet" href="/assets/fonts/fontawesome/all.min.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+	<link rel="stylesheet" href="/css/blog.css" />
+	<link rel="stylesheet" href="/css/post.css" />
+
+	<link rel="icon" href="/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
+	<link rel="icon" href="/favicon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+</head>
+<body>
+	<header>
+		<nav>
+			<div class="left">
+				<a href="/">Brandon</a>
+			</div>
+			<div class="right">
+				<a href="/">
+					<i class="fa-solid fa-house"></i>
+					<span>home</span>
+				</a>
+				<a href="/blog/" class="active">
+					<i class="fa-solid fa-pen"></i>
+					<span>blog</span>
+				</a>
+				<a href="/#contact">
+					<i class="fa-solid fa-envelope"></i>
+					<span>contact</span>
+				</a>
+			</div>
+		</nav>
+	</header>
+	<main>
+		<article class="post">
+			<a href="/blog/" class="back-link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Return to all posts</a>
+			<header class="post-header">
+				<div class="post-meta">
+					<span class="date">January 6, 2026</span>
+				</div>
+			</header>
+			<div class="post-content">
+				<h1>Hyprland setup</h1>
+<p>This guide builds upon the foundation established in my <a href="https:///blog/posts/Arch_Linux_installation.html">&quot;Arch Linux installation&quot;</a> post. Assuming you have completed those steps, you should now have a clean base system. Below, we will cover the essential packages required to transform that minimal base into a fully functional Hyprland desktop environment.</p>
+<blockquote>
+<p>Disclaimer: software packages update frequently, which may alter the configuration process. I aim to maintain the accuracy of this guide, similar to my previous Arch Linux post.</p>
+</blockquote>
+<p>This customization relies on numerous configuration files. I will include essential, short snippets within this post; however, for extensive configurations, I will refer you to the full source code in my dotfiles. If configuration files are not required, I will not include them in the corresponding section.</p>
+<h2>Colors</h2>
+<p>To ensure visual consistency across the entire system, I utilize centralized &quot;color files&quot; that are sourced by individual applications. This setup relies on the following files:</p>
+<ul>
+<li><p>Hyprland: <code>~/.config/hypr/colors.conf</code>.</p>
+</li>
+<li><p>Waybar: <code>~/.config/waybar/colors.css</code>.</p>
+</li>
+<li><p>Kitty: <code>~/.config/kitty/colors.conf</code>.</p>
+</li>
+<li><p>Scripts: <code>~/.scripts/colors_and_helpers</code>.</p>
+<blockquote>
+<p>Note: the scripts file is only necessary if you plan to write custom scripts and want them to inherit your system&#39;s color palette.</p>
+</blockquote>
+</li>
+</ul>
+<p>You can find the specific color codes I use by checking these files in my <a href="https://github.com/Br4z/gray_files"><strong>dotfiles</strong></a> which are based in the <a href="https://github.com/Br4z/gray_files/blob/main/colorscheme/colorschemes.md">Apprentice theme</a>.</p>
+<h2>System and core</h2>
+<h3>Screen lock manager</h3>
+<p>A screen lock manager is a security utility that prevents unauthorized access to your session. It locks the display when you leave your computer or trigger it manually, requiring a password or authentication to resume your work.</p>
+<ul>
+<li><p>Package: <code>hyprlock</code>.</p>
+</li>
+<li><p><a href="https://wiki.hypr.land/Hypr-Ecosystem/hyprlock">Documentation</a>.</p>
+</li>
+<li><p><a href="https://github.com/hyprwm/hyprlock/blob/main/assets/example.conf">Example configuration file</a>.</p>
+</li>
+<li><p>Configuration file: <a href="https://github.com/Br4z/gray_files/blob/main/hyprland/hyprlock.conf"><code>~/.config/hypr/hyprlock.conf</code></a>.</p>
+<blockquote>
+<p>Note: if you plan to use my configuration, ensure you update the monitor and path variables to match your system.</p>
+</blockquote>
+</li>
+</ul>
+<h3>Idle manager</h3>
+<p>An idle manager is a background daemon that monitors input activity. Its primary purpose is to save energy and secure the system by triggering events, such as turning off the screen, locking the session, or suspending the computer, after a specific period of inactivity.</p>
+<ul>
+<li><p>Package: <code>hypridle</code>.</p>
+</li>
+<li><p><a href="https://wiki.hypr.land/Hypr-Ecosystem/hypridle">Documentation</a>.</p>
+</li>
+<li><p><a href="https://github.com/hyprwm/hypridle/blob/main/assets/example.conf">Example configuration file</a>.</p>
+</li>
+<li><p>Configuration file: <code>~/.config/hypr/hypridle.conf</code>.</p>
+<pre><code class="language-ini">general {
+    lock_cmd = pidof hyprlock || hyprlock
+    before_sleep_cmd = loginctl lock-session   # Lock before suspend.
+    after_sleep_cmd = hyprctl dispatch dpms on
+}
+
+listener {
+    timeout = 300                          # 5 min
+    on-timeout = hyprctl dispatch dpms off # Screen off
+    on-resume = hyprctl dispatch dpms on   # Screen on
+}
+
+listener {
+    timeout = 900                  # 15 min
+    on-timeout = systemctl suspend # Suspend pc
+}
+</code></pre>
+<p>  If you are a laptop user, you might want to add brightness settings to these rules to dim the screen before turning it off completely.</p>
+</li>
+</ul>
+<h2>Desktop environment</h2>
+<h3>Bar</h3>
+<p>The status bar is the central information hub of your desktop. It displays essential system details such as the time, battery life, workspace status, and active applications, acting as the primary interface for system monitoring.</p>
+<ul>
+<li><p>Package: <code>waybar</code>.</p>
+</li>
+<li><p><a href="https://github.com/Alexays/Waybar/wiki">Documentation</a>.</p>
+</li>
+<li><p><a href="https://github.com/Alexays/Waybar/blob/master/resources/config.jsonc">Example configuration file</a>.</p>
+</li>
+<li><p>Configuration file: <a href="https://github.com/Br4z/gray_files/blob/main/waybar/config.jsonc"><code>~/.config/waybar/config.jsonc</code></a> for functionality and <a href="https://github.com/Br4z/gray_files/blob/main/waybar/style.css"><code>~/.config/waybar/style.css</code></a> for appearance.</p>
+<p>  You will need to change <code>&quot;hwmon-path&quot;</code> in the <code>&quot;temperature&quot;</code> module to correctly display your CPU temperature.</p>
+</li>
+</ul>
+<h3>Application launcher</h3>
+<p>An application launcher serves as your digital menu. It provides a quick and searchable interface to open programs, run commands, or switch between windows without navigating through complex submenus.</p>
+<ul>
+<li><p>Package: <code>hyprlauncher</code>.</p>
+</li>
+<li><p><a href="https://wiki.hypr.land/Hypr-Ecosystem/hyprlauncher">Documentation</a>.</p>
+</li>
+<li><p>Configuration file: <code>~/.config/hypr/hyprlauncher.conf</code>.</p>
+<blockquote>
+<p>Personally, I use the default configuration. However, if you want to customize the colors, you will need to modify the global <a href="https://wiki.hypr.land/Hypr-Ecosystem/hyprtoolkit/"><code>hyprtoolkit</code></a> theme configuration at <code>~/.config/hypr/hyprtoolkit.conf</code>.</p>
+</blockquote>
+</li>
+</ul>
+<h3>Notification manager</h3>
+<p>The notification manager handles system and application alerts. It displays pop-up messages for events like incoming emails, music changes, or system errors, ensuring you stay informed without interrupting your workflow.</p>
+<ul>
+<li><p>Package: <code>mako</code>.</p>
+</li>
+<li><p><a href="https://github.com/emersion/mako/wiki">Documentation</a>.</p>
+</li>
+<li><p><a href="https://github.com/emersion/mako/wiki/Example-configuration">Example configuration file</a>.</p>
+</li>
+<li><p>Configuration file: <code>~/.config/mako/config</code>.</p>
+<pre><code class="language-ini">sort=-time
+layer=overlay
+background-color=#1C1C1C
+width=300
+height=110
+border-size=2
+border-color=#BCBCBC
+border-radius=5
+icons=0
+max-icon-size=64
+default-timeout=5000
+ignore-timeout=1
+font=CaskaydiaMono Nerd Font Mono 14
+
+[urgency=low]
+border-color=#5F875F
+
+[urgency=normal]
+border-color=#6C6C6C
+
+[urgency=high]
+border-color=#AF5F5F
+default-timeout=0
+
+[category=mpd]
+default-timeout=2000
+group-by=category
+</code></pre>
+</li>
+</ul>
+<h2>Screenshot</h2>
+<ul>
+<li>Packages:<ul>
+<li><p><code>grim</code>: grab images from a Wayland compositor (the actual screenshot tool).</p>
+</li>
+<li><p><code>slurp</code>: select a region in a Wayland compositor (provides the geometry for grim).</p>
+</li>
+<li><p><code>swappy</code>: a Wayland-native snapshot editing tool (for drawing arrows, blurring text, etc.).</p>
+<ul>
+<li><p>Configuration file: <code>~/.config/swappy/config</code>.</p>
+<pre><code class="language-ini">[Default]
+save_dir=$HOME/pictures/screenshots
+save_filename_format=swappy-%Y%m%d-%H%M%S.png
+show_panel=true
+line_size=5
+text_size=20
+text_font=CaskaydiaMono Nerd Font
+paint_mode=brush
+early_exit=false
+fill_shape=false
+</code></pre>
+<blockquote>
+<p>Make sure <code>save_dir</code> exists.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>I use the following keybindings in my hyprland.conf to chain these tools together:</p>
+<pre><code class="language-ini"># Capture region -&gt; edit -&gt; save/copy
+bind = $mainMod SHIFT, S, exec, grim -g &quot;$(slurp)&quot; - | swappy -f -
+
+# Capture full screen -&gt; edit -&gt; save/copy
+bind = , Print, exec, grim - | swappy -f -
+
+# Capture region -&gt; clipboard only
+bind = $mainMod, Print, exec, grim -g &quot;$(slurp)&quot; - | wl-copy &amp;&amp; notify-send &quot;Screenshot&quot; &quot;Copied to clipboard&quot;
+</code></pre>
+<blockquote>
+<p>Honorable mention: <a href="https://github.com/hyprwm/contrib/tree/main/grimblast"><code>grimblast-git</code></a>.</p>
+</blockquote>
+<h2>Wallpaper</h2>
+<ul>
+<li><p>Package: <code>hyprpaper</code>.</p>
+</li>
+<li><p><a href="https://wiki.hypr.land/Hypr-Ecosystem/hyprpaper">Documentation</a>.</p>
+</li>
+<li><p>Configuration file: <code>~/.config/hypr/hyprpaper.conf</code>.</p>
+<pre><code class="language-ini">wallpaper {
+    monitor = DP-3
+    path = /mnt/files/pictures/wallpapers/Cailee_Spaeny.jpg
+    fit_mode = cover
+}
+</code></pre>
+<p>  You will need to change the monitor name (<code>monitor</code>) and the path to your image file (<code>path</code>).</p>
+</li>
+</ul>
+<h2>Theming and appearance</h2>
+<p>Hyprland is a compositor, not a full desktop environment, so &quot;system theming&quot; is mostly about wiring together a few separate layers (GTK, Qt, icons, cursors, and fonts). In this section, I will outline the small set of tools I use to keep those layers consistent, without hand-editing a bunch of config files.</p>
+<p>I create my GTK and Qt themes using <code>themix-full-git</code>.</p>
+<h3>GTK manager</h3>
+<p>In a standalone window manager like Hyprland, applications do not automatically share a unified theme. A GTK manager is essential for defining the visual style (colors, borders, widgets) of your applications. It allows you to apply themes, icon sets, cursors, and fonts globally, ensuring consistency between your file manager, web browser, and system tools.</p>
+<ul>
+<li>Package: <code>nwg-look</code>.</li>
+</ul>
+<p>Since it is a graphical tool designed specifically to generate the necessary settings files for you, you do not need to worry about editing configuration files manually, but you do need to worry about where you store your themes:</p>
+<ul>
+<li><p>User: <code>~/.local/share/themes</code>.</p>
+</li>
+<li><p>System: <code>/usr/share/themes</code>.</p>
+</li>
+</ul>
+<h3>Qt6 manager</h3>
+<p>Qt applications (like Dolphin, OBS Studio, or VLC) do not naturally inherit the Hyprland look. This engine acts as a bridge, allowing Qt6 applications to read your specific color schemes and cursor settings without needing a separate GUI tool like <code>qt6ct</code>.</p>
+<ul>
+<li><p>Package: <code>hyprqt6engine</code>.</p>
+</li>
+<li><p><a href="https://wiki.hypr.land/Hypr-Ecosystem/hyprqt6engine">Documentation</a>.</p>
+</li>
+<li><p>Configuration file: <code>~/.config/hypr/hyprqt6engine.conf</code>.</p>
+</li>
+</ul>
+<h3>Font manager</h3>
+<p>Managing typefaces on Linux can sometimes be cumbersome via the command line. A font manager provides a visual interface to preview, install, and organize your system fonts. It allows you to disable unused fonts to speed up application loading times and compare different typefaces side-by-side.</p>
+<ul>
+<li>package: <code>font-manager</code>.</li>
+</ul>
+<h2>Productivity</h2>
+<h3>Terminal</h3>
+<p>The terminal emulator is the command-line interface for your desktop environment. It acts as the window through which you interact with the system shell, allowing you to execute commands, run text-based applications, and manage files. A modern terminal emulator typically offers features like hardware acceleration, tabbed browsing, and extensive customization options to improve workflow efficiency.</p>
+<ul>
+<li><p>package: <code>kitty</code>.</p>
+</li>
+<li><p><a href="https://sw.kovidgoyal.net/kitty/">Documentation</a>.</p>
+</li>
+<li><p>Example configuration file: you can generate it with the shortcut <code>CTRL + SHIFT + F2</code> while inside the application.</p>
+<blockquote>
+<p>Since the default configuration file is heavily commented, it effectively serves as its own documentation.</p>
+</blockquote>
+</li>
+<li><p>Configuration file: <a href="https://github.com/Br4z/gray_files/blob/main/kitty/kitty.conf"><code>~/.config/kitty/kitty.conf</code></a>.</p>
+</li>
+</ul>
+<h3>Text editor</h3>
+<ul>
+<li>package: <code>mousepad</code>.</li>
+</ul>
+<p>If you want to back up your settings (which are stored in the <code>dconf</code> database), you can export them with this command:</p>
+<pre><code class="language-bash">dconf dump /org/xfce/mousepad/ &gt; mousepad-backup.conf
+</code></pre>
+<p>To restore them later:</p>
+<pre><code class="language-bash">dconf load /org/xfce/mousepad/ &lt; mousepad-backup.conf
+</code></pre>
+<blockquote>
+<p>I am planning to write a post about <code>nvim</code> (a text editor for terminals), in case you are interested in using it, so stay tuned.</p>
+</blockquote>
+<h3>Document viewer</h3>
+<ul>
+<li><p>package: <code>zathura</code> (and <code>zathura-pdf-mupdf</code> for PDF support).</p>
+</li>
+<li><p><a href="https://pwmt.org/projects/zathura/documentation/">Documentation</a>.</p>
+</li>
+<li><p>Configuration file: <a href="https://github.com/Br4z/gray_files/tree/main/zathura/zathurarc"><code>~/.config/zathura/zathurarc</code></a>.</p>
+<blockquote>
+<p>My configuration file only applies visual theming; all keybindings remain at their default settings.</p>
+</blockquote>
+</li>
+</ul>
+<h3>File explorer</h3>
+<ul>
+<li>Packages:<ul>
+<li><p><code>thunar</code>: main package.</p>
+</li>
+<li><p><code>thunar-volman</code>: manages automatic mounting of removable devices.</p>
+</li>
+<li><p><code>gvfs</code>: provides virtual filesystem support (trash bin, network shares, mounting).</p>
+</li>
+<li><p><code>tumbler</code>: generates image thumbnails.</p>
+</li>
+<li><p><code>ffmpegthumbnailer</code>: generates video thumbnails.</p>
+</li>
+<li><p><code>thunar-archive-plugin</code>: allows you to create and extract archives (requires <code>Xarchiver</code>).</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>If you want to back up your settings or theme adjustments, you can find the configuration files in <code>~/.config/xfce4/xfconf/xfce-perchannel-xml/</code>.</p>
+<h2>Media</h2>
+<h3>Audio manager</h3>
+<p>An audio manager provides a graphical interface to control volume levels, select audio devices, and manage audio streams across applications. It acts as the bridge between your applications and the sound system, allowing you to route audio, adjust per-application volumes, and switch between speakers, headphones, or external devices seamlessly.</p>
+<ul>
+<li>Package: <code>pwvucontrol</code>.</li>
+</ul>
+<h3>Video player</h3>
+<ul>
+<li><p>Package: <code>mpv</code>.</p>
+</li>
+<li><p><a href="https://mpv.io/manual/stable/">Documentation</a>.</p>
+</li>
+<li><p><a href="https://github.com/mpv-player/mpv/blob/master/etc/mpv.conf">Example configuration file</a>.</p>
+</li>
+<li><p>Configuration file: <a href="https://github.com/Br4z/gray_files/tree/main/mpv/mpv.conf"><code>~/.config/mpv/mpv.conf</code></a>.</p>
+</li>
+</ul>
+<h3>Image viewer</h3>
+<ul>
+<li><p>Package: <code>nsxiv</code>.</p>
+</li>
+<li><p>Configuration file: <code>~/.config/nsxiv/</code>.</p>
+</li>
+</ul>
+<h3>Music server</h3>
+<p>A music server is a background daemon that manages your music library and streams audio to connected clients. It separates the music source (library management) from the playback interface, allowing you to control playback from different devices or applications while maintaining a centralized music collection.</p>
+<ul>
+<li><p>Package: <code>mpd</code>.</p>
+</li>
+<li><p><a href="https://mpd.readthedocs.io/en/stable">Documentation</a>.</p>
+</li>
+<li><p>Configuration file: <a href="https://github.com/Br4z/gray_files/tree/main/mpd/mpd.conf"><code>~/.config/mpd/mpd.conf</code></a>.</p>
+</li>
+</ul>
+<h3>Music player</h3>
+<p>A music player client connects to your music server and provides the user interface for playback control, playlist management, and library browsing. By using a dedicated client, you gain flexibility—different clients can offer different workflows while all connecting to the same music source.</p>
+<ul>
+<li><p>Package: <code>rmpc</code>.</p>
+</li>
+<li><p><a href="https://rmpc.mierak.dev/next/overview">Documentation</a>.</p>
+</li>
+<li><p>Configuration file: <a href="https://github.com/Br4z/gray_files/tree/main/rmpc/rmpc.conf"><code>~/.config/rmpc/rmpc.conf</code></a>.</p>
+</li>
+</ul>
+
+			</div>
+			<a href="/blog/" class="back-link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Return to all posts</a>
+		</article>
+	</main>
+	<footer>
+		<p>Created by Brandon</p>
+	</footer>
+</body>
+</html>

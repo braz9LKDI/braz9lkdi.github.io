@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A concise guide to using the `pacman` package manager on Arch Linux: refreshing databases, searching packages, managing installed software and keeping the system tidy without summoning dependency chaos">
+	<title>The pacman command - Brandon's Blog</title>
+
+	<link rel="stylesheet" href="/assets/fonts/fontawesome/all.min.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+	<link rel="stylesheet" href="/css/blog.css" />
+	<link rel="stylesheet" href="/css/post.css" />
+
+	<link rel="icon" href="/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
+	<link rel="icon" href="/favicon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+</head>
+<body>
+	<header>
+		<nav>
+			<div class="left">
+				<a href="/">Brandon</a>
+			</div>
+			<div class="right">
+				<a href="/">
+					<i class="fa-solid fa-house"></i>
+					<span>home</span>
+				</a>
+				<a href="/blog/" class="active">
+					<i class="fa-solid fa-pen"></i>
+					<span>blog</span>
+				</a>
+				<a href="/#contact">
+					<i class="fa-solid fa-envelope"></i>
+					<span>contact</span>
+				</a>
+			</div>
+		</nav>
+	</header>
+	<main>
+		<article class="post">
+			<a href="/blog/" class="back-link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Return to all posts</a>
+			<header class="post-header">
+				<div class="post-meta">
+					<span class="date">August 30, 2025</span>
+				</div>
+			</header>
+			<div class="post-content">
+				<h1>The pacman command</h1>
+<p><code>pacman</code> is the package manager used by Arch Linux and its derivatives. It is responsible for installing, upgrading, querying and removing packages, as well as maintaining the local package database.</p>
+<p>The syntax may look terse at first glance, but that is part of the charm. Or the threat.</p>
+<h2>Refreshing the Package Database</h2>
+<p>The package database can be refreshed with the following command:</p>
+<pre><code class="language-bash">pacman -Sy
+</code></pre>
+<ul>
+<li><p><code>S</code>: sync operations with the package repositories.</p>
+</li>
+<li><p><code>y</code>: refresh the package databases.</p>
+</li>
+</ul>
+<p>A forced refresh can be performed with:</p>
+<pre><code class="language-bash">pacman -Syy
+</code></pre>
+<ul>
+<li>The second <code>y</code> forces all package databases to be downloaded again, even if they appear to be up to date.</li>
+</ul>
+<blockquote>
+<p>A forced refresh is not usually required. It is generally reserved for cases in which the local database is suspected to be stale or inconsistent.</p>
+</blockquote>
+<blockquote>
+<p>Refreshing the database without performing a full upgrade should not become a habit. On Arch Linux, partial upgrades are unsupported.</p>
+</blockquote>
+<h2>The mirror list</h2>
+<p>When <code>pacman</code> performs an operation that requires synchronization, such as installing or upgrading packages, it contacts the servers listed in:</p>
+<pre><code class="language-bash">/etc/pacman.d/mirrorlist
+</code></pre>
+<p>These servers are tried from top to bottom.</p>
+<p>If downloads are unusually slow, the mirror list should be regenerated or reordered so that faster and more reliable mirrors are placed near the top.</p>
+<h2>Managing packages</h2>
+<h3>Installing packages</h3>
+<p>A package can be installed with:</p>
+<pre><code class="language-bash">pacman -S &lt;package_name&gt;
+</code></pre>
+<ul>
+<li><code>S</code>: sync and install a package from the repositories.</li>
+</ul>
+<p>Any required dependencies are resolved and installed automatically. Multiple packages may be installed in a single command by separating their names with spaces.</p>
+<h3>Installing a local package file</h3>
+<p>A local package file can be installed with:</p>
+<pre><code class="language-bash">pacman -U &lt;package_file&gt;
+</code></pre>
+<ul>
+<li><code>U</code>: upgrade or install a local package file.</li>
+</ul>
+<p>This is commonly used for manually downloaded package archives.</p>
+<h3>Removing packages</h3>
+<p>A package can be removed with:</p>
+<pre><code class="language-bash">pacman -R &lt;package_name&gt;
+</code></pre>
+<ul>
+<li><code>R</code>: remove a package.</li>
+</ul>
+<p>A package and its unused dependencies can be removed with:</p>
+<pre><code class="language-bash">pacman -Rs &lt;package_name&gt;
+</code></pre>
+<p>A more thorough removal, including configuration files and dependencies no longer required, can be performed with:</p>
+<pre><code class="language-bash">pacman -Rns &lt;package_name&gt;
+</code></pre>
+<ul>
+<li><p><code>n</code>: remove backup configuration files.</p>
+</li>
+<li><p><code>s</code>: remove dependencies that are no longer needed.</p>
+</li>
+</ul>
+<blockquote>
+<p><code>pacman -Rns</code> is often the practical choice when a package is no longer wanted at all.</p>
+</blockquote>
+<h2>Searching for packages</h2>
+<h3>Searching the repositories</h3>
+<p>If the exact package name is not known, the repositories can be searched with:</p>
+<pre><code class="language-bash">pacman -Ss &lt;keyword&gt;
+</code></pre>
+<ul>
+<li><p><code>S</code>: search in sync databases.</p>
+</li>
+<li><p><code>s</code>: perform a search.</p>
+</li>
+</ul>
+<p>This searches remote repositories, not just locally installed packages.</p>
+<h3>Searching installed packages</h3>
+<p>Installed packages can be searched with:</p>
+<pre><code class="language-bash">pacman -Qs &lt;keyword&gt;
+</code></pre>
+<ul>
+<li><p><code>Q</code>: query the local package database.</p>
+</li>
+<li><p><code>s</code>: search installed packages.</p>
+</li>
+</ul>
+<p>This is useful when only the installed software should be searched.</p>
+<h3>Checking whether a package is installed</h3>
+<p>To check whether a specific package is installed:</p>
+<pre><code class="language-bash">pacman -Q &lt;package_name&gt;
+</code></pre>
+<p>If the package is installed, its name and version are shown.</p>
+<h2>Querying package information</h2>
+<h3>Viewing information about an installed package</h3>
+<p>Detailed information about an installed package can be displayed with:</p>
+<pre><code class="language-bash">pacman -Qi &lt;package_name&gt;
+</code></pre>
+<ul>
+<li><code>i</code>: show package information.</li>
+</ul>
+<h3>Viewing information about a package in the repositories</h3>
+<p>Information about a package available in the repositories can be displayed with:</p>
+<pre><code class="language-bash">pacman -Si &lt;package_name&gt;
+</code></pre>
+<p>This is useful when a package has not yet been installed.</p>
+<h3>Listing files installed by a package</h3>
+<p>The files installed by a package can be listed with:</p>
+<pre><code class="language-bash">pacman -Ql &lt;package_name&gt;
+</code></pre>
+<ul>
+<li><code>l</code>: list files owned by the package.</li>
+</ul>
+<h3>Finding which package owns a file</h3>
+<p>To determine which installed package owns a file:</p>
+<pre><code class="language-bash">pacman -Qo &lt;file_path&gt;
+</code></pre>
+<p>Example:</p>
+<pre><code class="language-bash">pacman -Qo /usr/bin/git
+</code></pre>
+<p>This is especially handy when a mysterious binary appears and its origin needs to be identified.</p>
+<h2>System maintenance</h2>
+<h3>Performing a full system upgrade</h3>
+<p>A full system upgrade can be performed with:</p>
+<pre><code class="language-bash">pacman -Syu
+</code></pre>
+<ul>
+<li><p><code>S</code>: sync with repositories.</p>
+</li>
+<li><p><code>y</code>: refresh package databases.</p>
+</li>
+<li><p><code>u</code>: upgrade all out-of-date packages.</p>
+</li>
+</ul>
+<p>This command synchronizes the package databases and upgrades all packages for which newer versions are available.</p>
+<blockquote>
+<p>On Arch Linux, this is the standard way to update the system. A full upgrade is preferred over selective upgrades.</p>
+</blockquote>
+<h3>Downloading packages without installing them</h3>
+<p>Packages can be downloaded into the cache without being installed:</p>
+<pre><code class="language-bash">pacman -Sw &lt;package_name&gt;
+</code></pre>
+<ul>
+<li><code>w</code>: download packages but do not install them.</li>
+</ul>
+<h3>Finding orphan packages</h3>
+<p>Orphan packages are dependencies that were installed automatically but are no longer required by any installed package.</p>
+<p>They can be listed with:</p>
+<pre><code class="language-bash">pacman -Qdt
+</code></pre>
+<ul>
+<li><p><code>Q</code>: query the local package database.</p>
+</li>
+<li><p><code>d</code>: limit results to dependencies.</p>
+</li>
+<li><p><code>t</code>: limit results to packages no longer required.</p>
+</li>
+</ul>
+<p>These packages can be removed with:</p>
+<pre><code class="language-bash">pacman -Rns $(pacman -Qdtq)
+</code></pre>
+<ul>
+<li><code>q</code>: show only package names.</li>
+</ul>
+<blockquote>
+<p>A quick review before removal is wise. Not every orphan is truly unloved.</p>
+</blockquote>
+<h3>Cleaning the package cache</h3>
+<p>Old cached package files can accumulate over time. The cache can be cleaned with:</p>
+<pre><code class="language-bash">pacman -Sc
+</code></pre>
+<ul>
+<li><code>c</code>: remove cached packages that are no longer installed and old package versions that are no longer needed.</li>
+</ul>
+<p>A more aggressive cleanup can be performed with:</p>
+<pre><code class="language-bash">pacman -Scc
+</code></pre>
+<p>This removes all cached package files.</p>
+<blockquote>
+<p><code>pacman -Scc</code> is effective, but it also removes the safety net of locally cached packages. In other words, it is tidy and slightly dramatic.</p>
+</blockquote>
+<h2>Summary</h2>
+<p>The most commonly used <code>pacman</code> operations include:</p>
+<ul>
+<li><p><code>pacman -S &lt;package&gt;</code>: install a package.</p>
+</li>
+<li><p><code>pacman -U &lt;file&gt;</code>: install a local package file.</p>
+</li>
+<li><p><code>pacman -Rns &lt;package&gt;</code>: remove a package with unused dependencies and configuration files.</p>
+</li>
+<li><p><code>pacman -Ss &lt;keyword&gt;</code>: search repositories.</p>
+</li>
+<li><p><code>pacman -Qs &lt;keyword&gt;</code>: search installed packages.</p>
+</li>
+<li><p><code>pacman -Q &lt;package&gt;</code>: check whether a package is installed.</p>
+</li>
+<li><p><code>pacman -Qi &lt;package&gt;</code>: show information about an installed package.</p>
+</li>
+<li><p><code>pacman -Ql &lt;package&gt;</code>: list files installed by a package.</p>
+</li>
+<li><p><code>pacman -Qo &lt;file&gt;</code>: find which package owns a file.</p>
+</li>
+<li><p><code>pacman -Syu</code>: perform a full system upgrade.</p>
+</li>
+<li><p><code>pacman -Qdt</code>: list orphan packages.</p>
+</li>
+<li><p><code>pacman -Sc</code>: clean the package cache.</p>
+</li>
+</ul>
+<p>Used carefully, <code>pacman</code> is fast, predictable and refreshingly honest. When it complains, it is usually doing so for a reason.</p>
+
+			</div>
+			<a href="/blog/" class="back-link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Return to all posts</a>
+		</article>
+	</main>
+	<footer>
+		<p>Created by Brandon</p>
+	</footer>
+</body>
+</html>

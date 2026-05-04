@@ -1,0 +1,38 @@
+name: Build blog
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "assets/data/posts/**"
+      - "blog/template.html"
+      - "scripts/generate_blog.js"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build blog
+        run: npm run build:blog
+
+      - name: Commit and push generated files
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add blog/index.html blog/posts/
+          git diff --staged --quiet || git commit -m "chore: rebuild blog [skip ci]"
+          git push

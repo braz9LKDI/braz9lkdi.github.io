@@ -1,0 +1,33 @@
+[
+  {
+    "id": "portfolio",
+    "title": "Portfolio",
+    "description": "Website showcasing my projects and skills.",
+    "image": "assets/images/projects/portfolio.webp",
+    "tags": ["JavaScript", "CSS", "HTML"],
+    "links": {
+      "code": "https://github.com/Br4z/portfolio",
+      "live": "#"
+    }
+  },
+  {
+    "title": "Placeholder title",
+    "description": "Placeholder description.",
+    "image": "https://placehold.co/1920x1080?text=Placeholder",
+    "tags": [],
+    "links": {
+      "code": "#",
+      "live": "#"
+    }
+  },
+  {
+    "title": "Placeholder title",
+    "description": "Placeholder description.",
+    "image": "https://placehold.co/1920x1080?text=Placeholder",
+    "tags": [],
+    "links": {
+      "code": "#",
+      "live": "#"
+    }
+  }
+]

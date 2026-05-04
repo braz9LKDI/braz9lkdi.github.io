@@ -1,0 +1,249 @@
+.blog-header {
+  padding: 40px 50px 20px;
+  text-align: left;
+}
+
+.blog-header h1 {
+  font-size: var(--fs-xxl);
+  margin-bottom: 10px;
+}
+
+.blog-header p {
+  font-size: var(--fs-base);
+}
+
+.blog-search {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 0 50px;
+}
+
+.search-container {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.search-container input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 2px solid var(--blue);
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+  background-color: transparent;
+  font-family: inherit;
+}
+
+.search-container button {
+  padding: 10px 15px;
+  background-color: var(--blue);
+  border: 2px solid var(--blue);
+  border-radius: 0 5px 5px 0;
+  color: var(--light-white);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.search-container button:hover {
+  background-color: var(--red);
+  border-color: var(--red);
+}
+
+.blog-filters .tech-tags .tag {
+  cursor: pointer;
+  border: none;
+}
+
+.blog-filters .tags-filter .tag:hover {
+  background-color: var(--red);
+  transform: translateX(3px);
+}
+
+.blog-filters .tag.active {
+  background-color: var(--red);
+}
+
+#search-results {
+  margin-top: 10px;
+}
+
+.blog-list {
+  padding: 0 50px;
+  max-width: 900px;
+  margin: 0 auto 100px;
+}
+
+.blog-item {
+  display: flex;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--blue);
+  position: relative;
+}
+
+.blog-item:has(.card-link:focus-visible) {
+  outline: 2px solid var(--red);
+  outline-offset: 6px;
+}
+
+.card-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.card-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.blog-item:hover .card-link {
+  color: var(--red);
+}
+
+.blog-image {
+  flex: 0 0 200px;
+  margin-right: 20px;
+}
+
+.blog-image img {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+  transition: 0.5s;
+}
+
+.blog-item:hover .blog-image img {
+  transform: scale(1.1);
+}
+
+.blog-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-content h2 {
+  margin-bottom: 10px;
+  font-size: var(--fs-xl);
+}
+
+.blog-meta {
+  font-size: var(--fs-base);
+  color: var(--white);
+  margin-bottom: 10px;
+}
+
+.blog-meta .date {
+  margin-right: 15px;
+}
+
+.blog-meta .tags {
+  color: var(--blue);
+}
+
+.blog-content .excerpt {
+  margin-bottom: 15px;
+  flex-grow: 1;
+}
+
+.tech-tags {
+  margin-bottom: 0;
+}
+
+.blog-pagination {
+  display: flex;
+  padding: 0 50px;
+  max-width: 900px;
+  margin: 0 auto 50px;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.pagination-btn {
+  background-color: var(--blue);
+  color: var(--light-white);
+  border: 2px solid var(--blue);
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  align-items: center;
+  transition: 0.5;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background-color: var(--red);
+  border-color: var(--red);
+  transform: translateY(-2px);
+}
+
+.pagination-btn:disabled {
+  background-color: var(--white);
+  border-color: var(--white);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.page-numbers {
+  display: flex;
+  gap: 8px;
+}
+
+.page-number {
+  background-color: transparent;
+  color: var(--black);
+  border: 2px solid var(--blue);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  transition: 0.5s;
+}
+
+.page-number:hover {
+  background-color: var(--blue);
+  color: var(--light-white);
+}
+
+.page-number.active {
+  background-color: var(--red);
+  border-color: var(--red);
+  color: var(--light-white);
+}
+
+/* ------------------------------- RESPONSIVE ------------------------------- */
+
+@media (width <= 740px) {
+  .blog-item {
+    flex-direction: column;
+  }
+
+  .blog-image {
+    flex: 0 0 auto;
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+}
+
+@media (width <= 600px) {
+  .blog-header,
+  .blog-list,
+  .blog-search,
+  .blog-pagination {
+    padding: 20px;
+  }
+
+  .pagination-btn {
+    font-size: var(--fs-sm);
+  }
+
+  .page-number {
+    width: 35px;
+    height: 35px;
+    font-size: var(--fs-sm);
+  }
+}

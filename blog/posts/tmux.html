@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Overview of tmux, the terminal multiplexer that enables panes, windows, and sessions for efficient terminal workflows.">
+	<title>Tmux - Brandon's Blog</title>
+
+	<link rel="stylesheet" href="/assets/fonts/fontawesome/all.min.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+	<link rel="stylesheet" href="/css/blog.css" />
+	<link rel="stylesheet" href="/css/post.css" />
+
+	<link rel="icon" href="/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
+	<link rel="icon" href="/favicon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+</head>
+<body>
+	<header>
+		<nav>
+			<div class="left">
+				<a href="/">Brandon</a>
+			</div>
+			<div class="right">
+				<a href="/">
+					<i class="fa-solid fa-house"></i>
+					<span>home</span>
+				</a>
+				<a href="/blog/" class="active">
+					<i class="fa-solid fa-pen"></i>
+					<span>blog</span>
+				</a>
+				<a href="/#contact">
+					<i class="fa-solid fa-envelope"></i>
+					<span>contact</span>
+				</a>
+			</div>
+		</nav>
+	</header>
+	<main>
+		<article class="post">
+			<a href="/blog/" class="back-link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Return to all posts</a>
+			<header class="post-header">
+				<div class="post-meta">
+					<span class="date">June 10, 2025</span>
+				</div>
+			</header>
+			<div class="post-content">
+				<h1>Tmux</h1>
+<p>tmux is a terminal multiplexer for UNIX-like systems, similar to GNU Screen or Byobu, which enables splitting a single console into multiple panes or creating independent sessions within the same terminal. In practical terms, tmux allows multiple virtual terminals to operate within one window.</p>
+<blockquote>
+<p>Detailed documentation is available in the <a href="https://man.openbsd.org/OpenBSD-current/man1/tmux.1">OpenBSD manual</a>.</p>
+</blockquote>
+<blockquote>
+<p>Much of the information here is drawn from the <a href="https://www.youtube.com/playlist?list=PLT98CRl2KxKGiyV1u6wHDV8VwcQdzfuKe">Learn Linux TV playlist</a>.</p>
+</blockquote>
+<h2>Sessions</h2>
+<p>A session in tmux comprises a collection of windows and panes. Each session represents an isolated workspace for a specific set of tasks or projects. Multiple sessions can run concurrently, and sessions may be detached and reattached as needed.</p>
+<h2>Windows</h2>
+<p>Within a session, multiple windows may be created. Each window provides an independent view containing its own set of panes. Windows facilitate organization of distinct tasks or contexts within the same session.</p>
+<h2>Panes</h2>
+<p>Panes divide a single window into multiple regions, each capable of hosting a separate terminal or application. Panes enable simultaneous monitoring of a process in one pane while interacting with another, without switching windows.</p>
+<h2>Installation</h2>
+<p>Installation steps vary by distribution; refer to the <a href="https://github.com/tmux/tmux/wiki/Installing">official tmux installation guide</a>) for system-specific instructions. In general, executing: <code>&lt;package-manager&gt; install tmux</code>.</p>
+<h2>Commands</h2>
+<ul>
+<li><p><code>tmux new -s &lt;name&gt;</code>: create a new session named &quot;name&quot;.</p>
+</li>
+<li><p><code>tmux list-sessions</code> or <code>tmux ls</code>: list all active sessions..</p>
+</li>
+<li><p><code>tmux attach</code> or <code>tmux a</code>: attach to the most recently used session.</p>
+</li>
+<li><p><code>tmux a -t &lt;session name&gt;</code>: attach to a specific session.</p>
+</li>
+<li><p><code>tmux kill-session -t &lt;session number&gt;</code>: terminate the specified session.</p>
+</li>
+</ul>
+<h2>Shortcuts</h2>
+<p>All shortcuts assume the default prefix <code>CTRL + b</code> (modifiable in configuration).</p>
+<ul>
+<li><p><code>d</code>: detach from the current session.</p>
+</li>
+<li><p><code>s</code> (session): list all sessions.</p>
+</li>
+<li><p><code>$</code>: rename the current session.</p>
+<blockquote>
+<p><code>tmux rename-session</code>.</p>
+</blockquote>
+</li>
+<li><p><code>(</code> / <code>)</code>: switch to previous / next session.</p>
+</li>
+<li><p><code>c</code> (create): create a new window.</p>
+<blockquote>
+<p><code>tmux new-window</code>.</p>
+</blockquote>
+</li>
+<li><p><code>n</code> / <code>p</code>: move to next / previous window.</p>
+</li>
+<li><p><code>,</code>: rename the current window.</p>
+<blockquote>
+<p><code>tmux rename-window &lt;new name&gt;</code>.</p>
+</blockquote>
+</li>
+<li><p><code>&lt;number&gt;</code>: switch directly to window by number (starting at 0).</p>
+</li>
+<li><p><code>&amp;</code>: close the current window.</p>
+</li>
+<li><p><code>%</code>: split pane vertically.</p>
+</li>
+<li><p><code>&quot;</code>: split pane horizontally.</p>
+</li>
+<li><p><code>q</code>: display pane numbers.</p>
+</li>
+<li><p><code>q&lt;panel number&gt;</code>: switch to specified pane.</p>
+</li>
+<li><p><code>z</code>: toggle zoom for the active pane.</p>
+<blockquote>
+<p>The same to unzoom.</p>
+</blockquote>
+</li>
+<li><p><code>!</code>: promote a pane to its own window.</p>
+</li>
+<li><p><code>&lt;ARROW&gt;</code>: navigate between panes</p>
+</li>
+<li><p><code>CTRL + b + &lt;ARROW&gt;</code>: resize panes.</p>
+</li>
+<li><p><code>x</code>: close the active pane.</p>
+</li>
+<li><p><code>:</code>: enter tmux command prompt.</p>
+</li>
+<li><p><code>:setw synchronize-panes</code>: synchronize input across all panes.</p>
+</li>
+</ul>
+<blockquote>
+<p>A comprehensive <a href="https://tmuxcheatsheet.com">tmux cheat sheet</a> is also available.</p>
+</blockquote>
+<h2>Configuration</h2>
+<p>A user-specific configuration file can be created at <code>~/.tmux.conf</code>. Temporary, non-persistent options may be tested directly within the tmux command prompt before being added to the configuration file.</p>
+<blockquote>
+<p>Customization examples from Learn Linux TV can be found in this <a href="https://www.learnlinux.tv/learn-tmux-part-5-how-to-customize-tmux-and-make-it-your-own">configuration guide</a>.</p>
+</blockquote>
+
+			</div>
+			<a href="/blog/" class="back-link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Return to all posts</a>
+		</article>
+	</main>
+	<footer>
+		<p>Created by Brandon</p>
+	</footer>
+</body>
+</html>

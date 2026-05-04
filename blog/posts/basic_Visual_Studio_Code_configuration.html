@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Practical Visual Studio Code settings and tweaks to improve productivity and comfort.">
+	<title>Basic Visual Studio Code configuration - Brandon's Blog</title>
+
+	<link rel="stylesheet" href="/assets/fonts/fontawesome/all.min.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+	<link rel="stylesheet" href="/css/blog.css" />
+	<link rel="stylesheet" href="/css/post.css" />
+
+	<link rel="icon" href="/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
+	<link rel="icon" href="/favicon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+</head>
+<body>
+	<header>
+		<nav>
+			<div class="left">
+				<a href="/">Brandon</a>
+			</div>
+			<div class="right">
+				<a href="/">
+					<i class="fa-solid fa-house"></i>
+					<span>home</span>
+				</a>
+				<a href="/blog/" class="active">
+					<i class="fa-solid fa-pen"></i>
+					<span>blog</span>
+				</a>
+				<a href="/#contact">
+					<i class="fa-solid fa-envelope"></i>
+					<span>contact</span>
+				</a>
+			</div>
+		</nav>
+	</header>
+	<main>
+		<article class="post">
+			<a href="/blog/" class="back-link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Return to all posts</a>
+			<header class="post-header">
+				<div class="post-meta">
+					<span class="date">June 12, 2025</span>
+				</div>
+			</header>
+			<div class="post-content">
+				<h1>Basic Visual Studio Code configuration</h1>
+<p>VS Code ranks among the most popular text editors due to its ease of use and extensive community support (themes, extensions, tutorials). The following configurations, applied via <code>settings.json</code>, have proven particularly useful. GUI configuration remains an option.</p>
+<h2><code>setting.json</code></h2>
+<ul>
+<li><p><code>terminal.integrated.enablePersistentSessions</code>: determines whether integrated terminal sessions persist across editor restarts.</p>
+<blockquote>
+<p><code>false</code>.</p>
+</blockquote>
+</li>
+<li><p><code>workbench.statusBar.visible</code>: controls the visibility of the status bar at the bottom of the editor.</p>
+<blockquote>
+<p><code>false</code>.</p>
+</blockquote>
+</li>
+<li><p><code>workbench.sideBar.location</code>: specifies the sidebar&#39;s position.</p>
+<blockquote>
+<p>Preferred value: <code>&quot;right&quot;</code> to avoid content shift when toggling.</p>
+</blockquote>
+</li>
+<li><p><code>workbench.editor.showTabs</code>: defines tab display mode for open files.</p>
+<blockquote>
+<p><code>&quot;single&quot;</code> (only the active file’s name is shown).</p>
+</blockquote>
+</li>
+<li><p><code>workbench.startupEditor</code>: sets the startup view upon opening VS Code.</p>
+<blockquote>
+<p><code>&quot;none&quot;</code> (restores the previous session).</p>
+</blockquote>
+</li>
+<li><p><code>workbench.list.smoothScrolling</code>: enables smooth scrolling in sidebar lists.</p>
+<blockquote>
+<p><code>true</code>.</p>
+</blockquote>
+</li>
+<li><p><code>workbench.tree.enableStickyScroll</code>: enables “sticky scroll” in the file explorer, keeping directory context visible while scrolling.</p>
+<blockquote>
+<p><code>true</code>.</p>
+</blockquote>
+</li>
+<li><p><code>editor.scrollbar.vertical</code>: controls the vertical scrollbar&#39;s behavior.</p>
+<blockquote>
+<p><code>&quot;auto&quot;</code>.</p>
+</blockquote>
+</li>
+<li><p><code>editor.cursorBlinking</code>: defines the cursor&#39;s blinking animation.</p>
+<blockquote>
+<p><code>&quot;expand&quot;</code>.</p>
+</blockquote>
+</li>
+<li><p><code>editor.cursorSmoothCaretAnimation</code>: enables smooth cursor movement.</p>
+<blockquote>
+<p><code>true</code>.</p>
+</blockquote>
+</li>
+<li><p><code>editor.linkedEditing</code>: synchronizes editing of matching HTML/XML tags.</p>
+<blockquote>
+<p><code>true</code>.</p>
+</blockquote>
+</li>
+<li><p><code>editor.detectIndentation</code>: determines whether indentation settings adapt to the file.</p>
+<blockquote>
+<p><code>false</code>.</p>
+</blockquote>
+</li>
+<li><p><code>editor.inlayHints.enabled</code>: toggles inlay hints (refer to GUI by searching &quot;inlay hints&quot;).</p>
+<blockquote>
+<p><code>&quot;on&quot;</code>.</p>
+</blockquote>
+</li>
+<li><p><code>editor.bracketPairColorization.enabled</code>: enables colorization of matching brackets, braces, and parentheses.</p>
+<blockquote>
+<p><code>true</code>.</p>
+</blockquote>
+</li>
+<li><p><code>editor.guides.bracketPairs</code>: specifies which bracket pairs to highlight.</p>
+<blockquote>
+<p><code>&quot;active&quot;</code> (highlights only the pair at the cursor).</p>
+</blockquote>
+</li>
+<li><p><code>editor.minimap.enabled</code>: toggles the code minimap.</p>
+<blockquote>
+<p><code>false</code>.</p>
+</blockquote>
+</li>
+<li><p><code>editor.glyphMargin</code>: controls visibility of the glyph margin (for breakpoints, linting, etc.).</p>
+<blockquote>
+<p><code>false</code>.</p>
+</blockquote>
+</li>
+<li><p><code>editor.overviewRulerBorder</code>: toggles the border of the overview ruler (scrollbar area).</p>
+<blockquote>
+<p><code>false</code>.</p>
+</blockquote>
+</li>
+<li><p><code>editor.hideCursorInOverviewRuler</code>: toggles marking of the cursor position within the overview ruler.</p>
+<blockquote>
+<p><code>true</code>.</p>
+</blockquote>
+</li>
+<li><p><code>editor.wordWrap</code>: defines word-wrap behavior.</p>
+<p>  <code>&quot;off&quot;</code>.</p>
+</li>
+<li><p><code>editor.insertSpaces</code>: determines whether pressing Tab inserts spaces.</p>
+<blockquote>
+<p><code>false</code>.</p>
+</blockquote>
+</li>
+<li><p><code>editor.stickyScroll.enabled</code>: enables sticky scroll within the editor (keeps context lines fixed at the top).</p>
+<blockquote>
+<p><code>true</code>.</p>
+</blockquote>
+</li>
+<li><p><code>files.autoSave</code>: controls automatic file saving.</p>
+<blockquote>
+<p><code>&quot;onFocusChange&quot;</code>.</p>
+</blockquote>
+</li>
+<li><p><code>security.workspace.trust.untrustedFiles</code>: defines handling of untrusted files in a workspace.</p>
+<blockquote>
+<p><code>&quot;open&quot;</code> (automatically opens untrusted files in the same window).</p>
+</blockquote>
+</li>
+<li><p><code>explorer.confirmDragAndDrop</code>: toggles confirmation dialog for drag‑and‑drop operations in the explorer.</p>
+<blockquote>
+<p><code>false</code>.</p>
+</blockquote>
+</li>
+<li><p><code>explorer.confirmDelete</code>: toggles confirmation dialog for file deletions in the explorer.</p>
+<blockquote>
+<p><code>false</code>.</p>
+</blockquote>
+</li>
+<li><p><code>files.trimTrailingWhitespace</code>: removes trailing whitespace on save.</p>
+<blockquote>
+<p><code>true</code>.</p>
+</blockquote>
+</li>
+<li><p><code>editor.formatOnPaste</code>: formats pasted content automatically.</p>
+<blockquote>
+<p><code>true</code>.</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>For a personal <code>settings.json</code> example, refer to this <a href="https://gist.github.com/Br4z/618bd822c9277c24bd4e5c63df216e02">Gist</a>.</p>
+</blockquote>
+
+			</div>
+			<a href="/blog/" class="back-link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Return to all posts</a>
+		</article>
+	</main>
+	<footer>
+		<p>Created by Brandon</p>
+	</footer>
+</body>
+</html>

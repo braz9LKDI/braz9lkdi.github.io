@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brandon's Blog</title>
+
+    <link rel="stylesheet" href="/assets/fonts/fontawesome/all.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/blog.css" />
+
+    <link
+      rel="icon"
+      href="/favicon-dark.svg"
+      type="image/svg+xml"
+      media="(prefers-color-scheme: light)"
+    />
+    <link
+      rel="icon"
+      href="/favicon-light.svg"
+      type="image/svg+xml"
+      media="(prefers-color-scheme: dark)"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <div class="left">
+          <a href="/">Brandon</a>
+        </div>
+        <div class="right">
+          <a href="/">
+            <i class="fa-solid fa-house"></i>
+            <span>home</span>
+          </a>
+          <a href="/blog/" class="active">
+            <i class="fa-solid fa-pen"></i>
+            <span>blog</span>
+          </a>
+          <a href="/#contact">
+            <i class="fa-solid fa-envelope"></i>
+            <span>contact</span>
+          </a>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section class="blog-header">
+        <h1>Blog</h1>
+        <p>Thoughts, ideas, and projects I am working on.</p>
+      </section>
+      <section class="blog-search">
+        <div class="search-container">
+          <input type="text" id="blog-search-input" placeholder="Search posts..." />
+          <button id="blog-search-btn" type="button" aria-label="Search posts">
+            <i class="fa-solid fa-search"></i>
+          </button>
+        </div>
+        <div class="blog-filters">
+          <div class="tags-filter">
+            <span class="filter-title">Filter by tags:</span>
+            <div class="tech-tags">
+              <button class="tag" type="button" data-tag="javascript">
+                <i class="fa-brands fa-js"></i>JavaScript
+              </button>
+              <button class="tag" type="button" data-tag="css">
+                <i class="fa-brands fa-css3-alt"></i>CSS
+              </button>
+              <button class="tag" type="button" data-tag="html">
+                <i class="fa-brands fa-html5"></i>HTML
+              </button>
+            </div>
+          </div>
+        </div>
+        <div id="search-results"></div>
+      </section>
+      <section class="blog-list">
+        <!-- BLOG_ITEMS -->
+      </section>
+      <div class="blog-pagination">
+        <button class="pagination-btn" type="button" disabled>
+          <i class="fa-solid fa-chevron-left"></i> Previous
+        </button>
+        <div class="page-numbers">
+          <button class="page-number active" type="button">1</button>
+        </div>
+        <button class="pagination-btn" type="button">
+          Next <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+    </main>
+    <footer>
+      <p>Created by Brandon</p>
+    </footer>
+
+    <script src="/js/blog/search_and_filters.js"></script>
+    <script src="/js/blog/pagination.js"></script>
+  </body>
+</html>

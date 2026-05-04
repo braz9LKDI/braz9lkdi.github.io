@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Brandon's Blog</title>
+
+        <link rel="stylesheet" href="/assets/fonts/fontawesome/all.min.css" />
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/blog.css" />
+
+        <link
+            rel="icon"
+            href="/favicon-dark.svg"
+            type="image/svg+xml"
+            media="(prefers-color-scheme: light)"
+        />
+        <link
+            rel="icon"
+            href="/favicon-light.svg"
+            type="image/svg+xml"
+            media="(prefers-color-scheme: dark)"
+        />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <div class="left">
+                    <a href="/">Brandon</a>
+                </div>
+                <div class="right">
+                    <a href="/">
+                        <i class="fa-solid fa-house"></i>
+                        <span>home</span>
+                    </a>
+                    <a href="/blog/" class="active">
+                        <i class="fa-solid fa-pen"></i>
+                        <span>blog</span>
+                    </a>
+                    <a href="/#contact">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>contact</span>
+                    </a>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <section class="blog-header">
+                <h1>Blog</h1>
+                <p>Thoughts, ideas, and projects I am working on.</p>
+            </section>
+            <section class="blog-search">
+                <div class="search-container">
+                    <input type="text" id="blog-search-input" placeholder="Search posts..." />
+                    <button id="blog-search-btn" type="button" aria-label="Search posts">
+                        <i class="fa-solid fa-search"></i>
+                    </button>
+                </div>
+                <div class="blog-filters">
+                    <div class="tags-filter">
+                        <span class="filter-title">Filter by tags:</span>
+                        <div class="tech-tags">
+                            <button class="tag" type="button" data-tag="javascript">
+                                <i class="fa-brands fa-js"></i>JavaScript
+                            </button>
+                            <button class="tag" type="button" data-tag="css">
+                                <i class="fa-brands fa-css3-alt"></i>CSS
+                            </button>
+                            <button class="tag" type="button" data-tag="html">
+                                <i class="fa-brands fa-html5"></i>HTML
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div id="search-results"></div>
+            </section>
+            <section class="blog-list">
+                
+			<article class="blog-item" data-tags="csharp,dotnet,vscode" data-post-url="posts/how_to_run_C#_projects_in_Visual_Studio_Code.html" tabindex="0" role="link">
+				<div class="blog-image">
+					<img src="/assets/images/posts/how_to_run_C#_projects_in_Visual_Studio_Code.webp" alt="How to run C# projects in Visual Studio Code preview image" loading="lazy">
+				</div>
+				<div class="blog-content">
+					<h2>How to run C# projects in Visual Studio Code</h2>
+					<div class="blog-meta">
+						<span class="date">April 20, 2026</span>
+					</div>
+					<p class="excerpt">How to open, build and run many C# projects in VS Code using the .NET SDK and C# Dev Kit, with practical expectations for larger solutions.</p>
+					<div class="post-footer">
+						<div class="tech-tags">
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>csharp</span>
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>dotnet</span>
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>vscode</span>
+						</div>
+						<a href="posts/how_to_run_C#_projects_in_Visual_Studio_Code.html" class="read-more">Read more <i class="fa-solid fa-arrow-right"></i></a>
+					</div>
+				</div>
+			</article>
+
+			<article class="blog-item" data-tags="linux,arch-linux,installation" data-post-url="posts/how_to_install_Arch_Linux_in_WSL.html" tabindex="0" role="link">
+				<div class="blog-image">
+					<img src="/assets/images/posts/how_to_install_Arch_Linux_in_WSL.webp" alt="How to install Arch Linux in WSL preview image" loading="lazy">
+				</div>
+				<div class="blog-content">
+					<h2>How to install Arch Linux in WSL</h2>
+					<div class="blog-meta">
+						<span class="date">March 24, 2026</span>
+					</div>
+					<p class="excerpt">A practical, step-by-step guide to install Arch Linux in WSL.</p>
+					<div class="post-footer">
+						<div class="tech-tags">
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>linux</span>
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>arch-linux</span>
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>installation</span>
+						</div>
+						<a href="posts/how_to_install_Arch_Linux_in_WSL.html" class="read-more">Read more <i class="fa-solid fa-arrow-right"></i></a>
+					</div>
+				</div>
+			</article>
+
+			<article class="blog-item" data-tags="linux,arch-linux" data-post-url="posts/Hyprland_setup.html" tabindex="0" role="link">
+				<div class="blog-image">
+					<img src="/assets/images/posts/Hyprland_setup.webp" alt="Hyprland setup preview image" loading="lazy">
+				</div>
+				<div class="blog-content">
+					<h2>Hyprland setup</h2>
+					<div class="blog-meta">
+						<span class="date">January 6, 2026</span>
+					</div>
+					<p class="excerpt">A practical, step-by-step guide to install Arch Linux from a blank drive to a clean, bootable system.</p>
+					<div class="post-footer">
+						<div class="tech-tags">
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>linux</span>
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>arch-linux</span>
+						</div>
+						<a href="posts/Hyprland_setup.html" class="read-more">Read more <i class="fa-solid fa-arrow-right"></i></a>
+					</div>
+				</div>
+			</article>
+
+			<article class="blog-item" data-tags="linux,arch-linux,installation" data-post-url="posts/Arch_Linux_installation.html" tabindex="0" role="link">
+				<div class="blog-image">
+					<img src="/assets/images/posts/Arch_Linux_installation.webp" alt="Arch Linux installation preview image" loading="lazy">
+				</div>
+				<div class="blog-content">
+					<h2>Arch Linux installation</h2>
+					<div class="blog-meta">
+						<span class="date">December 24, 2025</span>
+					</div>
+					<p class="excerpt">A practical, step-by-step guide to install Arch Linux from a blank drive to a clean, bootable system.</p>
+					<div class="post-footer">
+						<div class="tech-tags">
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>linux</span>
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>arch-linux</span>
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>installation</span>
+						</div>
+						<a href="posts/Arch_Linux_installation.html" class="read-more">Read more <i class="fa-solid fa-arrow-right"></i></a>
+					</div>
+				</div>
+			</article>
+
+			<article class="blog-item" data-tags="linux,arch-linux,pacman,package-manager" data-post-url="posts/the_pacman_command.html" tabindex="0" role="link">
+				<div class="blog-image">
+					<img src="/assets/images/posts/the_pacman_command.webp" alt="The pacman command preview image" loading="lazy">
+				</div>
+				<div class="blog-content">
+					<h2>The pacman command</h2>
+					<div class="blog-meta">
+						<span class="date">August 30, 2025</span>
+					</div>
+					<p class="excerpt">A concise guide to using the `pacman` package manager on Arch Linux: refreshing databases, searching packages, managing installed software and keeping the system tidy without summoning dependency chaos</p>
+					<div class="post-footer">
+						<div class="tech-tags">
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>linux</span>
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>arch-linux</span>
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>pacman</span>
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>package-manager</span>
+						</div>
+						<a href="posts/the_pacman_command.html" class="read-more">Read more <i class="fa-solid fa-arrow-right"></i></a>
+					</div>
+				</div>
+			</article>
+
+			<article class="blog-item" data-tags="vscode,editor,configuration,tips" data-post-url="posts/basic_Visual_Studio_Code_configuration.html" tabindex="0" role="link">
+				<div class="blog-image">
+					<img src="/assets/images/posts/basic_Visual_Studio_Code_configuration.webp" alt="Basic Visual Studio Code configuration preview image" loading="lazy">
+				</div>
+				<div class="blog-content">
+					<h2>Basic Visual Studio Code configuration</h2>
+					<div class="blog-meta">
+						<span class="date">June 12, 2025</span>
+					</div>
+					<p class="excerpt">Practical Visual Studio Code settings and tweaks to improve productivity and comfort.</p>
+					<div class="post-footer">
+						<div class="tech-tags">
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>vscode</span>
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>editor</span>
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>configuration</span>
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>tips</span>
+						</div>
+						<a href="posts/basic_Visual_Studio_Code_configuration.html" class="read-more">Read more <i class="fa-solid fa-arrow-right"></i></a>
+					</div>
+				</div>
+			</article>
+
+			<article class="blog-item" data-tags="minecraft,mods,gaming" data-post-url="posts/Minecraft_survival_tweaks.html" tabindex="0" role="link">
+				<div class="blog-image">
+					<img src="/assets/images/posts/Minecraft_survival_tweaks.webp" alt="Minecraft survival tweaks preview image" loading="lazy">
+				</div>
+				<div class="blog-content">
+					<h2>Minecraft survival tweaks</h2>
+					<div class="blog-meta">
+						<span class="date">June 11, 2025</span>
+					</div>
+					<p class="excerpt">Mod and configuration recommendations for a smoother, more enjoyable Minecraft survival experience.</p>
+					<div class="post-footer">
+						<div class="tech-tags">
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>minecraft</span>
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>mods</span>
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>gaming</span>
+						</div>
+						<a href="posts/Minecraft_survival_tweaks.html" class="read-more">Read more <i class="fa-solid fa-arrow-right"></i></a>
+					</div>
+				</div>
+			</article>
+
+			<article class="blog-item" data-tags="c++,programming,compilers" data-post-url="posts/compile_and_run_C++_programs.html" tabindex="0" role="link">
+				<div class="blog-image">
+					<img src="/assets/images/posts/compile_and_run_C++_programs.webp" alt="Compile and run C++ programs preview image" loading="lazy">
+				</div>
+				<div class="blog-content">
+					<h2>Compile and run C++ programs</h2>
+					<div class="blog-meta">
+						<span class="date">June 10, 2025</span>
+					</div>
+					<p class="excerpt">Guide to compile and run C++ programs on Windows and Linux using GCC and other tools.</p>
+					<div class="post-footer">
+						<div class="tech-tags">
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>c++</span>
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>programming</span>
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>compilers</span>
+						</div>
+						<a href="posts/compile_and_run_C++_programs.html" class="read-more">Read more <i class="fa-solid fa-arrow-right"></i></a>
+					</div>
+				</div>
+			</article>
+
+			<article class="blog-item" data-tags="git,github,ssh,version-control" data-post-url="posts/connection_to_GitHub_via_SSH.html" tabindex="0" role="link">
+				<div class="blog-image">
+					<img src="/assets/images/posts/connection_to_GitHub_via_SSH.webp" alt="Connection to GitHub via SSH preview image" loading="lazy">
+				</div>
+				<div class="blog-content">
+					<h2>Connection to GitHub via SSH</h2>
+					<div class="blog-meta">
+						<span class="date">June 10, 2025</span>
+					</div>
+					<p class="excerpt">How to generate an SSH key, add it to GitHub, and test authentication for secure repository access.</p>
+					<div class="post-footer">
+						<div class="tech-tags">
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>git</span>
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>github</span>
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>ssh</span>
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>version-control</span>
+						</div>
+						<a href="posts/connection_to_GitHub_via_SSH.html" class="read-more">Read more <i class="fa-solid fa-arrow-right"></i></a>
+					</div>
+				</div>
+			</article>
+
+			<article class="blog-item" data-tags="tmux,terminal,productivity" data-post-url="posts/tmux.html" tabindex="0" role="link">
+				<div class="blog-image">
+					<img src="/assets/images/posts/tmux.webp" alt="Tmux preview image" loading="lazy">
+				</div>
+				<div class="blog-content">
+					<h2>Tmux</h2>
+					<div class="blog-meta">
+						<span class="date">June 10, 2025</span>
+					</div>
+					<p class="excerpt">Overview of tmux, the terminal multiplexer that enables panes, windows, and sessions for efficient terminal workflows.</p>
+					<div class="post-footer">
+						<div class="tech-tags">
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>tmux</span>
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>terminal</span>
+							<span class="tag"><i class="fa-solid fa-tag" aria-hidden="true"></i>productivity</span>
+						</div>
+						<a href="posts/tmux.html" class="read-more">Read more <i class="fa-solid fa-arrow-right"></i></a>
+					</div>
+				</div>
+			</article>
+            </section>
+            <div class="blog-pagination">
+                <button class="pagination-btn" type="button" disabled>
+                    <i class="fa-solid fa-chevron-left"></i> Previous
+                </button>
+                <div class="page-numbers">
+                    <button class="page-number active" type="button">1</button>
+                </div>
+                <button class="pagination-btn" type="button">
+                    Next <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </main>
+        <footer>
+            <p>Created by Brandon</p>
+        </footer>
+
+        <script src="/js/blog/search_and_filters.js"></script>
+        <script src="/js/blog/pagination.js"></script>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+{
+  "name": "portfolio",
+  "description": "I have always wanted a full HTML + CSS + JavaScript portfolio and here it is. It is highly inspired by this [video](https://www.youtube.com/watch?v=Slxdo0Dqxlk).",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build:home": "node ./scripts/generate_home.js",
+    "build:blog": "node ./scripts/generate_blog.js",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint:js": "eslint .",
+    "lint:css": "stylelint \"**/*.css\"",
+    "lint:md": "markdownlint-cli2 \"**/*.md\" \"#node_modules\"",
+    "lint:html": "html-validate \"template.html\" \"blog/template.html\"",
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:md && npm run lint:html",
+    "fix": "prettier --write . && eslint . --fix && stylelint \"**/*.css\" --fix",
+    "check": "npm run format:check && npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/braz9LKDI/braz9lkdi.github.io.git"
+  },
+  "author": "Brandon",
+  "bugs": {
+    "url": "https://github.com/braz9LKDI/braz9lkdi.github.io/issues"
+  },
+  "homepage": "https://github.com/braz9LKDI/braz9lkdi.github.io#readme",
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "marked": "^17.0.0",
+    "marked-custom-heading-id": "^2.0.17",
+    "marked-katex-extension": "^5.1.6"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.14.0",
+    "eslint": "^9.14.0",
+    "globals": "^15.12.0",
+    "html-validate": "^9.0.0",
+    "markdownlint-cli2": "^0.15.0",
+    "prettier": "^3.3.3",
+    "stylelint": "^16.10.0",
+    "stylelint-config-standard": "^36.0.1"
+  }
+}

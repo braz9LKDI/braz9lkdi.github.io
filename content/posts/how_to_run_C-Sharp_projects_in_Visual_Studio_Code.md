@@ -30,4 +30,4 @@ As solutions grow, things tend to get less charming. More projects, more depende
 
 ## More dotnet notes
 
-The VS Code side is the interesting part for this post, but the .NET CLI details deserve their own place. Notes for project creation, solutions, references, restore, build, run, test, publish and package management live in my [Obsidian vault](https://github.com/braz9LKDI/gray_vault/blob/main/personal/systems_engineering/programming_languajes/C_sharp/dotnet_cli.md) along with more information about C#.
+The VS Code side is the interesting part for this post, but the .NET CLI details deserve their own place. Notes for project creation, solutions, references, restore, build, run, test, publish and package management live in my [Obsidian vault](https://github.com/braz9LKDI/gray_vault/blob/main/01-areas/systems_engineering/programming_languages/C_sharp/dotnet_cli.md) along with more information about C#.

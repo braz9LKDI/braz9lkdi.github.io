@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "assets/data/posts/**"
+      - "content/posts/**"
       - "blog/template.html"
       - "scripts/generate_blog.js"
   workflow_dispatch:

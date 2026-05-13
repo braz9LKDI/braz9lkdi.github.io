@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "/assets/data/projects.json"
+      - "content/projects.json"
       - "template.html"
       - "scripts/generate_home.js"
   workflow_dispatch:

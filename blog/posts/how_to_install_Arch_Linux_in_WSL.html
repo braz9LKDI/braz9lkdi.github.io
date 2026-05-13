@@ -1,58 +1,58 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="A practical, step-by-step guide to install Arch Linux in WSL.">
-	<title>How to install Arch Linux in WSL - Brandon's Blog</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A practical, step-by-step guide to install Arch Linux in WSL." />
+    <title>How to install Arch Linux in WSL - Brandon's Blog</title>
 
-	<link rel="stylesheet" href="/assets/fonts/fontawesome/all.min.css" />
-	<link rel="stylesheet" href="/css/style.css" />
-	<link rel="stylesheet" href="/css/blog.css" />
-	<link rel="stylesheet" href="/css/post.css" />
+    <link rel="stylesheet" href="/assets/fonts/fontawesome/all.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/blog.css" />
+    <link rel="stylesheet" href="/css/post.css" />
 
-	<link rel="icon" href="/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
-	<link rel="icon" href="/favicon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
+    <link rel="icon" href="/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: light)" />
+    <link rel="icon" href="/favicon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)" />
 
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
 </head>
 <body>
-	<header>
-		<nav>
-			<div class="left">
-				<a href="/">Brandon</a>
-			</div>
-			<div class="right">
-				<a href="/">
-					<i class="fa-solid fa-house"></i>
-					<span>home</span>
-				</a>
-				<a href="/blog/" class="active">
-					<i class="fa-solid fa-pen"></i>
-					<span>blog</span>
-				</a>
-				<a href="/#contact">
-					<i class="fa-solid fa-envelope"></i>
-					<span>contact</span>
-				</a>
-			</div>
-		</nav>
-	</header>
-	<main>
-		<article class="post">
-			<a href="/blog/" class="back-link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Return to all posts</a>
-			<header class="post-header">
-				<div class="post-meta">
-					<span class="date">March 24, 2026</span>
-				</div>
-			</header>
-			<div class="post-content">
-				<h1>How to install Arch Linux in WSL</h1>
-<p><a href="https:///blog/posts/Arch_Linux_installation.html">A previous post</a> covered the full bare-metal Arch Linux installation. This version takes the shorter route: Arch Linux now provides an official WSL image and Microsoft&#39;s current WSL flow installs Linux distributions directly from Windows, with new installs using WSL 2 by default. Complete software liberation has not yet occurred, Windows is still the landlord, but this is still a very respectable first step toward the ceremonial title of <strong>&quot;Arch Linux user&quot;</strong>.</p>
-<p>Because this is WSL, the usual bare-metal chores like booting an ISO, partitioning disks, installing a boot loader and generally negotiating with firmware, are not part of the process here. <a href="https:///blog/posts/Arch_Linux_installation.html">The earlier guide</a> remains the reference for that full installation path; this one focuses only on the WSL variant.</p>
+    <header>
+        <nav>
+            <div class="left">
+                <a href="/">Brandon</a>
+            </div>
+            <div class="right">
+                <a href="/">
+                    <i class="fa-solid fa-house"></i>
+                    <span>home</span>
+                </a>
+                <a href="/blog/" class="active">
+                    <i class="fa-solid fa-pen"></i>
+                    <span>blog</span>
+                </a>
+                <a href="/#contact">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>contact</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <article class="post">
+            <a href="/blog/" class="back-link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Return to all posts</a>
+            <header class="post-header">
+                <div class="post-meta">
+                    <span class="date">March 25, 2026</span>
+                </div>
+            </header>
+            <div class="post-content">
+                <h1>How to install Arch Linux in WSL</h1>
+<p><a href="https://braz9lkdi.github.io/blog/posts/Arch_Linux_installation.html">A previous post</a> covered the full bare-metal Arch Linux installation. This version takes the shorter route: Arch Linux now provides an official WSL image and Microsoft&#39;s current WSL flow installs Linux distributions directly from Windows, with new installs using WSL 2 by default. Complete software liberation has not yet occurred, Windows is still the landlord, but this is still a very respectable first step toward the ceremonial title of <strong>&quot;Arch Linux user&quot;</strong>.</p>
+<p>Because this is WSL, the usual bare-metal chores like booting an ISO, partitioning disks, installing a boot loader and generally negotiating with firmware, are not part of the process here. <a href="https://braz9lkdi.github.io/blog/posts/Arch_Linux_installation.html">The earlier guide</a> remains the reference for that full installation path; this one focuses only on the WSL variant.</p>
 <h2>What is needed first?</h2>
 <p>Install WSL with the following command:</p>
 <pre><code class="language-ps1">wsl --install
@@ -177,14 +177,14 @@ CheckSpace
 <p>This keeps <code>pacman</code> readable, enables concurrent downloads and adds a quick disk-space check before installations.</p>
 <hr>
 <p>That is the whole process. No USB installer was needed and no partition table was touched. Windows is still technically in charge, so total freedom remains a future milestone, but an important symbolic threshold has now been crossed: Arch Linux is running, <code>pacman</code> is ready, the mirrors are sane and the badge of &quot;Arch Linux user&quot; has been earned, at least provisionally.</p>
-<p>For the full native installation path, <a href="https:///blog/posts/Arch_Linux_installation.html">the earlier bare-metal guide</a> remains the companion piece to this one.</p>
+<p>For the full native installation path, <a href="https://braz9lkdi.github.io/blog/posts/Arch_Linux_installation.html">the earlier bare-metal guide</a> remains the companion piece to this one.</p>
 
-			</div>
-			<a href="/blog/" class="back-link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Return to all posts</a>
-		</article>
-	</main>
-	<footer>
-		<p>Created by Brandon</p>
-	</footer>
+            </div>
+            <a href="/blog/" class="back-link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Return to all posts</a>
+        </article>
+    </main>
+    <footer>
+        <p>Created by Brandon</p>
+    </footer>
 </body>
 </html>

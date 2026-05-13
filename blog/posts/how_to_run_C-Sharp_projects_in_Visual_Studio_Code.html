@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="How to generate an SSH key, add it to GitHub, and test authentication for secure repository access." />
-    <title>Connection to GitHub via SSH - Brandon's Blog</title>
+    <meta name="description" content="How to open, build and run many C# projects in VS Code using the .NET SDK and C# Dev Kit, with practical expectations for larger solutions." />
+    <title>How to run C# projects in Visual Studio Code - Brandon's Blog</title>
 
     <link rel="stylesheet" href="/assets/fonts/fontawesome/all.min.css" />
     <link rel="stylesheet" href="/css/style.css" />
@@ -46,66 +46,28 @@
             <a href="/blog/" class="back-link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Return to all posts</a>
             <header class="post-header">
                 <div class="post-meta">
-                    <span class="date">June 11, 2025</span>
+                    <span class="date">April 21, 2026</span>
                 </div>
             </header>
             <div class="post-content">
-                <h1>Connection to GitHub via SSH</h1>
+                <h1>how to run C# projects in Visual Studio Code</h1>
+<p>Most C# projects that tend to be found in the wild are created with Visual Studio in mind. Even so, many of them can still be opened, built and run from Visual Studio Code without much drama.</p>
+<p>The basic setup is small:</p>
 <ol>
-<li><p>Generate a key.</p>
-<pre><code class="language-bash">ssh-keygen
-</code></pre>
+<li><p>Install the <a href="https://dotnet.microsoft.com/en-us/download">.NET SDK</a>.</p>
 <blockquote>
-<p><code>ssh-keygen</code> is a utility from the &quot;openssh&quot; package; if the command is not found, the package is likely not installed.</p>
+<p>In Arch Linux, the package is <code>dotnet-sdk</code>.</p>
 </blockquote>
-<blockquote>
-<p>By default, the RSA algorithm is used.</p>
-</blockquote>
-<blockquote>
-<p>It is recommended to include a comment with the associated email address for easy identification.</p>
-</blockquote>
-<p> Running this command prompts for the save location (default: <code>/home/&lt;user&gt;/.ssh/</code>) and for a passphrase (serving as the key&#39;s password).</p>
-<blockquote>
-<p>The passphrase will be required later.</p>
-</blockquote>
-<p> Upon completion, two files will be created: the private key (no extension) and the public key (<code>.pub</code>).</p>
 </li>
-<li><p>Add the key to GitHub.</p>
-<ol>
-<li><p>Navigate to Settings.</p>
-</li>
-<li><p>Select SSH and GPG keys.</p>
-</li>
-<li><p>Click New SSH key:</p>
-<ol>
-<li><p>Enter a descriptive title.</p>
-</li>
-<li><p>Choose &quot;Authentication key&quot; as the type.</p>
-</li>
-<li><p>Paste the contents of the <code>.pub</code> into the &quot;Key&quot; field.</p>
+<li><p>Install the <a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit">&quot;C# Dev Kit&quot; VS Code extension</a>.</p>
 </li>
 </ol>
-</li>
-<li><p>Add SSH key.</p>
-</li>
-</ol>
-</li>
-<li><p>Test the connection.</p>
-<ol>
-<li><p><code>ssh -T git@github.com</code>.</p>
-</li>
-<li><p>At the prompt &quot;Are you sure you want to continue connecting (yes/no)?&quot;, write &quot;yes&quot;.</p>
-</li>
-</ol>
-<p> A successful setup will display: &quot;Hi USERNAME! You&#39;ve successfully authenticated, but GitHub does not provide shell access&quot;.</p>
-<blockquote>
-<p>If this message does not appear, the key has not been added correctly.</p>
-</blockquote>
-<blockquote>
-<p>Entering the passphrase will be required for each repository interaction.</p>
-</blockquote>
-</li>
-</ol>
+<p>Once that is done, a solution or project can usually be opened in VS Code and handled from there. The extension provides the comfortable point-and-click route, while the .NET CLI remains available for anyone who prefers the terminal and a little self-inflicted configuration.</p>
+<h2>Disclaimer</h2>
+<p>For small or straightforward applications, VS Code usually gets the job done. Editing is fast, the .NET CLI is reliable and the extension tooling covers the common workflow well enough.</p>
+<p>As solutions grow, things tend to get less charming. More projects, more dependencies, more build steps and more debugging profiles usually mean more configuration. At that point, full Visual Studio can stop feeling excessive and start feeling practical. Sometimes the famous bloat is not a flaw, but the exact amount of machinery a complicated solution expects.</p>
+<h2>More dotnet notes</h2>
+<p>The VS Code side is the interesting part for this post, but the .NET CLI details deserve their own place. Notes for project creation, solutions, references, restore, build, run, test, publish and package management live in my <a href="https://github.com/braz9LKDI/gray_vault/blob/main/01-areas/systems_engineering/programming_languages/C_sharp/dotnet_cli.md">Obsidian vault</a> along with more information about C#.</p>
 
             </div>
             <a href="/blog/" class="back-link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Return to all posts</a>

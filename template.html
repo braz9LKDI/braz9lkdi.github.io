@@ -39,15 +39,15 @@
         <div class="right">
           <a href="/">
             <i class="fa-solid fa-house"></i>
-            <span>home</span>
+            <span data-lang="nav-home">home</span>
           </a>
           <a href="/blog/">
             <i class="fa-solid fa-pen"></i>
-            <span>blog</span>
+            <span data-lang="nav-blog">blog</span>
           </a>
           <a href="#contact">
             <i class="fa-solid fa-envelope"></i>
-            <span>contact</span>
+            <span data-lang="nav-contact">contact</span>
           </a>
           <button id="language-btn" type="button" aria-label="Change language">
             <i class="fa-solid fa-globe"></i>
@@ -62,24 +62,24 @@
         <div class="text">
           <div class="typewriter">
             <div>
-              <span>Hi, I am</span>
+              <span data-lang="hero-greeting">Hi, I am</span>
               <p>Brandon</p>
             </div>
           </div>
           <div class="about">
-            <p>
-              I am a Systems Engineering student, an Arch Linux user and a firm believer that every
-              "easy" tool should be questioned at least once.
+            <p data-lang="hero-desc-profile">
+              Systems Engineering student with hands-on experience in full-stack development, data
+              automation and software delivery.
+            </p>
+            <p data-lang="hero-desc-experience">
+              At Endava, I contributed to an internal analytics MVP using Python, .NET 8, React,
+              TypeScript, PostgreSQL and Docker, working across requirements analysis, data-flow
+              modeling, backlog definition and maintainable solution development within Scrum. I
+              also mentored first-semester students in programming fundamentals, Git, Docker and
+              independent learning, with a strong interest in open-source culture.
             </p>
 
-            <p>
-              I enjoy learning how systems really work, especially when that means touching the
-              terminal, reading documentation and discovering that the convenient solution was
-              hiding a lot of interesting details. Here I write about Linux, development workflows,
-              open source and whatever technical obsession currently has my attention.
-            </p>
-
-            <p>Some people touch grass. I configure dotfiles.</p>
+            <p data-lang="hero-desc-joke">Also: I use Arch, btw. Responsibly? Debatable.</p>
           </div>
 
           <div class="social-links">
@@ -99,12 +99,12 @@
         </div>
 
         <div class="headshot">
-          <img src="headshot.webp" alt="Brandon's headshot" />
+          <img src="headshot.webp" alt="Brandon's headshot" width="700" height="700" />
         </div>
       </section>
 
       <section id="projects" class="projects-section">
-        <h2>Projects</h2>
+        <h2 data-lang="projects-title">Projects</h2>
 
         <div class="project-slider">
           <button class="slider-btn prev-btn" type="button" aria-label="Previous slide">
@@ -122,24 +122,28 @@
       </section>
 
       <section id="contact" class="contact-section">
-        <h2>Contact</h2>
+        <h2 data-lang="contact-title">Contact</h2>
         <form action="https://formsubmit.co/df3edc2bfabf36bb95865ffb51ff7e24" method="POST">
-          <label for="name">Name <span>*</span></label>
+          <label for="name"><span data-lang="contact-name">Name</span> <span>*</span></label>
           <input type="text" name="name" id="name" required aria-required="true" />
 
-          <label for="email">Email <span>*</span></label>
+          <label for="email"><span data-lang="contact-email">Email</span> <span>*</span></label>
           <input type="email" name="email" id="email" required aria-required="true" />
 
-          <label for="message">Message <span>*</span></label>
+          <label for="message"
+            ><span data-lang="contact-message">Message</span> <span>*</span></label
+          >
           <textarea id="message" name="message" required aria-required="true"></textarea>
 
-          <button type="submit" aria-label="Send contact form">Send</button>
+          <button type="submit" aria-label="Send contact form" data-lang="contact-send">
+            Send
+          </button>
         </form>
       </section>
     </main>
 
     <footer>
-      <p>Created by Brandon</p>
+      <p data-lang="footer">Created by Brandon</p>
     </footer>
 
     <script src="/js/home/slider.js"></script>

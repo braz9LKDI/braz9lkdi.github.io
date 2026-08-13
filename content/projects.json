@@ -1,8 +1,16 @@
 [
   {
     "id": "portfolio",
-    "title": "Portfolio",
-    "description": "Website showcasing my projects and skills.",
+    "text": {
+      "en": {
+        "title": "Portfolio",
+        "description": "Website showcasing my projects and skills."
+      },
+      "es": {
+        "title": "Portafolio",
+        "description": "Sitio web que muestra mis proyectos y habilidades."
+      }
+    },
     "image": "assets/images/projects/portfolio.webp",
     "tags": ["JavaScript", "CSS", "HTML"],
     "links": {
@@ -11,8 +19,16 @@
     }
   },
   {
-    "title": "Placeholder title",
-    "description": "Placeholder description.",
+    "text": {
+      "en": {
+        "title": "Placeholder title",
+        "description": "Placeholder description."
+      },
+      "es": {
+        "title": "Título de marcador de posición",
+        "description": "Descripción de marcador de posición."
+      }
+    },
     "image": "https://placehold.co/1920x1080?text=Placeholder",
     "tags": [],
     "links": {
@@ -21,8 +37,16 @@
     }
   },
   {
-    "title": "Placeholder title",
-    "description": "Placeholder description.",
+    "text": {
+      "en": {
+        "title": "Placeholder title",
+        "description": "Placeholder description."
+      },
+      "es": {
+        "title": "Título de marcador de posición",
+        "description": "Descripción de marcador de posición."
+      }
+    },
     "image": "https://placehold.co/1920x1080?text=Placeholder",
     "tags": [],
     "links": {

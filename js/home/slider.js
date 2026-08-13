@@ -1,11 +1,11 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const projectCards = document.querySelector(".project-cards");
-  const prevBtn = document.querySelector(".prev-btn");
-  const nextBtn = document.querySelector(".next-btn");
-  const sliderDots = document.querySelector(".slider-dots");
+document.addEventListener('DOMContentLoaded', () => {
+  const projectCards = document.querySelector('.project-cards');
+  const prevBtn = document.querySelector('.prev-btn');
+  const nextBtn = document.querySelector('.next-btn');
+  const sliderDots = document.querySelector('.slider-dots');
 
   // Get all cards
-  const cards = document.querySelectorAll(".project-card");
+  const cards = document.querySelectorAll('.project-card');
 
   // Dynamic values
   let cardWidth;
@@ -28,22 +28,22 @@ document.addEventListener("DOMContentLoaded", () => {
     projectCards.scrollLeft = scrollAmount;
 
     // Update active dot
-    document.querySelectorAll(".dot").forEach((dot, i) => {
-      dot.classList.toggle("active", i === currentIndex);
+    document.querySelectorAll('.dot').forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentIndex);
     });
   };
 
   const initializeDots = () => {
     // Clear existing dots
-    sliderDots.innerHTML = "";
+    sliderDots.innerHTML = '';
     for (let i = 0; i < totalSlides; i++) {
-      const dot = document.createElement("div");
-      dot.classList.add("dot");
+      const dot = document.createElement('div');
+      dot.classList.add('dot');
       if (i === 0) {
-        dot.classList.add("active");
+        dot.classList.add('active');
       }
       // Dot navigation
-      dot.addEventListener("click", () => slideTo(i));
+      dot.addEventListener('click', () => slideTo(i));
       sliderDots.appendChild(dot);
     }
   };
@@ -66,14 +66,14 @@ document.addEventListener("DOMContentLoaded", () => {
     slideTo(0);
   }
 
-  prevBtn.addEventListener("click", () => {
+  prevBtn.addEventListener('click', () => {
     slideTo(currentIndex - 1);
   });
 
-  nextBtn.addEventListener("click", () => {
+  nextBtn.addEventListener('click', () => {
     slideTo(currentIndex + 1);
   });
 
-  window.addEventListener("load", setup);
-  window.addEventListener("resize", setup);
+  window.addEventListener('load', setup);
+  window.addEventListener('resize', setup);
 });

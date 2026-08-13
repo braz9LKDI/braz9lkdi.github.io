@@ -21,31 +21,31 @@ function build() {
         .map((tag) => {
           return `<span class="tag"><i class="${tagIcon(tag)}"></i>${tag}</span>`;
         })
-        .join('\n\t\t\t\t\t\t');
+        .join('\n            ');
 
       const idAttr = project.id ? `id="${project.id}"` : '';
 
       return `
-				<div class="project-card" ${idAttr}>
-					<div class="project-image">
-						<img src="${project.image}" alt="${project.text.en.title}">
-					</div>
-					<div class="project-info">
-						<h3 data-en="${escapeText(project.text.en.title)}" data-es="${escapeText(project.text.es.title)}">${project.text.en.title}</h3>
-						<p data-en="${escapeText(project.text.en.description)}" data-es="${escapeText(project.text.es.description)}">${project.text.en.description}</p>
-					</div>
-					<div class="tech-tags">
-						${tagsHtml}
-					</div>
-					<div class="project-links">
-						<a href="${project.links.code}" target="_blank" rel="noopener noreferrer">
-							<i class="fa-brands fa-github"></i><span data-lang="project-code">Code</span>
-						</a>
-						<a href="${project.links.live}" target="_blank" rel="noopener noreferrer">
-							<i class="fa-solid fa-globe"></i><span data-lang="project-live">Live</span>
-						</a>
-					</div>
-				</div>`;
+            <div class="project-card" ${idAttr}>
+              <div class="project-image">
+                <img src="${project.image}" alt="${project.text.en.title}">
+              </div>
+              <div class="project-info">
+                <h3 data-en="${escapeText(project.text.en.title)}" data-es="${escapeText(project.text.es.title)}">${project.text.en.title}</h3>
+                <p data-en="${escapeText(project.text.en.description)}" data-es="${escapeText(project.text.es.description)}">${project.text.en.description}</p>
+              </div>
+              <div class="tech-tags">
+                ${tagsHtml}
+              </div>
+              <div class="project-links">
+                <a href="${project.links.code}" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-brands fa-github"></i><span data-lang="project-code">Code</span>
+                </a>
+                <a href="${project.links.live}" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-solid fa-globe"></i><span data-lang="project-live">Live</span>
+                </a>
+              </div>
+            </div>`;
     })
     .join('\n');
 

@@ -67,24 +67,24 @@ function generateBlogItem(post) {
     .map((tag) => {
       return `<span class="tag"><i class="${tagIcon(tag)}" aria-hidden="true"></i>${tag}</span>`;
     })
-    .join('\n\t\t\t\t\t\t');
+    .join('\n            ');
 
   return `
-			<article class="blog-item" data-tags="${post.tags.join(',')}">
-				<div class="blog-image">
-					<img src="${post.image}" alt="${post.title} preview image" loading="lazy">
-				</div>
-				<div class="blog-content">
-					<h2><a href="${postLink}" class="card-link">${post.title}</a></h2>
-					<div class="blog-meta">
-						<span class="date">${post.date_str}</span>
-					</div>
-					<p class="excerpt">${post.excerpt}</p>
-					<div class="tech-tags">
-						${tagsHtml}
-					</div>
-				</div>
-			</article>`;
+      <article class="blog-item" data-tags="${post.tags.join(',')}">
+        <div class="blog-image">
+          <img src="${post.image}" alt="${post.title} preview image" loading="lazy">
+        </div>
+        <div class="blog-content">
+          <h2><a href="${postLink}" class="card-link">${post.title}</a></h2>
+          <div class="blog-meta">
+            <span class="date">${post.date_str}</span>
+          </div>
+          <p class="excerpt">${post.excerpt}</p>
+          <div class="tech-tags">
+            ${tagsHtml}
+          </div>
+        </div>
+      </article>`;
 }
 
 // Generate individual post page

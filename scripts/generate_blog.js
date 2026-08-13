@@ -1,14 +1,17 @@
-import fs from "fs";
-import matter from "gray-matter";
-import path from "path";
+import fs from 'fs';
+import matter from 'gray-matter';
+import path from 'path';
 
-import { marked } from "marked";
-import customHeadingId from "marked-custom-heading-id";
-import markedKatex from "marked-katex-extension";
+import { marked } from 'marked';
+import customHeadingId from 'marked-custom-heading-id';
+import markedKatex from 'marked-katex-extension';
 
-const POSTS_DIR = "./content/posts";
-const OUTPUT_FILE = "./blog/index.html";
-const TEMPLATE_FILE = "./blog/template.html";
+import tagIcon from './tag_icons.js';
+
+const POSTS_DIR = './content/posts';
+const OUTPUT_FILE = './blog/index.html';
+const TEMPLATE_FILE = './blog/template.html';
+const MIN_POST_PER_TAG = 2;
 
 marked.use(customHeadingId());
 // Configure marked to support KaTeX for math rendering
@@ -20,24 +23,24 @@ marked.use(
 
 // Read all Markdown files
 function getPosts() {
-  const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith(".md"));
+  const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith('.md'));
   const posts = [];
 
   files.forEach((file) => {
-    const content = fs.readFileSync(path.join(POSTS_DIR, file), "utf-8");
+    const content = fs.readFileSync(path.join(POSTS_DIR, file), 'utf-8');
     const { data, content: markdown } = matter(content);
 
-    const slug = path.basename(file, ".md");
+    const slug = path.basename(file, '.md');
 
     posts.push({
       title: data.title,
       date: new Date(data.date),
-      date_str: new Date(data.date).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
+      date_str: new Date(data.date).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
       }),
-      tags: data.tags || [],
+      tags: (data.tags || []).map((tag) => tag.toLowerCase()),
       excerpt: data.excerpt,
       image: `/assets/images/posts/${slug}.webp`,
       slug,
@@ -50,26 +53,24 @@ function getPosts() {
   return posts;
 }
 
-function generateBlogItem(post) {
-  const tagIcons = {
-    javascript: "fa-brands fa-js",
-    css: "fa-brands fa-css3-alt",
-    html: "fa-brands fa-html5",
-    react: "fa-brands fa-react",
-    node: "fa-brands fa-node",
-  };
+function generateTagItem(tag) {
+  return `
+              <button class="tag" type="button" data-tag="${tag}" aria-pressed="false">
+                <i class="${tagIcon(tag)}" aria-hidden="true"></i>${tag}
+              </button>`;
+}
 
+function generateBlogItem(post) {
   const postLink = `posts/${post.slug}.html`;
 
   const tagsHtml = post.tags
     .map((tag) => {
-      const icon = tagIcons[tag.toLowerCase()] || "fa-solid fa-tag";
-      return `<span class="tag"><i class="${icon}" aria-hidden="true"></i>${tag}</span>`;
+      return `<span class="tag"><i class="${tagIcon(tag)}" aria-hidden="true"></i>${tag}</span>`;
     })
-    .join("\n\t\t\t\t\t\t");
+    .join('\n\t\t\t\t\t\t');
 
   return `
-			<article class="blog-item" data-tags="${post.tags.join(",")}">
+			<article class="blog-item" data-tags="${post.tags.join(',')}">
 				<div class="blog-image">
 					<img src="${post.image}" alt="${post.title} preview image" loading="lazy">
 				</div>
@@ -154,16 +155,26 @@ function generatePostPage(post) {
 
 function buildBlog() {
   const posts = getPosts();
-  const template = fs.readFileSync(TEMPLATE_FILE, "utf-8");
+  const template = fs.readFileSync(TEMPLATE_FILE, 'utf-8');
 
-  const blogItems = posts.map(generateBlogItem).join("\n");
-  const output = template.replace("<!-- BLOG_ITEMS -->", blogItems);
+  const allTags = [...new Set(posts.flatMap((post) => post.tags))];
+  const filteredTags = allTags
+    .filter((tag) => {
+      const count = posts.filter((post) => post.tags.includes(tag)).length;
+      return count >= MIN_POST_PER_TAG;
+    })
+    .sort();
+
+  const blogItems = posts.map(generateBlogItem).join('\n');
+  const tagFilters = filteredTags.map(generateTagItem).join('\n');
+  let output = template.replace('<!-- BLOG_ITEMS -->', blogItems);
+  output = output.replace('<!-- TAG_FILTERS -->', tagFilters);
 
   fs.writeFileSync(OUTPUT_FILE, output);
   console.log(`Generated ${OUTPUT_FILE} with ${posts.length} posts`);
 
   // Ensure the output directory exists
-  const htmlDir = "./blog/posts/";
+  const htmlDir = './blog/posts/';
   fs.mkdirSync(htmlDir, { recursive: true });
 
   posts.forEach((post) => {

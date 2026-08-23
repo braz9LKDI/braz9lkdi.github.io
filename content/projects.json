@@ -1,57 +1,309 @@
 [
   {
     "id": "portfolio",
+    "featured": false,
     "text": {
       "en": {
         "title": "Portfolio",
-        "description": "Website showcasing my projects and skills."
+        "description": "This site: a bilingual static portfolio and blog with no framework, generated from Markdown and JSON by JavaScript scripts and published through GitHub Actions."
       },
       "es": {
         "title": "Portafolio",
-        "description": "Sitio web que muestra mis proyectos y habilidades."
+        "description": "Este sitio: un portafolio y blog estático bilingüe sin frameworks, generado desde Markdown y JSON con scripts de JavaScript y publicado mediante GitHub Actions."
       }
     },
     "image": "assets/images/projects/portfolio.webp",
     "tags": ["JavaScript", "CSS", "HTML"],
     "links": {
-      "code": "https://github.com/braz9LKDI/portfolio",
-      "live": "#"
+      "code": "https://github.com/braz9LKDI/braz9LKDI.github.io",
+      "live": "https://braz9LKDI.github.io"
     }
   },
   {
+    "id": "thesis",
+    "featured": true,
     "text": {
       "en": {
-        "title": "Placeholder title",
-        "description": "Placeholder description."
+        "title": "OpenTube - YouTube data analysis platform",
+        "description": "Undergraduate thesis: a web application that collects, process and visualizes YouTube data  with transparent, reproducible methods, as an alternative to black-box commercial tools."
       },
       "es": {
-        "title": "Título de marcador de posición",
-        "description": "Descripción de marcador de posición."
+        "title": "OpenTube - plataforma de análisis de datos de YouTube",
+        "description": "Trabajo de grado: una aplicación web que recolecta, procesa y visualiza datos de YouTube con métodos transparentes y reproducibles, como alternativa a las herramientas comerciales de caja negra."
       }
     },
-    "image": "https://placehold.co/1920x1080?text=Placeholder",
-    "tags": [],
+    "image": "https://placehold.co/800x500?text=WIP",
+    "tags": ["Python", "TypeScript", "React", "PostgreSQL", "Docker"],
     "links": {
-      "code": "#",
-      "live": "#"
+      "code": "https://github.com/LONG-TERM-EFFECTS-OF-SUFFERING/thesis"
     }
   },
   {
+    "id": "cult-underground-movies",
+    "featured": true,
     "text": {
       "en": {
-        "title": "Placeholder title",
-        "description": "Placeholder description."
+        "title": "Cult and Underground Movies",
+        "description": "Social web platform for cult and underground cinema: personal movie list, reviews with ratings and reactions, a follow system with notifications and advanced search."
       },
       "es": {
-        "title": "Título de marcador de posición",
-        "description": "Descripción de marcador de posición."
+        "title": "Cult and Underground Movies",
+        "description": "Plataforma web social de cine de culto y underground: listas personales, reseñas con calificaciones y reacciones, sistema de seguidores con notificaciones y búsqueda avanzada."
       }
     },
-    "image": "https://placehold.co/1920x1080?text=Placeholder",
-    "tags": [],
+    "image": "assets/images/projects/cult_and_underground_movies.webp",
+    "tags": ["Prisma", "Next.js", "PostgreSQL"],
     "links": {
-      "code": "#",
-      "live": "#"
+      "code": "https://github.com/GetialJuan/CultAndUndergroundMovies"
+    }
+  },
+  {
+    "id": "glitched-max",
+    "featured": false,
+    "text": {
+      "en": {
+        "title": "Glitched Max",
+        "description": "3D platformer built with Godot 4: checkpoints, collectible coins, fall zones, a HUD and a game-over flow, with imported glTF character models."
+      },
+      "es": {
+        "title": "Glitched Max",
+        "description": "Plataformas 3D hecho con Godot 4: puntos de control, monedas coleccionables, zonas de caída, HUD y pantalla de game over, con modelos de personajes importados en glTF."
+      }
+    },
+    "image": "assets/images/projects/glitched_max.webp",
+    "tags": ["Godot", "GDScript"],
+    "links": {
+      "code": "https://github.com/LONG-TERM-EFFECTS-OF-SUFFERING/glitched_Max",
+      "live": "https://long-term-effects-of-suffering.github.io/glitched_Max/"
+    }
+  },
+  {
+    "id": "rapidos-furiosos-dw",
+    "featured": false,
+    "text": {
+      "en": {
+        "title": "Rapidos y Furiosos data warehouse",
+        "description": "Dimensional data warehouse for a Colombia courier company."
+      },
+      "es": {
+        "title": "Data warehouse Rapidos y Furiosos",
+        "description": "Data warehouse dimensional para una empresa colombiana de mensajería."
+      }
+    },
+    "image": "assets/images/projects/rapidos_y_furiosos_dw.webp",
+    "tags": ["Python", "Jupyter", "PostgreSQL"],
+    "links": {
+      "code": "https://github.com/LONG-TERM-EFFECTS-OF-SUFFERING/rapido_y_furiosos_dw.webp"
+    }
+  },
+  {
+    "id": "bottle-flip",
+    "featured": false,
+    "text": {
+      "en": {
+        "title": "Bottle Flip",
+        "description": "Bottle-flip game."
+      },
+      "es": {
+        "title": "Bottle Flip",
+        "description": "Juego de la Botella."
+      }
+    },
+    "image": "https://placehold.co/800x500?text=WIP",
+    "tags": ["Kotlin", "Android"],
+    "links": {
+      "code": "https://github.com/LONG-TERM-EFFECTS-OF-SUFFERING/bottle_flip_v2"
+    }
+  },
+  {
+    "id": "task-project-manager",
+    "featured": true,
+    "text": {
+      "en": {
+        "title": "Task and project manager",
+        "description": "Application for managing projects and their tasks."
+      },
+      "es": {
+        "title": "Gestor de tareas y proyectos",
+        "description": "Aplicación para gestionar proyectos y sus tareas."
+      }
+    },
+    "image": "assets/images/projects/task_project_manager.webp",
+    "tags": ["Java", "Spring", "PostgreSQL", "Kubernetes"],
+    "links": {
+      "code": "https://github.com/UniVHub/Task-And-Project-Manager"
+    }
+  },
+  {
+    "id": "yt-dlp-client",
+    "featured": false,
+    "text": {
+      "en": {
+        "title": "yt-dlp client",
+        "description": "Python tool that automates downloading the latest videos from a configurable list of YouTube channels."
+      },
+      "es": {
+        "title": "Cliente de yt-dlp",
+        "description": "Herramienta en Python que automatiza la descarga de los últimos vídeos de una lista configurable de canales de YouTube."
+      }
+    },
+    "image": "assets/images/projects/yt-dlp_client.webp",
+    "tags": ["Python"],
+    "links": {
+      "code": "https://github.com/LONG-TERM-EFFECTS-OF-SUFFERING/yt-dlp_client"
+    }
+  },
+  {
+    "id": "extremism-minimization",
+    "featured": false,
+    "text": {
+      "en": {
+        "title": "Minimizing extremism in a population",
+        "description": "Optimization problem solved in Python: move people between opinions to minimize the overall extremism of a population, subject to a total cost budget and a maximum number of moves."
+      },
+      "es": {
+        "title": "Minimización del extremismo en una población",
+        "description": "Problema de optimización resuelto en Python: mover personas entre opiniones para minimizar el extremismo global de una población, sujeto a un presupuesto total de costo y un número máximo de movimientos."
+      }
+    },
+    "image": "assets/images/projects/extremism_minimization.webp",
+    "tags": ["Python"],
+    "links": {
+      "code": "https://github.com/LONG-TERM-EFFECTS-OF-SUFFERING/analisis_y_diseno_de_algoritmos_II_second_project"
+    }
+  },
+  {
+    "id": "network-polarization",
+    "featured": false,
+    "text": {
+      "en": {
+        "title": "Moderating conflict in a social network",
+        "description": "Algorithmic study of opinion polarization: given groups of agents with two opinions and a rigidity level, find the strategy that most reduces the network's internal conflict within a limited moderation effort. "
+      },
+      "es": {
+        "title": "Moderación del conflicto en una red social",
+        "description": "Estudio algorítmico de la polarización de opiniones: dados grupos de agentes con dos opiniones y un nivel de rigidez, encontrar la estrategia que más reduce el conflicto interno de la red dentro de un esfuerzo de moderación limitado."
+      }
+    },
+    "image": "assets/images/projects/moderating_network.webp",
+    "tags": ["Python"],
+    "links": {
+      "code": "https://github.com/LONG-TERM-EFFECTS-OF-SUFFERING/analisis_y_diseno_de_algoritmos_II_first_project"
+    }
+  },
+  {
+    "id": "yoshis-world",
+    "featured": false,
+    "text": {
+      "en": {
+        "title": "Yoshi's world",
+        "description": "Two-player board game in Java where each Yoshi moves like a chess knight and paints the tiles it lands on. The computer opponent uses a minimax tree with three difficulty levels (depth 2, 4 and 6)."
+      },
+      "es": {
+        "title": "Yoshi's world",
+        "description": "Juego de tablero para dos jugadores en Java donde cada Yoshi se mueve como el caballo del ajedrez y pinta las casillas que ocupa. El oponente controlado por la máquina usa un árbol minimax con tres niveles de dificultad (profundidad 2, 4 y 6)."
+      }
+    },
+    "image": "assets/images/projects/yoshis_world.webp",
+    "tags": ["Java"],
+    "links": {
+      "code": "https://github.com/LONG-TERM-EFFECTS-OF-SUFFERING/Yoshis_world"
+    }
+  },
+  {
+    "id": "smart-mandalorian",
+    "featured": false,
+    "text": {
+      "en": {
+        "title": "Smart Mandalorian",
+        "description": "Java simulation that compares classic search strategies on the same problem: breadth-first, depth-first, greedy and A*. Includes a graphical interface to launch the simulation and watch each strategy explore the map."
+      },
+      "es": {
+        "title": "Smart Mandalorian",
+        "description": "Simulación en Java que compara estrategias clásicas de búsqueda sobre el mismo problema: amplitud, profundidad, avara y A*. Incluye una interfaz gráfica para lanzar la simulación y ver cómo cada estrategia explora el mapa."
+      }
+    },
+    "image": "assets/images/projects/smart_mandalorian.webp",
+    "tags": ["Java"],
+    "links": {
+      "code": "https://github.com/LONG-TERM-EFFECTS-OF-SUFFERING/smart_mandalorian"
+    }
+  },
+  {
+    "id": "virtual-coach",
+    "featured": true,
+    "text": {
+      "en": {
+        "title": "Virtual Coach",
+        "description": "Training platform"
+      },
+      "es": {
+        "title": "Virtual Coach",
+        "description": "Plataforma de entrenamiento"
+      }
+    },
+    "image": "assets/images/projects/virtual_coach.webp",
+    "tags": ["Django", "TypeScript", "React", "Docker", "Nginx"],
+    "links": {
+      "code": "https://github.com/LONG-TERM-EFFECTS-OF-SUFFERING/Virtual-Coach_Code"
+    }
+  },
+  {
+    "id": "mini-py",
+    "featured": true,
+    "text": {
+      "en": {
+        "title": "Mini-py",
+        "description": "Interpreter for a small Python-inspired language, written in Racket. Covers its own grammar and lexer, first-class procedures, recursion, mutable bindings, conditionals and composite data types (lists, tuples, dictionaries, hexadecimal numbers)."
+      },
+      "es": {
+        "title": "Mini-py",
+        "description": "Intérprete de un lenguaje pequeño inspirado en Python, escrito en Racket. Incluye su propia gramática y analizador léxico, procedimientos de primera clase, recursión, asignación mutable, condicionales y tipos de datos compuestos (listas, tuplas, diccionarios, números hexadecimales)."
+      }
+    },
+    "image": "assets/images/projects/mini-py.webp",
+    "tags": ["Racket"],
+    "links": {
+      "code": "https://github.com/LONG-TERM-EFFECTS-OF-SUFFERING/Mini-Py"
+    }
+  },
+  {
+    "id": "boat-game",
+    "featured": false,
+    "text": {
+      "en": {
+        "title": "Boat game",
+        "description": "C++ take on the classic river-crossing puzzle: ferry a fox, a rabbit and a lettuce across a river without leaving a predator alone with its prey."
+      },
+      "es": {
+        "title": "Juego de la barca",
+        "description": "Versión en C++ del clásico acertijo del cruce del río: transportar un zorro, un conejo y una lechuga sin dejar solos al depredador y su presa."
+      }
+    },
+    "image": "assets/images/projects/boat_game.webp",
+    "tags": ["C++"],
+    "links": {
+      "code": "https://github.com/LONG-TERM-EFFECTS-OF-SUFFERING/Object-Oriented-Programming-Project"
+    }
+  },
+  {
+    "id": "jngs",
+    "featured": false,
+    "text": {
+      "en": {
+        "title": "JNGS - Juego No Genérico de Snake",
+        "description": "Browser snake game with a Colombian twist."
+      },
+      "es": {
+        "title": "JNGS - Juego No Genérico de Snake",
+        "description": "Juego de la serpiente en el navegador con un toque colombiano."
+      }
+    },
+    "image": "assets/images/projects/jngs.webp",
+    "tags": ["JavaScript", "CSS", "HTML"],
+    "links": {
+      "code": "https://github.com/braz9LKDI/JNGDS",
+      "live": "https://braz9LKDI.github.io/JNGDS"
     }
   }
 ]

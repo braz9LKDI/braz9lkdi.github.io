@@ -1,7 +1,7 @@
 ---
-date: "2025-06-12"
-title: "Minecraft survival tweaks"
-excerpt: "Mod and configuration recommendations for a smoother, more enjoyable Minecraft survival experience."
+date: '2025-06-12'
+title: 'Minecraft survival tweaks'
+excerpt: 'Mod and configuration recommendations for a smoother, more enjoyable Minecraft survival experience.'
 tags:
     - minecraft
     - mods
@@ -10,17 +10,15 @@ tags:
 
 # Minecraft survival tweaks
 
-## Recommendations
-
-### Launcher
+## Launcher
 
 The [MultiMC](https://multimc.org) launcher is highly recommended for comprehensive management of Minecraft instances.
 
-> A Microsoft account with a premium Minecraft license is required; an unofficial variant for non‑premium users is available at [this repository](https://github.com/UltimMC/Launcher).
+> A Microsoft account with a premium Minecraft license is required.
 
 ## Client
 
-The Fabric mod loader ([**Fabric**](https://fabricmc.net)) will be used. In MultiMC, installation is performed via "Edit Instance" and "Install Fabric", then selecting the desired version.
+The Fabric mod loader ([**Fabric**](https://fabricmc.net)) will be used. In MultiMC, installation is performed via "Edit Instance" and "Install Fabric", then selecting the desired version.
 
 ## Mods
 
@@ -35,7 +33,7 @@ The [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api) is req
 
 - [Phosphor](https://www.curseforge.com/minecraft/mc-mods/phosphor).
 
-> Alternative: [Starlight](https://www.curseforge.com/minecraft/mc-mods/starlight).
+    > Alternative: [Starlight](https://www.curseforge.com/minecraft/mc-mods/starlight).
 
 - [Lithium](https://modrinth.com/mod/lithium).
 
@@ -53,7 +51,7 @@ The [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api) is req
 
 ### Utilities
 
-- [FPS reducer](https://www.curseforge.com/minecraft/mc-mods/fps-reducer): manages idle‑state FPS and adds optional HUD modules.
+- [FPS reducer](https://www.curseforge.com/minecraft/mc-mods/fps-reducer): manages idle-state FPS and adds optional HUD modules.
 
 - [WI zoom](https://www.curseforge.com/minecraft/mc-mods/wi-zoom): advanced zoom functionality.
 
@@ -62,7 +60,7 @@ The [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api) is req
 
 - [Mod Menu](https://modrinth.com/mod/modmenu).
 
-- [Tweakeroo](https://www.curseforge.com/minecraft/mc-mods/tweakeroo): various in‑game tweaks.
+- [Tweakeroo](https://www.curseforge.com/minecraft/mc-mods/tweakeroo): various in-game tweaks.
     - [Malilib](https://www.curseforge.com/minecraft/mc-mods/malilib).
 
 - [MiniHUD](https://www.curseforge.com/minecraft/mc-mods/minihud).
@@ -70,19 +68,19 @@ The [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api) is req
 
 - [Inventory HUD+](https://www.curseforge.com/minecraft/mc-mods/inventory-hud-forge).
 
-- [EasierVillagerTrading](https://beta.curseforge.com/minecraft/mc-mods/easiervillagertrading).
+- [EasierVillagerTrading](https://www.curseforge.com/minecraft/mc-mods/easiervillagertrading).
 
 > Further details are available on each mod's project page.
 
 ## Resource packs
 
-A vanilla‑style resource pack is preferred, with [Faithful](https://modrinth.com/resourcepack/faithful-64x) as the base.
+A vanilla-style resource pack is preferred, with [Faithful](https://modrinth.com/resourcepack/faithful-64x) as the base.
 
 - [Tiny Tools TXF](https://www.curseforge.com/minecraft/texture-packs/tiny-tools-txf).
 
 - [Icons](https://modrinth.com/resourcepack/icons).
 
-### [vanilla tweaks](https://vanillatweaks.net/picker/resource-packs)
+### [Vanilla Tweaks](https://vanillatweaks.net/picker/resource-packs)
 
 #### Aesthetic
 
@@ -152,11 +150,11 @@ A vanilla‑style resource pack is preferred, with [Faithful](https://modrinth.c
 
 - Dark UI.
 
-> For all modifications compatible with version 1.20.x, see the [shared link](https://vanillatweaks.net/share#PaRDQ3).
+> For all modifications compatible with version 1.20, see the [shared link](https://vanillatweaks.net/share#PaRDQ3).
 
 ## Bonus
 
-- [Invisible armor](https://modrinth.com/resourcepack/invisible-armor-for-players-only): preserves player skins; requires [Chime](https://beta.curseforge.com/minecraft/mc-mods/chime-fabric).
+- [Invisible armor](https://modrinth.com/resourcepack/invisible-armor-for-players-only): preserves player skins; requires [Chime](https://www.curseforge.com/minecraft/mc-mods/chime-fabric).
 
 ### Keybinds
 

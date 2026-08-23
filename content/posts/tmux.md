@@ -1,7 +1,7 @@
 ---
-date: "2025-06-11"
-title: "Tmux"
-excerpt: "Overview of tmux, the terminal multiplexer that enables panes, windows, and sessions for efficient terminal workflows."
+date: '2025-06-11'
+title: 'Tmux'
+excerpt: 'Overview of tmux, the terminal multiplexer that enables panes, windows and sessions for efficient terminal workflows.'
 tags:
     - tmux
     - terminal
@@ -10,7 +10,7 @@ tags:
 
 # Tmux
 
-tmux is a terminal multiplexer for UNIX-like systems, similar to GNU Screen or Byobu, which enables splitting a single console into multiple panes or creating independent sessions within the same terminal. In practical terms, tmux allows multiple virtual terminals to operate within one window.
+tmux is a terminal multiplexer for UNIX-like systems, similar to GNU Screen, which enables splitting a single console into multiple panes or creating independent sessions within the same terminal. In practical terms, tmux allows multiple virtual terminals to operate within one window.
 
 > Detailed documentation is available in the [OpenBSD manual](https://man.openbsd.org/OpenBSD-current/man1/tmux.1).
 
@@ -18,7 +18,7 @@ tmux is a terminal multiplexer for UNIX-like systems, similar to GNU Screen or B
 
 ## Sessions
 
-A session in tmux comprises a collection of windows and panes. Each session represents an isolated workspace for a specific set of tasks or projects. Multiple sessions can run concurrently, and sessions may be detached and reattached as needed.
+A session in tmux comprises a collection of windows and panes. Each session represents an isolated workspace for a specific set of tasks or projects. Multiple sessions can run concurrently and sessions may be detached and reattached as needed.
 
 ## Windows
 
@@ -30,19 +30,19 @@ Panes divide a single window into multiple regions, each capable of hosting a se
 
 ## Installation
 
-Installation steps vary by distribution; refer to the [official tmux installation guide](https://github.com/tmux/tmux/wiki/Installing)) for system-specific instructions. In general, executing: `<package-manager> install tmux`.
+Installation steps vary by distribution; refer to the [official tmux installation guide](https://github.com/tmux/tmux/wiki/Installing) for system-specific instructions. In general, executing: `<package-manager> install tmux`.
 
 ## Commands
 
-- `tmux new -s <name>`: create a new session named "name".
+- `tmux new -s <session-name>`: create a new session named "name".
 
-- `tmux list-sessions` or `tmux ls`: list all active sessions..
+- `tmux list-sessions` or `tmux ls`: list all active sessions.
 
 - `tmux attach` or `tmux a`: attach to the most recently used session.
 
-- `tmux a -t <session name>`: attach to a specific session.
+- `tmux a -t <session-name>`: attach to a specific session.
 
-- `tmux kill-session -t <session number>`: terminate the specified session.
+- `tmux kill-session -t <session-name>`: terminate the specified session.
 
 ## Shortcuts
 
@@ -66,7 +66,7 @@ All shortcuts assume the default prefix `CTRL + b` (modifiable in configuration)
 
 - `,`: rename the current window.
 
-    > `tmux rename-window <new name>`.
+    > `tmux rename-window <new-name>`.
 
 - `<number>`: switch directly to window by number (starting at 0).
 
@@ -78,17 +78,17 @@ All shortcuts assume the default prefix `CTRL + b` (modifiable in configuration)
 
 - `q`: display pane numbers.
 
-- `q<panel number>`: switch to specified pane.
+- `q<pane-number>`: switch to specified pane.
 
 - `z`: toggle zoom for the active pane.
 
-    > The same to unzoom.
+    > Press it again to unzoom.
 
 - `!`: promote a pane to its own window.
 
-- `<ARROW>`: navigate between panes
+- `<ARROW>`: navigate between panes.
 
-- `CTRL + b + <ARROW>`: resize panes.
+- `CTRL + <ARROW>`: resize panes.
 
 - `x`: close the active pane.
 

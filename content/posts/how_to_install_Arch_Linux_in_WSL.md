@@ -1,7 +1,7 @@
 ---
-date: "2026-03-25"
-title: "How to install Arch Linux in WSL"
-excerpt: "A practical, step-by-step guide to install Arch Linux in WSL."
+date: '2026-03-25'
+title: 'How to install Arch Linux in WSL'
+excerpt: 'A practical, step-by-step guide to install Arch Linux in WSL.'
 tags:
     - linux
     - arch-linux
@@ -10,7 +10,7 @@ tags:
 
 # How to install Arch Linux in WSL
 
-[A previous post](https://braz9lkdi.github.io/blog/posts/Arch_Linux_installation.html) covered the full bare-metal Arch Linux installation. This version takes the shorter route: Arch Linux now provides an official WSL image and Microsoft's current WSL flow installs Linux distributions directly from Windows, with new installs using WSL 2 by default. Complete software liberation has not yet occurred, Windows is still the landlord, but this is still a very respectable first step toward the ceremonial title of **"Arch Linux user"**.
+[A previous post](https://braz9lkdi.github.io/blog/posts/Arch_Linux_installation.html) covered the full bare-metal Arch Linux installation. This version takes the shorter route: Arch Linux now provides an official WSL image and Microsoft's current WSL flow installs Linux distributions directly from Windows, with new installs using WSL 2 by default. Complete software liberation has not yet occurred (Windows is still the landlord), but this is a very respectable first step toward the ceremonial title of **"Arch Linux user"**.
 
 Because this is WSL, the usual bare-metal chores like booting an ISO, partitioning disks, installing a boot loader and generally negotiating with firmware, are not part of the process here. [The earlier guide](https://braz9lkdi.github.io/blog/posts/Arch_Linux_installation.html) remains the reference for that full installation path; this one focuses only on the WSL variant.
 
@@ -38,7 +38,7 @@ Once WSL is available, Arch Linux can be installed directly from PowerShell usin
 wsl --install archlinux
 ```
 
-If the installation stalls at 0.0%, Microsoft recommends retrying with the web-download option:wsw
+If the installation stalls at 0.0%, Microsoft recommends retrying with the web-download option:
 
 ```ps1
 wsl --install --web-download -d archlinux
@@ -71,10 +71,10 @@ passwd
 Even inside WSL, Arch remains Arch. The first job is therefore a full system upgrade, along with a few useful packages for day-to-day life. The mirror refresh and user-setup flow below follows the same general approach as the earlier Arch installation guide, adapted for WSL.
 
 ```bash
-pacman -Syu --needed sudo git base-devel reflector nvim
+pacman -Syu --needed sudo git base-devel reflector neovim
 ```
 
-> Yes, you will install Neovim, what did you expect? you are a "Arch Linux user" now.
+> Yes, you will install Neovim. What did you expect? You are an "Arch Linux user" now.
 
 Once that completes, the mirror list can be refreshed for faster downloads:
 
@@ -84,7 +84,7 @@ reflector --verbose --latest 20 --protocol https --sort rate --save /etc/pacman.
 pacman -Syyu
 ```
 
-> That second sync is not strictly dramatic, but it does ensure the newly selected mirrors are used immediately.
+> That second sync is not strictly necessary, but it does ensure the newly selected mirrors are used immediately.
 
 ## Create a regular user
 
@@ -97,67 +97,6 @@ EDITOR=nvim visudo
 ```
 
 Inside `visudo`, the line that grants sudo privileges to the `wheel` group should be uncommented.
-
-### Time zone
-
-1. `timedatectl list-timezones`: list available time-zone identifiers.
-
-    > A specific entry may be located with grep, for example: `timedatectl list-timezones | grep Bogota`.
-
-2. `timedatectl set-timezone <time zone>`: the desired time zone is applied (e.g., `America/Bogota`).
-
-3. `timedatectl set-ntp true`.
-
-## Locales and console
-
-1. Uncomment `en_US.UTF-8` in `/etc/locale.gen`, then run `locale-gen`.
-
-2. Create `/etc/locale.conf` containing `LANG=en_US.UTF-8`.
-
-3. Add `KEYMAP=us` in `/etc/vconsole.conf`.
-
-## Recommended `/etc/wsl.conf` settings
-
-ArchWiki recommends setting the default WSL user in `/etc/wsl.conf` after the account has been created.
-
-A minimal wsl.conf for that purpose looks like this:
-
-```ini
-[user]
-default=<username>
-```
-
-It can also be written in one shot:
-
-```bash
-cat > /etc/wsl.conf <<EOF
-[user]
-default=<username>
-EOF
-```
-
-## Restart WSL cleanly
-
-After `wsl.conf` is changed, the distribution should be closed and WSL should be restarted from PowerShell so the new settings are applied.
-
-First, leave the Arch session:
-
-```bash
-exit
-```
-
-Then, in PowerShell:
-
-```bash
-wsl --shutdown
-wsl -d archlinux
-```
-
-If everything is configured correctly, the next session should open as the newly created user rather than `root`.
-
-## Recommendations
-
-For better performance, Linux-side projects should be kept inside the Linux filesystem, such as `/home/<username>/`projects, rather than under `/mnt/c`. Microsoft recommends using the Linux filesystem for Linux tools because file operations are faster there.
 
 ## Configure `/etc/wsl.conf`
 
@@ -179,6 +118,45 @@ appendWindowsPath=false
 ```
 
 This configuration is especially nice for day-to-day use. The shell environment stays tidier, file ownership on mounted Windows drives becomes more predictable and the regular user account is used automatically instead of dropping into root every time.
+
+## Restart WSL cleanly
+
+After `wsl.conf` is changed, the distribution should be closed and WSL should be restarted from PowerShell so the new settings are applied.
+
+First, leave the Arch session:
+
+```bash
+exit
+```
+
+Then, in PowerShell:
+
+```ps1
+wsl --shutdown
+wsl -d archlinux
+```
+
+If everything is configured correctly, the next session should open as the newly created user rather than `root`.
+
+## Time zone
+
+1. `timedatectl list-timezones`: list available time-zone identifiers.
+
+    > A specific entry may be located with grep, for example: `timedatectl list-timezones | grep Bogota`.
+
+2. `timedatectl set-timezone <time-zone>`: the desired time zone is applied (e.g., `America/Bogota`).
+
+3. `timedatectl set-ntp true`.
+
+## Locales
+
+1. Uncomment `en_US.UTF-8` in `/etc/locale.gen`, then run `locale-gen`.
+
+2. Create `/etc/locale.conf` containing `LANG=en_US.UTF-8`.
+
+## Recommendations
+
+For better performance, Linux-side projects should be kept inside the Linux filesystem, such as `/home/<username>/projects`, rather than under `/mnt/c`. Microsoft recommends using the Linux filesystem for Linux tools because file operations are faster there.
 
 ## Configure `/etc/pacman.conf` {#configure-pacman-conf}
 

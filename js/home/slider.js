@@ -13,6 +13,18 @@ document.addEventListener('DOMContentLoaded', () => {
   let totalSlides;
 
   let currentIndex = 0;
+
+  /**
+   * Scrolls the slider to a slide and marks the matching dot active.
+   *
+   * The index is clamped to the valid range, so callers may pass `currentIndex ± 1` without
+   * checking bounds. Scrolling is done by setting `scrollLeft`; the animation itself comes from
+   * `scroll-behavior: smooth` in the stylesheet.
+   *
+   * Mutates `currentIndex` and the DOM.
+   *
+   * @param {number} index: 0-based slide index; clamped to the available range.
+   */
   const slideTo = (index) => {
     let targetIndex = index;
 
@@ -33,6 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+  /**
+   * Rebuilds the navigation dots, one per slide.
+   *
+   * Clears the existing dots first, since the slide count changes with the viewport width.
+   */
   const initializeDots = () => {
     // Clear existing dots
     sliderDots.innerHTML = '';
@@ -48,6 +65,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  /**
+   * Measures the slider and recalculates how many cards fit in one view.
+   *
+   * Runs on load and on every resize, because the card count per slide depends on the rendered
+   * width. Card width is read from the first card plus the 20px flex gap, which the stylesheet
+   * defines and this measurement has to mirror.
+   *
+   * The dots are rebuilt only when the slide count actually changes, so an ordinary resize does not
+   * discard them. The slider returns to the first slide either way, since the previous index may no
+   * longer point at the same cards.
+   *
+   * Returns early when no cards are present, which is the case if the generated markup is empty.
+   *
+   * Mutates `cardWidth`, `cardsPerView` and `totalSlides`.
+   */
   function setup() {
     if (!cards.length) {
       return;

@@ -1,7 +1,7 @@
 ---
-date: "2025-08-31"
-title: "The pacman command"
-excerpt: "A concise guide to using the `pacman` package manager on Arch Linux: refreshing databases, searching packages, managing installed software and keeping the system tidy without summoning dependency chaos"
+date: '2025-08-31'
+title: 'The pacman command'
+excerpt: 'A concise guide to using the pacman package manager on Arch Linux: refreshing databases, searching packages, managing installed software and keeping the system tidy without summoning dependency chaos.'
 tags:
     - linux
     - arch-linux
@@ -19,7 +19,7 @@ sources:
 
 The syntax may look terse at first glance, but that is part of the charm. Or the threat.
 
-## Refreshing the Package Database
+## Refreshing the package database
 
 The package database can be refreshed with the following command:
 
@@ -62,7 +62,7 @@ If downloads are unusually slow, the mirror list should be regenerated or reorde
 A package can be installed with:
 
 ```bash
-pacman -S <package_name>
+pacman -S <package-name>
 ```
 
 - `S`: sync and install a package from the repositories.
@@ -74,7 +74,7 @@ Any required dependencies are resolved and installed automatically. Multiple pac
 A local package file can be installed with:
 
 ```bash
-pacman -U <package_file>
+pacman -U <package-file>
 ```
 
 - `U`: upgrade or install a local package file.
@@ -86,7 +86,7 @@ This is commonly used for manually downloaded package archives.
 A package can be removed with:
 
 ```bash
-pacman -R <package_name>
+pacman -R <package-name>
 ```
 
 - `R`: remove a package.
@@ -94,13 +94,13 @@ pacman -R <package_name>
 A package and its unused dependencies can be removed with:
 
 ```bash
-pacman -Rs <package_name>
+pacman -Rs <package-name>
 ```
 
 A more thorough removal, including configuration files and dependencies no longer required, can be performed with:
 
 ```bash
-pacman -Rns <package_name>
+pacman -Rns <package-name>
 ```
 
 - `n`: remove backup configuration files.
@@ -144,7 +144,7 @@ This is useful when only the installed software should be searched.
 To check whether a specific package is installed:
 
 ```bash
-pacman -Q <package_name>
+pacman -Q <package-name>
 ```
 
 If the package is installed, its name and version are shown.
@@ -156,7 +156,7 @@ If the package is installed, its name and version are shown.
 Detailed information about an installed package can be displayed with:
 
 ```bash
-pacman -Qi <package_name>
+pacman -Qi <package-name>
 ```
 
 - `i`: show package information.
@@ -166,7 +166,7 @@ pacman -Qi <package_name>
 Information about a package available in the repositories can be displayed with:
 
 ```bash
-pacman -Si <package_name>
+pacman -Si <package-name>
 ```
 
 This is useful when a package has not yet been installed.
@@ -176,7 +176,7 @@ This is useful when a package has not yet been installed.
 The files installed by a package can be listed with:
 
 ```bash
-pacman -Ql <package_name>
+pacman -Ql <package-name>
 ```
 
 - `l`: list files owned by the package.
@@ -186,7 +186,7 @@ pacman -Ql <package_name>
 To determine which installed package owns a file:
 
 ```bash
-pacman -Qo <file_path>
+pacman -Qo <file-path>
 ```
 
 Example:
@@ -222,7 +222,7 @@ This command synchronizes the package databases and upgrades all packages for wh
 Packages can be downloaded into the cache without being installed:
 
 ```bash
-pacman -Sw <package_name>
+pacman -Sw <package-name>
 ```
 
 - `w`: download packages but do not install them.

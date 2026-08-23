@@ -21,7 +21,17 @@ marked.use(
   }),
 );
 
-// Read all Markdown files
+/**
+ * Reads every Markdown post and returns them as render-ready objects, newest first.
+ *
+ * Frontmatter supplies `title`, `date`, `excerpt` and `tags`; the body is parsed to HTML here so
+ * callers never handle Markdown. Tags are lowercased to give the filter buttons and the icon lookup
+ * a single canonical form. The slug comes from the filename, which also determines the preview
+ * image path, so a post's image is expected at `/assets/images/posts/<slug>.webp`.
+ *
+ * @returns {Array<Object>}: posts sorted by descending date, each with `title`, `date`, `date_str`,
+ * `tags`, `excerpt`, `image`, `slug` and parsed `content`.
+ */
 function getPosts() {
   const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith('.md'));
   const posts = [];
@@ -53,6 +63,15 @@ function getPosts() {
   return posts;
 }
 
+/**
+ * Renders one tag filter button for the blog index.
+ *
+ * `data-tag` carries the tag to the client-side filter and `aria-pressed` starts false, since no
+ * filter is active on first load.
+ *
+ * @param {string} tag: lowercase tag name.
+ * @returns {string}: HTML for a single filter button.
+ */
 function generateTagItem(tag) {
   return `
               <button class="tag" type="button" data-tag="${tag}" aria-pressed="false">
@@ -60,6 +79,16 @@ function generateTagItem(tag) {
               </button>`;
 }
 
+/**
+ * Renders one post card for the blog index.
+ *
+ * `data-tags` holds the comma-separated tags that the client-side filter reads. `post.excerpt` is
+ * injected raw, so excerpts must be plain text: Markdown and backticks in frontmatter reach the
+ * page literally.
+ *
+ * @param {Object} post: a post as returned by `getPosts`.
+ * @returns {string}: HTML for a single blog card.
+ */
 function generateBlogItem(post) {
   const postLink = `posts/${post.slug}.html`;
 
@@ -67,7 +96,7 @@ function generateBlogItem(post) {
     .map((tag) => {
       return `<span class="tag"><i class="${tagIcon(tag)}" aria-hidden="true"></i>${tag}</span>`;
     })
-    .join('\n            ');
+    .join('\n');
 
   return `
       <article class="blog-item" data-tags="${post.tags.join(',')}">
@@ -87,7 +116,18 @@ function generateBlogItem(post) {
       </article>`;
 }
 
-// Generate individual post page
+/**
+ * Renders the standalone HTML page for a single post.
+ *
+ * The template deliberately emits no `<h1>`: the title comes from the first heading of the Markdown
+ * body, so every post file must open with an H1 matching its frontmatter `title`.
+ *
+ * `post.excerpt` becomes the meta description verbatim, and `post.content` is already-parsed HTML
+ * from `getPosts`. Neither is escaped.
+ *
+ * @param {Object} post: a post as returned by `getPosts`.
+ * @returns {string}: complete HTML document for the post.
+ */
 function generatePostPage(post) {
   return `<!doctype html>
 <html lang="en">
@@ -153,6 +193,17 @@ function generatePostPage(post) {
 </html>`;
 }
 
+/**
+ * Builds the blog index and one page per post.
+ *
+ * Overwrites `blog/index.html` and every file under `blog/posts/`, creating that directory if it is
+ * missing. Stale pages are not removed, so a renamed or deleted Markdown file leaves its old HTML
+ * behind until it is cleared by hand.
+ *
+ * Only tags reaching `MIN_POST_PER_TAG` become filter buttons.
+ *
+ * @returns {void}
+ */
 function buildBlog() {
   const posts = getPosts();
   const template = fs.readFileSync(TEMPLATE_FILE, 'utf-8');

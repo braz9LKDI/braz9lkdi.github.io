@@ -62,6 +62,20 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   };
 
+  /**
+   * Applies a language to the whole page and remembers the choice.
+   *
+   * Two separate mechanisms are translated. Static chrome carries `data-lang` and is looked up in
+   * `translations`; project cards instead carry their own `data-en` and `data-es` attributes,
+   * because that text is generated from `projects.json` and does not belong in this file.
+   *
+   * A missing `data-lang` key logs a warning and leaves the existing text in place, so an
+   * untranslated string is visible in the console rather than blanking the element.
+   *
+   * Writes to `localStorage`, `document.documentElement.lang` and the DOM.
+   *
+   * @param {string} lang: language code, either "en" or "es".
+   */
   const setLanguage = (lang) => {
     document.documentElement.lang = lang;
     document.querySelectorAll('[data-lang]').forEach((e) => {

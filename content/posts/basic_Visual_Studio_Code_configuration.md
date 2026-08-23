@@ -1,7 +1,7 @@
 ---
-date: "2025-06-13"
-title: "Basic Visual Studio Code configuration"
-excerpt: "Practical Visual Studio Code settings and tweaks to improve productivity and comfort."
+date: '2025-06-13'
+title: 'Basic Visual Studio Code configuration'
+excerpt: 'Practical Visual Studio Code settings and tweaks to improve productivity and comfort.'
 tags:
     - vscode
     - editor
@@ -13,7 +13,7 @@ tags:
 
 VS Code ranks among the most popular text editors due to its ease of use and extensive community support (themes, extensions, tutorials). The following configurations, applied via `settings.json`, have proven particularly useful. GUI configuration remains an option.
 
-## `setting.json`
+## `settings.json`
 
 - `terminal.integrated.enablePersistentSessions`: determines whether integrated terminal sessions persist across editor restarts.
 
@@ -29,17 +29,17 @@ VS Code ranks among the most popular text editors due to its ease of use and ext
 
 - `workbench.editor.showTabs`: defines tab display mode for open files.
 
-    > `"single"` (only the active file’s name is shown).
+    > `"single"` (only the active file's name is shown).
 
 - `workbench.startupEditor`: sets the startup view upon opening VS Code.
 
-    > `"none"` (restores the previous session).
+    > `"none"` (opens an empty editor with no welcome page).
 
 - `workbench.list.smoothScrolling`: enables smooth scrolling in sidebar lists.
 
     > `true`.
 
-- `workbench.tree.enableStickyScroll`: enables “sticky scroll” in the file explorer, keeping directory context visible while scrolling.
+- `workbench.tree.enableStickyScroll`: enables "sticky scroll" in the file explorer, keeping directory context visible while scrolling.
 
     > `true`.
 
@@ -67,7 +67,7 @@ VS Code ranks among the most popular text editors due to its ease of use and ext
 
     > `"on"`.
 
-- `editor.bracketPairColorization.enabled`: enables colorization of matching brackets, braces, and parentheses.
+- `editor.bracketPairColorization.enabled`: enables colorization of matching brackets, braces and parentheses.
 
     > `true`.
 
@@ -111,7 +111,7 @@ VS Code ranks among the most popular text editors due to its ease of use and ext
 
     > `"open"` (automatically opens untrusted files in the same window).
 
-- `explorer.confirmDragAndDrop`: toggles confirmation dialog for drag‑and‑drop operations in the explorer.
+- `explorer.confirmDragAndDrop`: toggles confirmation dialog for drag-and-drop operations in the explorer.
 
     > `false`.
 

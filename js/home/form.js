@@ -28,6 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
   nameInput.insertAdjacentElement('afterend', nameError);
   emailInput.insertAdjacentElement('afterend', emailError);
 
+  /**
+   * Validates the name field and shows or clears its error message.
+   *
+   * The message is written into the DOM as a side effect, so callers that only need the boolean
+   * still update the visible error state.
+   *
+   * @returns {boolean}: true when the field holds a non-blank value.
+   */
   const validateName = () => {
     if (nameInput.value.trim() === '') {
       nameError.textContent = translations[lang]['name-required'];
@@ -37,6 +45,17 @@ document.addEventListener('DOMContentLoaded', () => {
     return true;
   };
 
+  /**
+   * Validates the email field and shows or clears its error message.
+   *
+   * The pattern only checks for `text@text.text`. It is a typo catcher, not an RFC 5322 validator,
+   * and deliberately stays permissive: real delivery is confirmed by the form backend, so a stricter
+   * rule here would reject valid addresses for no gain.
+   *
+   * The message is written into the DOM as a side effect.
+   *
+   * @returns {boolean}: true when the field holds a plausible address.
+   */
   const validateEmail = () => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

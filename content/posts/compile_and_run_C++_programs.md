@@ -1,7 +1,7 @@
 ---
-date: "2025-06-11"
-title: "Compile and run C++ programs"
-excerpt: "Guide to compile and run C++ programs on Windows and Linux using GCC and other tools."
+date: '2025-06-11'
+title: 'Compile and run C++ programs'
+excerpt: 'Guide to compile and run C++ programs on Windows and Linux using GCC and other tools.'
 tags:
     - c++
     - programming
@@ -10,9 +10,9 @@ tags:
 
 # Compile and run C++ programs
 
-## Compilador
+## Compiler
 
-Both Windows and Linux environments will utilize the GCC compilers provided by the GNU Compiler Collection; the source differs by platform.
+Both Windows and Linux environments will utilize GCC; the source differs by platform.
 
 - Windows.
 
@@ -34,7 +34,7 @@ After downloading and extracting **w64devkit**, add its binaries to the system P
 
 2. Append the `bin` directory of w64devkit (e.g., `C:\...\w64devkit\bin`) to the Path variable.
 
-> Alternatively, you could run `setx /m PATH "...\w64devkit\bin;%PATH%"`.
+> Alternatively, the same result is achieved with `setx /m PATH "...\w64devkit\bin;%PATH%"`.
 
 ## Running programs
 

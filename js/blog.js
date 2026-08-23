@@ -17,6 +17,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const totalPages = () => Math.ceil(visible.length / POSTS_PER_PAGE);
 
+  /**
+   * Tests whether a post matches the current search term.
+   *
+   * Only the title and excerpt are searched, not the post body, which is not present on the index
+   * page. An empty term matches everything so that clearing the box restores the full list.
+   *
+   * @param {HTMLElement} post: a `.blog-item` article element.
+   * @param {string} term: lowercase, trimmed search term.
+   * @returns {boolean}: true when the post should stay visible.
+   */
   const matchesSearch = (post, term) => {
     if (term === '') {
       return true;
@@ -27,6 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
     return title.includes(term) || excerpt.includes(term);
   };
 
+  /**
+   * Tests whether a post carries every currently active tag.
+   *
+   * Selected tags combine with AND, not OR, so each additional tag narrows the list further. With
+   * no tags selected every post matches.
+   *
+   * @param {HTMLElement} post: a `.blog-item` article element.
+   * @returns {boolean}: true when the post should stay visible.
+   */
   const matchesTags = (post) => {
     if (activeTags.size === 0) {
       return true;
@@ -36,6 +55,19 @@ document.addEventListener('DOMContentLoaded', () => {
     return [...activeTags].every((tag) => postTags.includes(tag));
   };
 
+  /**
+   * Shows one page of the filtered posts and syncs the pagination controls.
+   *
+   * Hides every post before revealing the current slice, so posts dropped by the filter cannot
+   * linger. The requested page is clamped into range, which lets callers pass `currentPage +- 1`
+   * without bounds checks of their own. An empty result set resets to page one and disables both
+   * arrows.
+   *
+   * Mutates `currentPage` and the DOM.
+   *
+   * @param {number} page: 1-based page to show; clamped to the available range.
+   * @param {boolean} [shouldScroll=true]: whether to scroll the list into view, suppressed when a new filter has already reset the view.
+   */
   const renderPage = (page, shouldScroll = true) => {
     blogItems.forEach((post) => {
       post.style.display = 'none';
@@ -68,6 +100,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  /**
+   * Rebuilds the numbered page buttons for the current result set.
+   *
+   * Replaces the existing buttons outright, since the page count changes whenever the filter does.
+   */
   const renderPagination = () => {
     pageNumbers.innerHTML = '';
     for (let i = 1; i <= totalPages(); i++) {
@@ -82,6 +119,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  /**
+   * Recomputes the visible posts from the search term and active tags, then re-renders.
+   *
+   * Search and tags combine with AND. Always returns to page one, because the page the reader was
+   * on rarely exists in the new result set. Updates the `search-status` live region so screen
+   * readers hear the new count.
+   *
+   * Mutates `visible` and the DOM.
+   */
   const applyFilters = () => {
     const term = searchInput.value.toLowerCase().trim();
     visible = blogItems.filter((post) => matchesSearch(post, term) && matchesTags(post));

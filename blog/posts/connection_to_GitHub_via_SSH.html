@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="How to generate an SSH key, add it to GitHub, and test authentication for secure repository access." />
+    <meta name="description" content="How to generate an SSH key, add it to GitHub and test authentication for secure repository access." />
     <title>Connection to GitHub via SSH - Brandon's Blog</title>
 
     <link rel="stylesheet" href="/assets/fonts/fontawesome/all.min.css" />
@@ -53,18 +53,18 @@
                 <h1>Connection to GitHub via SSH</h1>
 <ol>
 <li><p>Generate a key.</p>
-<pre><code class="language-bash">ssh-keygen
+<pre><code class="language-bash">ssh-keygen -t ed25519 -C &lt;your-email&gt;
 </code></pre>
 <blockquote>
 <p><code>ssh-keygen</code> is a utility from the &quot;openssh&quot; package; if the command is not found, the package is likely not installed.</p>
 </blockquote>
 <blockquote>
-<p>By default, the RSA algorithm is used.</p>
+<p><code>ed25519</code> is specified in preference to the default RSA algorithm; the keys are shorter, faster to verify and considered at least as secure.</p>
 </blockquote>
 <blockquote>
-<p>It is recommended to include a comment with the associated email address for easy identification.</p>
+<p>The <code>-C</code> flag attaches a comment to the public key. An email address is the conventional choice, as it makes the key easy to identify later.</p>
 </blockquote>
-<p> Running this command prompts for the save location (default: <code>/home/&lt;user&gt;/.ssh/</code>) and for a passphrase (serving as the key&#39;s password).</p>
+<p> Running this command prompts for the save location (default: <code>/home/&lt;username&gt;/.ssh/id_ed25519</code>) and for a passphrase (serving as the key&#39;s password).</p>
 <blockquote>
 <p>The passphrase will be required later.</p>
 </blockquote>
@@ -94,15 +94,32 @@
 <ol>
 <li><p><code>ssh -T git@github.com</code>.</p>
 </li>
-<li><p>At the prompt &quot;Are you sure you want to continue connecting (yes/no)?&quot;, write &quot;yes&quot;.</p>
+<li><p>At the prompt &quot;Are you sure you want to continue connecting (yes/no/[fingerprint])?&quot;, write &quot;yes&quot;.</p>
 </li>
 </ol>
 <p> A successful setup will display: &quot;Hi USERNAME! You&#39;ve successfully authenticated, but GitHub does not provide shell access&quot;.</p>
 <blockquote>
-<p>If this message does not appear, the key has not been added correctly.</p>
+<p>If this message does not appear, the usual causes are a public key that was not pasted in full, the wrong key type selected on GitHub, or overly permissive permissions on <code>~/.ssh</code> and its contents.</p>
 </blockquote>
+</li>
+<li><p>Load the key into the agent.</p>
+<p> Without an agent, the passphrase is requested on every repository interaction. <code>ssh-agent</code> holds the decrypted key in memory so that it is entered only once:</p>
+<pre><code class="language-bash">eval &quot;$(ssh-agent -s)&quot;
+ssh-add ~/.ssh/id_ed25519
+</code></pre>
 <blockquote>
-<p>Entering the passphrase will be required for each repository interaction.</p>
+<p>The agent does not survive a reboot. Adding both commands to the shell&#39;s startup file, or enabling a user service, avoids repeating them manually.</p>
+</blockquote>
+</li>
+<li><p>Point repositories at SSH.</p>
+<p> Generating a key does not change how existing repositories communicate with GitHub: a repository cloned over HTTPS continues to use HTTPS, passphrase or not. The remote must be updated explicitly:</p>
+<pre><code class="language-bash">git remote set-url origin git@github.com:&lt;username&gt;/&lt;repository&gt;.git
+</code></pre>
+<p> New repositories can be cloned over SSH from the start:</p>
+<pre><code class="language-bash">git clone git@github.com:&lt;username&gt;/&lt;repository&gt;.git
+</code></pre>
+<blockquote>
+<p><code>git remote -v</code> displays the URLs currently in use, which is the quickest way to confirm the change.</p>
 </blockquote>
 </li>
 </ol>

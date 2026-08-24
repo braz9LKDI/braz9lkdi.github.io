@@ -51,8 +51,8 @@
             </header>
             <div class="post-content">
                 <h1>Compile and run C++ programs</h1>
-<h2>Compilador</h2>
-<p>Both Windows and Linux environments will utilize the GCC compilers provided by the GNU Compiler Collection; the source differs by platform.</p>
+<h2>Compiler</h2>
+<p>Both Windows and Linux environments will utilize GCC; the source differs by platform.</p>
 <ul>
 <li><p>Windows.</p>
 <p>  The development kit <a href="https://github.com/skeeto/w64devkit/releases"><strong>w64devkit</strong></a> (via MinGW-w64) is employed.</p>
@@ -76,7 +76,7 @@
 </li>
 </ol>
 <blockquote>
-<p>Alternatively, you could run <code>setx /m PATH &quot;...\w64devkit\bin;%PATH%&quot;</code>.</p>
+<p>Alternatively, the same result is achieved with <code>setx /m PATH &quot;...\w64devkit\bin;%PATH%&quot;</code>.</p>
 </blockquote>
 <h2>Running programs</h2>
 <p>The <strong>Code Runner</strong> extension for VS Code is recommended. Configuration entries in the <code>settings.json</code> file follow.</p>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="A concise guide to using the `pacman` package manager on Arch Linux: refreshing databases, searching packages, managing installed software and keeping the system tidy without summoning dependency chaos" />
+    <meta name="description" content="A concise guide to using the pacman package manager on Arch Linux: refreshing databases, searching packages, managing installed software and keeping the system tidy without summoning dependency chaos." />
     <title>The pacman command - Brandon's Blog</title>
 
     <link rel="stylesheet" href="/assets/fonts/fontawesome/all.min.css" />
@@ -53,7 +53,7 @@
                 <h1>The pacman command</h1>
 <p><code>pacman</code> is the package manager used by Arch Linux and its derivatives. It is responsible for installing, upgrading, querying and removing packages, as well as maintaining the local package database.</p>
 <p>The syntax may look terse at first glance, but that is part of the charm. Or the threat.</p>
-<h2>Refreshing the Package Database</h2>
+<h2>Refreshing the package database</h2>
 <p>The package database can be refreshed with the following command:</p>
 <pre><code class="language-bash">pacman -Sy
 </code></pre>
@@ -84,7 +84,7 @@
 <h2>Managing packages</h2>
 <h3>Installing packages</h3>
 <p>A package can be installed with:</p>
-<pre><code class="language-bash">pacman -S &lt;package_name&gt;
+<pre><code class="language-bash">pacman -S &lt;package-name&gt;
 </code></pre>
 <ul>
 <li><code>S</code>: sync and install a package from the repositories.</li>
@@ -92,7 +92,7 @@
 <p>Any required dependencies are resolved and installed automatically. Multiple packages may be installed in a single command by separating their names with spaces.</p>
 <h3>Installing a local package file</h3>
 <p>A local package file can be installed with:</p>
-<pre><code class="language-bash">pacman -U &lt;package_file&gt;
+<pre><code class="language-bash">pacman -U &lt;package-file&gt;
 </code></pre>
 <ul>
 <li><code>U</code>: upgrade or install a local package file.</li>
@@ -100,16 +100,16 @@
 <p>This is commonly used for manually downloaded package archives.</p>
 <h3>Removing packages</h3>
 <p>A package can be removed with:</p>
-<pre><code class="language-bash">pacman -R &lt;package_name&gt;
+<pre><code class="language-bash">pacman -R &lt;package-name&gt;
 </code></pre>
 <ul>
 <li><code>R</code>: remove a package.</li>
 </ul>
 <p>A package and its unused dependencies can be removed with:</p>
-<pre><code class="language-bash">pacman -Rs &lt;package_name&gt;
+<pre><code class="language-bash">pacman -Rs &lt;package-name&gt;
 </code></pre>
 <p>A more thorough removal, including configuration files and dependencies no longer required, can be performed with:</p>
-<pre><code class="language-bash">pacman -Rns &lt;package_name&gt;
+<pre><code class="language-bash">pacman -Rns &lt;package-name&gt;
 </code></pre>
 <ul>
 <li><p><code>n</code>: remove backup configuration files.</p>
@@ -145,32 +145,32 @@
 <p>This is useful when only the installed software should be searched.</p>
 <h3>Checking whether a package is installed</h3>
 <p>To check whether a specific package is installed:</p>
-<pre><code class="language-bash">pacman -Q &lt;package_name&gt;
+<pre><code class="language-bash">pacman -Q &lt;package-name&gt;
 </code></pre>
 <p>If the package is installed, its name and version are shown.</p>
 <h2>Querying package information</h2>
 <h3>Viewing information about an installed package</h3>
 <p>Detailed information about an installed package can be displayed with:</p>
-<pre><code class="language-bash">pacman -Qi &lt;package_name&gt;
+<pre><code class="language-bash">pacman -Qi &lt;package-name&gt;
 </code></pre>
 <ul>
 <li><code>i</code>: show package information.</li>
 </ul>
 <h3>Viewing information about a package in the repositories</h3>
 <p>Information about a package available in the repositories can be displayed with:</p>
-<pre><code class="language-bash">pacman -Si &lt;package_name&gt;
+<pre><code class="language-bash">pacman -Si &lt;package-name&gt;
 </code></pre>
 <p>This is useful when a package has not yet been installed.</p>
 <h3>Listing files installed by a package</h3>
 <p>The files installed by a package can be listed with:</p>
-<pre><code class="language-bash">pacman -Ql &lt;package_name&gt;
+<pre><code class="language-bash">pacman -Ql &lt;package-name&gt;
 </code></pre>
 <ul>
 <li><code>l</code>: list files owned by the package.</li>
 </ul>
 <h3>Finding which package owns a file</h3>
 <p>To determine which installed package owns a file:</p>
-<pre><code class="language-bash">pacman -Qo &lt;file_path&gt;
+<pre><code class="language-bash">pacman -Qo &lt;file-path&gt;
 </code></pre>
 <p>Example:</p>
 <pre><code class="language-bash">pacman -Qo /usr/bin/git
@@ -195,7 +195,7 @@
 </blockquote>
 <h3>Downloading packages without installing them</h3>
 <p>Packages can be downloaded into the cache without being installed:</p>
-<pre><code class="language-bash">pacman -Sw &lt;package_name&gt;
+<pre><code class="language-bash">pacman -Sw &lt;package-name&gt;
 </code></pre>
 <ul>
 <li><code>w</code>: download packages but do not install them.</li>

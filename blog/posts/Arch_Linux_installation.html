@@ -61,12 +61,12 @@
 <h2>Preinstallation considerations</h2>
 <h3>Fast startup consideration</h3>
 <p>Fast startup is a Windows feature that reduces boot time by not completely shutting down the computer. Instead, it saves the system state (kernel and drivers) to a hibernation file (<code>hiberfil.sys</code>) and puts the drive into a &quot;read-only&quot; locked state.</p>
-<h4>Why does it matters for dual-boot?</h4>
-<p>If Fast Startup is enabled, Windows does not fully release its hold on your hard drives when you shut down. This causes two major problems when you boot into Linux:</p>
+<h4>Why does it matter for dual-boot?</h4>
+<p>If Fast startup is enabled, Windows does not fully release its hold on the hard drives at shutdown. This causes two major problems on the Linux side:</p>
 <ol>
-<li><p>Read-only Partitions: Linux will refuse to mount your Windows partitions with write access to prevent data corruption. You will see errors like &quot;The NTFS partition is in an unsafe state&quot;.</p>
+<li><p>Read-only partitions: Linux will refuse to mount the Windows partitions with write access to prevent data corruption. Errors like &quot;The NTFS partition is in an unsafe state&quot; appear instead.</p>
 </li>
-<li><p>WiFi/Bluetooth issues: sometimes Windows locks hardware drivers (like the WiFi card) in a specific state, making them fail to initialize correctly when you subsequently boot into Linux.</p>
+<li><p>Wi-Fi/Bluetooth issues: sometimes Windows locks hardware drivers (like the Wi-Fi card) in a specific state, making them fail to initialize correctly on the subsequent boot into Linux.</p>
 </li>
 </ol>
 <h4>How to disable it</h4>
@@ -81,13 +81,13 @@
 </li>
 <li><p>Under &quot;Shutdown settings&quot;, <strong>uncheck</strong> the box <strong>&quot;Turn on fast startup (recommended)&quot;</strong>.</p>
 </li>
-<li><p>Click <strong>Save changes</strong> and fully restart your computer</p>
+<li><p>Click <strong>Save changes</strong> and fully restart the computer.</p>
 </li>
 </ol>
-<h3>Real time clock alignment for dual boot systems</h3>
+<h3>Real-time clock alignment for dual-boot systems</h3>
 <p>Linux stores the hardware clock in UTC, whereas Windows records local time. To avoid clock drift, on Windows:</p>
 <ol>
-<li>Create <code>RealTimeIsUniversal</code> as a <code>DWORD</code> of 32 bits with value 1 under <code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation</code>.</li>
+<li>Create <code>RealTimeIsUniversal</code> as a 32-bit <code>DWORD</code> with a value of 1 under <code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation</code>.</li>
 </ol>
 <h3>SSH setup (remote installation)</h3>
 <p>Configuring OpenSSH in the live environment permits the entire installation to be driven from another computer via a secure shell.</p>
@@ -97,11 +97,11 @@
 <p>If the process is not running, run it with <code>systemctl start sshd</code>.</p>
 </blockquote>
 </li>
-<li><p><code>passwd</code>: set the root&#39;s password.</p>
+<li><p><code>passwd</code>: set the root password.</p>
 </li>
 <li><p><code>ip addr show</code>: identify the installer&#39;s IP address.</p>
 </li>
-<li><p>Run <code>ssh root@&lt;installer IP&gt;</code> from the other device.</p>
+<li><p>Run <code>ssh root@&lt;installer-ip&gt;</code> from the other device.</p>
 </li>
 </ol>
 <h3>Console legibility</h3>
@@ -118,6 +118,7 @@
 </li>
 </ol>
 <h2>Networking</h2>
+<p>A wired connection simplifies installation.</p>
 <h3>Detecting interfaces</h3>
 <p><code>ip addr show</code> lists active interfaces.</p>
 <h3>Wi-Fi connection (<code>iwd</code>)</h3>
@@ -132,11 +133,10 @@ station &lt;device&gt; get-networks
 station &lt;device&gt; connect &quot;&lt;SSID&gt;&quot;
 </code></pre>
 <blockquote>
-<p>Alternatively, using <code>iwctl</code>: <code>iwctl --passphrase &lt;passphrase&gt; station &lt;device&gt; connect &lt;SSID&gt;</code></p>
+<p>Alternatively, without entering the shell <code>iwctl --passphrase &lt;passphrase&gt; station &lt;device&gt; connect &lt;SSID&gt;</code>.</p>
 </blockquote>
 </li>
 </ol>
-<p>A wired connection simplifies installation.</p>
 <h2>Disk partitioning</h2>
 <h3>Target layout</h3>
 <table>
@@ -149,14 +149,14 @@ station &lt;device&gt; connect &quot;&lt;SSID&gt;&quot;
 </tr>
 </thead>
 <tbody><tr>
-<td align="center"><code>/efi</code></td>
+<td align="center"><code>/boot</code></td>
 <td align="center">500 MiB</td>
 <td align="center">FAT32</td>
 <td align="left">holds bootloaders and NVRAM entries for UEFI firmware.</td>
 </tr>
 <tr>
 <td align="center"><code>root</code></td>
-<td align="center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><mn>40</mn><mtext>GiB</mtext></mrow><annotation encoding="application/x-tex">\geq 40 \text{GiB}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">40</span><span class="mord text"><span class="mord">GiB</span></span></span></span></span></td>
+<td align="center">50 GiB</td>
 <td align="center">ext4</td>
 <td align="left">operating system files.</td>
 </tr>
@@ -180,17 +180,18 @@ station &lt;device&gt; connect &quot;&lt;SSID&gt;&quot;
 1       # Partition number
 &lt;ENTER&gt; # Accept default first sector
 +500M
-t 1     # Change type
+t       # Change type
+1       # 1 = EFI system
 </code></pre>
 </li>
-<li><p>Create the <code>/</code>.</p>
+<li><p>Create the root.</p>
 <pre><code class="language-text">n
 2
      # Accept default first sector
 +50G # Size
 </code></pre>
 </li>
-<li><p>Create <code>/home</code>.</p>
+<li><p>Create the home.</p>
 <pre><code class="language-text">n
 3
   # Accept defaults to use remaining space
@@ -231,43 +232,47 @@ t 1     # Change type
 <li><p><code>reflector --verbose --latest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist</code>.</p>
 </li>
 </ol>
-<h2>Filesystem table</h2>
-<pre><code class="language-bash">genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
-</code></pre>
-<h3>Bonus (filesystem table)</h3>
-<p>When a separate NTFS disk is used for general data storage, it can be incorporated as follows:</p>
-<ol>
-<li><p><code>mkdir /mnt/files</code>.</p>
-</li>
-<li><p><code>pacman -S ntfs-3g</code>.</p>
-</li>
-<li><p><code>mount /dev/&lt;disk partition&gt; /mnt/files</code>.</p>
-</li>
-</ol>
-<blockquote>
-<p>After mounting, the filesystem table must be regenerated.</p>
-</blockquote>
-<p>The following entry illustrates a typical NTFS partition configuration in <code>/etc/fstab</code>:</p>
-<pre><code class="language-text">UUID=64A6257CA625503A /home/braz/files ntfs-3g auto,exec,users,uid=1000,gid=1000,noatime 0 2
-</code></pre>
 <h2>Base system installation</h2>
 <ol>
-<li><p><code>pacstrap -i /mnt base base-devel linux linux-headers linux-firmware git sudo networkmanager</code>.</p>
+<li><p><code>pacstrap -i /mnt base base-devel linux linux-headers linux-firmware git sudo networkmanager neovim</code>.</p>
 <p> Another kernel can be installed instead (like the Zen one) or even have more than one. This is useful if one breaks (which rarely happens). The packages for the Zen kernel are <code>linux-zen</code> and <code>linux-zen-headers</code>.</p>
 <blockquote>
-<p>Depending on the configuration you have chosen (Linux, Zen, or both kernels), the settings in the &quot;boot manager&quot; section for systemd-boot may change.</p>
+<p>Depending on the configuration chosen (Linux, Zen, or both kernels), the settings in the &quot;boot manager&quot; section for systemd-boot may change.</p>
 </blockquote>
 <blockquote>
-<p>Also install <code>network-manager-applet</code> if you are going to use WiFi.</p>
+<p>Also install <code>network-manager-applet</code> if Wi-Fi will be used.</p>
 </blockquote>
+</li>
+<li><p><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code>.</p>
 </li>
 <li><p><code>arch-chroot /mnt</code>.</p>
 </li>
 <li><p>Enable <code>networkmanager</code>: <code>systemctl enable NetworkManager</code>.</p>
 </li>
 </ol>
+<h3>Bonus (NTFS disk setup)</h3>
+<p>When a separate NTFS disk is used for general data storage, it can be incorporated as follows:</p>
+<ol>
+<li><p><code>mkdir /mnt/files</code>.</p>
+</li>
+<li><p><code>pacman -S ntfs-3g</code>.</p>
+</li>
+<li><p><code>mount /dev/&lt;disk-partition&gt; /mnt/files</code>.</p>
+</li>
+</ol>
+<blockquote>
+<p>After mounting, the filesystem table must be regenerated.</p>
+</blockquote>
+<p>The following entry illustrates a typical NTFS partition configuration in <code>/etc/fstab</code>:</p>
+<pre><code class="language-text">UUID=64A6257CA625503A /mnt/files ntfs-3g auto,exec,users,uid=1000,gid=1000,noatime 0 2
+</code></pre>
 <h2>Microcode</h2>
-<p><code>pacman -S amd-ucode</code> for AMD processors or <code>intel-ucode</code> for Intel processors.</p>
+<ul>
+<li><p>AMD: <code>pacman -S amd-ucode</code>.</p>
+</li>
+<li><p>Intel: <code>pacman -S intel-ucode</code>.</p>
+</li>
+</ul>
 <h2>Locales and console</h2>
 <ol>
 <li><p>Uncomment <code>en_US.UTF-8</code> in <code>/etc/locale.gen</code>, then run <code>locale-gen</code>.</p>
@@ -290,7 +295,7 @@ t 1     # Change type
 </li>
 <li><p><code>EDITOR=nvim visudo</code> and uncomment &quot;%wheel ALL=(ALL) ALL&quot;.</p>
 <blockquote>
-<p>When only the user account has been created, the required privileges must be granted by adding <code>&lt;username&gt; ALL=(ALL) ALL</code> to <code>sudoers.d</code>.</p>
+<p>When only the user account has been created, the required privileges must be granted by adding <code>&lt;username&gt; ALL=(ALL) ALL</code> to <code>/etc/sudoers.d</code>.</p>
 </blockquote>
 </li>
 </ol>
@@ -299,20 +304,20 @@ t 1     # Change type
 <ol>
 <li><p><code>pacman -S grub efibootmgr</code>.</p>
 <blockquote>
-<p>When the installation is performed alongside Windows, the package <code>os-prober</code> is installed as well.</p>
+<p>When the installation is performed alongside Windows, the package <code>os-prober</code> is needed as well.</p>
 </blockquote>
 </li>
-<li><p>Open the file <code>/etc/default/grub</code>, uncomment the line with &quot;GRUB_DISABLE_OS_PROBER&quot; and set it to &quot;false&quot;.</p>
+<li><p>Open the file <code>/etc/default/grub</code>, uncomment the line with &quot;GRUB_DISABLE_OS_PROBER&quot; and make sure it is set to &quot;false&quot;.</p>
 <blockquote>
 <p>If the installation is <strong>not</strong> performed alongside Windows, this step may be omitted.</p>
 </blockquote>
 </li>
-<li><p><code>grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck</code>.</p>
+<li><p><code>grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub_uefi --recheck</code>.</p>
 </li>
 <li><p><code>grub-mkconfig -o /boot/grub/grub.cfg</code>.</p>
 </li>
 </ol>
-<p>After completing these steps, exit the chroot environment with <code>exit</code>, unmount all filesystems (<code>umount -a</code> or <code>umount -lR /mnt</code>) and reboot the system with <code>reboot</code>.</p>
+<p>After completing these steps, exit the chroot environment with <code>exit</code>, unmount all filesystems (<code>umount -R /mnt</code>) and reboot the system with <code>reboot</code>.</p>
 <blockquote>
 <p>The installation medium should be removed before the system restarts.</p>
 </blockquote>
@@ -328,30 +333,30 @@ console-mode max
 editor   no
 </code></pre>
 </li>
-<li><p><code>blkid -s PARTUUID -o value &lt;root partition&gt;</code>: finding the correct PARTUUID.</p>
+<li><p><code>blkid -s PARTUUID -o value &lt;root-partition&gt;</code>: find the correct PARTUUID.</p>
 <blockquote>
 <p>This is important for the next step.</p>
 </blockquote>
 </li>
-<li><p>Create Arch Linux entry.</p>
+<li><p>Create an Arch Linux entry.</p>
 <p> Create <code>/boot/loader/entries/arch.conf</code>.</p>
 <blockquote>
-<p>Important: determine if the system runs on an Intel or AMD processor to load the correct microcode.</p>
+<p>Important: determine whether the system runs on an Intel or AMD processor to load the correct microcode.</p>
 </blockquote>
 <pre><code class="language-ini">title   Arch Linux
-# Uncomment the line matching your kernel:
+# Uncomment the line matching the installed kernel:
 # linux   /vmlinuz-linux
 # linux   /vmlinuz-linux-zen
-# Uncomment the line matching your processor:
+# Uncomment the line matching the processor:
 # initrd  /intel-ucode.img
 # initrd  /amd-ucode.img
-# Uncomment the line matching your kernel:
+# Uncomment the line matching the installed kernel:
 # initrd  /initramfs-linux.img
 # initrd  /initramfs-linux-zen.img
-options root=PARTUUID=YOUR_ROOT_PARTUUID rw
+options root=PARTUUID=&lt;root-partuuid&gt; rw
 </code></pre>
 <blockquote>
-<p>Replace <code>YOUR_ROOT_PARTUUID</code> with the actual alphanumerical string from <code>blkid</code>.</p>
+<p>Replace <em>root-partuuid</em> with the actual alphanumeric string from <code>blkid</code>.</p>
 </blockquote>
 </li>
 </ol>
@@ -363,15 +368,30 @@ options root=PARTUUID=YOUR_ROOT_PARTUUID rw
 <p>A specific entry may be located with grep, for example: <code>timedatectl list-timezones | grep Bogota</code>.</p>
 </blockquote>
 </li>
-<li><p><code>timedatectl set-timezone &lt;time zone&gt;</code>: the desired time zone is applied (e.g., <code>America/Bogota</code>).</p>
+<li><p><code>timedatectl set-timezone &lt;time-zone&gt;</code>: the desired time zone is applied (e.g., <code>America/Bogota</code>).</p>
 </li>
-<li><p><code>timedatectl set-ntp true</code>.</p>
+<li><p><code>timedatectl set-ntp true</code>.</p>
 </li>
 </ol>
 <h3>Hostname</h3>
 <p><code>hostnamectl set-hostname &lt;hostname&gt;</code>.</p>
 <h3>GPU drivers</h3>
-<p>For the GPU drivers use <code>pacman -S nvidia nvidia-utils nvidia-settings</code> for Nvidia, <code>mesa libva-mesa-driver</code> for AMD (add <code>vulkan-radeon</code> if you have a modern card) or Intel of GMA 4500 up to Coffee Lake architectures, <code>intel-media-driver</code> for Intel of Broadwell and newer architectures.</p>
+<p>Graphics drivers come first; hardware video acceleration is a separate package on top.</p>
+<ul>
+<li><p>AMD: <code>pacman -S mesa vulkan-radeon</code>.</p>
+</li>
+<li><p>Intel: <code>pacman -S mesa vulkan-intel</code>.</p>
+</li>
+<li><p>Nvidia: <code>pacman -S nvidia-open nvidia-utils</code>.</p>
+<blockquote>
+<p><code>nvidia-open</code> targets the <code>linux</code> kernel. For <code>linux-zen</code> or any other kernel, install <code>nvidia-open-dkms</code> instead.</p>
+</blockquote>
+<blockquote>
+<p>The open modules require a Turing card (GTX 16xx / RTX 20xx) or newer. Older cards need the legacy <code>nvidia-580xx-dkms</code> and <code>nvidia-580xx-utils</code> packages from the AUR, or the nouveau driver (<code>mesa vulkan-nouveau</code>).</p>
+</blockquote>
+</li>
+</ul>
+<p>For hardware video acceleration, AMD needs nothing further, as <code>mesa</code> provides it. On Intel, install <code>intel-media-driver</code> for Broadwell and newer, or <code>libva-intel-driver</code> for the G45 through Coffee Lake generations.</p>
 <blockquote>
 <p><code>pacman -S virtualbox-guest-utils</code> for VirtualBox.</p>
 </blockquote>
@@ -391,7 +411,7 @@ options root=PARTUUID=YOUR_ROOT_PARTUUID rw
 </li>
 </ul>
 </li>
-<li><p><code>systemctl --user enable --now pipewire pipewire-pulse wireplumber</code>.</p>
+<li><p><code>systemctl --global enable pipewire pipewire-pulse wireplumber</code>.</p>
 </li>
 </ol>
 <h3>Bluetooth</h3>
@@ -416,6 +436,9 @@ options root=PARTUUID=YOUR_ROOT_PARTUUID rw
 <li><p><code>cd yay-bin</code>.</p>
 </li>
 <li><p><code>makepkg -si</code>.</p>
+<blockquote>
+<p><code>makepkg</code> refuses to run as root, so this step belongs to the regular user account after rebooting.</p>
+</blockquote>
 </li>
 </ol>
 <h3>Display manager</h3>
@@ -431,12 +454,12 @@ options root=PARTUUID=YOUR_ROOT_PARTUUID rw
 <p>The config file is <code>/etc/ly/config.ini</code>.</p>
 </blockquote>
 <h2>OS keyring</h2>
-<p>In a full Desktop Environment like GNOME or KDE, a &quot;keyring&quot; (a secure vault for passwords and credentials) is set up automatically. However, in a minimal setup (like Hyprland, Sway, or i3), this bridge is missing. Without it, applications like VS Code, Git, or web browsers will ask for your credentials every single time you open them.</p>
-<p>We use <code>gnome-keyring</code> to act as this vault and integrate it with the login process so it unlocks automatically when you enter your system password.</p>
+<p>In a full desktop environment like GNOME or KDE, a &quot;keyring&quot; (a secure vault for passwords and credentials) is set up automatically. However, in a minimal setup (like Hyprland, Sway, or i3), this bridge is missing. Without it, applications like VS Code, Git, or web browsers ask for credentials every single time they are opened.</p>
+<p><code>gnome-keyring</code> acts as this vault and integrates with the login process, so it unlocks automatically once the system password is entered.</p>
 <ol>
 <li><p>Install the keyring and a GUI manager (<code>seahorse</code>) to inspect keys later if needed: <code>pacman -S gnome-keyring seahorse</code>.</p>
 </li>
-<li><p>Configure PAM to unlock the keyring on login. Since we are using <code>ly</code>, edit <code>/etc/pam.d/ly</code>::</p>
+<li><p>Configure PAM to unlock the keyring on login. Since <code>ly</code> is the display manager here, edit <code>/etc/pam.d/ly</code>:</p>
 <pre><code class="language-text">#%PAM-1.0
 .
 .
@@ -450,7 +473,7 @@ auth    optional pam_gnome_keyring.so
 session optional pam_gnome_keyring.so auto_start
 </code></pre>
 </li>
-<li><p>Finally, ensure the daemon starts with your window manager: <code>gnome-keyring-daemon --start --components=secrets</code>.</p>
+<li><p>Finally, ensure the daemon starts with the window manager: <code>gnome-keyring-daemon --start --components=secrets</code>.</p>
 </li>
 </ol>
 <p>A minimal Arch installation has now been completed. The subsequent task involves selecting either a desktop environment or a window manager. Installing any desktop environment should present no difficulties, because the corresponding packages include all components required for a complete user experience.</p>

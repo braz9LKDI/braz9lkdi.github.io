@@ -1,214 +1,483 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Brandon Portfolio</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brandon Portfolio</title>
 
-        <link rel="stylesheet" href="/assets/fonts/fontawesome/all.min.css" />
-        <link rel="stylesheet" href="/css/style.css" />
-        <link rel="stylesheet" href="/css/home.css" />
+    <link rel="stylesheet" href="/assets/fonts/fontawesome/all.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/home.css" />
 
-        <link
-            rel="icon"
-            href="/favicon-dark.svg"
-            type="image/svg+xml"
-            media="(prefers-color-scheme: light)"
-        />
-        <link
-            rel="icon"
-            href="/favicon-light.svg"
-            type="image/svg+xml"
-            media="(prefers-color-scheme: dark)"
-        />
+    <link
+      rel="icon"
+      href="/favicon-dark.svg"
+      type="image/svg+xml"
+      media="(prefers-color-scheme: light)"
+    />
+    <link
+      rel="icon"
+      href="/favicon-light.svg"
+      type="image/svg+xml"
+      media="(prefers-color-scheme: dark)"
+    />
 
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
-            rel="stylesheet"
-        />
-    </head>
-    <body>
-        <a href="#main-content" class="skip-link">Skip to main content</a>
-        <header>
-            <nav>
-                <div class="left">
-                    <a href="/">Brandon</a>
-                </div>
-                <div class="right">
-                    <a href="/">
-                        <i class="fa-solid fa-house"></i>
-                        <span>home</span>
-                    </a>
-                    <a href="/blog/">
-                        <i class="fa-solid fa-pen"></i>
-                        <span>blog</span>
-                    </a>
-                    <a href="#contact">
-                        <i class="fa-solid fa-envelope"></i>
-                        <span>contact</span>
-                    </a>
-                    <button id="language-btn" type="button" aria-label="Change language">
-                        <i class="fa-solid fa-globe"></i>
-                        <span id="current-lang">EN</span>
-                    </button>
-                </div>
-            </nav>
-        </header>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header>
+      <nav>
+        <div class="left">
+          <a href="/">Brandon</a>
+        </div>
+        <div class="right">
+          <a href="/">
+            <i class="fa-solid fa-house"></i>
+            <span data-lang="nav-home">home</span>
+          </a>
+          <a href="/blog/">
+            <i class="fa-solid fa-pen"></i>
+            <span data-lang="nav-blog">blog</span>
+          </a>
+          <a href="#contact">
+            <i class="fa-solid fa-envelope"></i>
+            <span data-lang="nav-contact">contact</span>
+          </a>
+          <button id="language-btn" type="button" aria-label="Change language">
+            <i class="fa-solid fa-globe"></i>
+            <span id="current-lang">EN</span>
+          </button>
+        </div>
+      </nav>
+    </header>
 
-        <main id="main-content">
-            <section class="hero-section">
-                <div class="text">
-                    <div class="typewriter">
-                        <div>
-                            <span>Hi, I am</span>
-                            <p>Brandon</p>
-                        </div>
-                    </div>
-                    <div class="about">
-                        <p>
-                            I am a Systems Engineering student, an Arch Linux user and a firm
-                            believer that every "easy" tool should be questioned at least once.
-                        </p>
+    <main id="main-content">
+      <section class="hero-section">
+        <div class="text">
+          <div class="typewriter">
+            <div>
+              <span data-lang="hero-greeting">Hi, I am</span>
+              <p>Brandon</p>
+            </div>
+          </div>
+          <div class="about">
+            <p data-lang="hero-desc-profile">
+              Systems Engineering student with hands-on experience in full-stack development, data
+              automation and software delivery.
+            </p>
+            <p data-lang="hero-desc-experience">
+              At Endava, I contributed to an internal analytics MVP using Python, .NET 8, React,
+              TypeScript, PostgreSQL and Docker, working across requirements analysis, data-flow
+              modeling, backlog definition and maintainable solution development within Scrum. I
+              also mentored first-semester students in programming fundamentals, Git, Docker and
+              independent learning, with a strong interest in open-source culture.
+            </p>
 
-                        <p>
-                            I enjoy learning how systems really work, especially when that means
-                            touching the terminal, reading documentation and discovering that the
-                            convenient solution was hiding a lot of interesting details. Here I
-                            write about Linux, development workflows, open source and whatever
-                            technical obsession currently has my attention.
-                        </p>
+            <p data-lang="hero-desc-joke">Also: I use Arch, btw. Responsibly? Debatable.</p>
+          </div>
 
-                        <p>Some people touch grass. I configure dotfiles.</p>
-                    </div>
+          <div class="social-links">
+            <a href="http://github.com/braz9LKDI" target="_blank" rel="noopener noreferrer">
+              <i class="fa-brands fa-github"></i>
+              <span>GitHub</span>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/brandon-calder%C3%B3n-prieto-150829355"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fa-brands fa-linkedin"></i>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </div>
 
-                    <div class="social-links">
-                        <a href="http://github.com/Br4z" target="_blank" rel="noopener noreferrer">
-                            <i class="fa-brands fa-github"></i>
-                            <span>GitHub</span>
-                        </a>
-                        <a
-                            href="https://www.linkedin.com/in/brandon-calder%C3%B3n-prieto-150829355"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <i class="fa-brands fa-linkedin"></i>
-                            <span>LinkedIn</span>
-                        </a>
-                    </div>
-                </div>
+        <div class="headshot">
+          <img src="headshot.webp" alt="Brandon's headshot" width="350" height="350" />
+        </div>
+      </section>
 
-                <div class="headshot">
-                    <img src="headshot.webp" alt="Brandon's headshot" />
-                </div>
-            </section>
+      <section id="projects" class="projects-section">
+        <h2 data-lang="projects-title">Projects</h2>
 
-            <section id="projects" class="projects-section">
-                <h2>Projects</h2>
+        <div class="project-slider">
+          <button class="slider-btn prev-btn" type="button" aria-label="Previous slide">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
 
-                <div class="project-slider">
-                    <button class="slider-btn prev-btn" type="button" aria-label="Previous slide">
-                        <i class="fa-solid fa-chevron-left"></i>
-                    </button>
+          <div class="project-cards">
+            
+            <div class="project-card" id="thesis">
+              <div class="project-image">
+                <img src="https://placehold.co/800x500?text=WIP" alt="OpenTube - YouTube data analysis platform">
+              </div>
+              <div class="project-info">
+                <h3 data-en="OpenTube - YouTube data analysis platform" data-es="OpenTube - plataforma de análisis de datos de YouTube">OpenTube - YouTube data analysis platform</h3>
+                <p data-en="Undergraduate thesis: a web application that collects, process and visualizes YouTube data  with transparent, reproducible methods, as an alternative to black-box commercial tools." data-es="Trabajo de grado: una aplicación web que recolecta, procesa y visualiza datos de YouTube con métodos transparentes y reproducibles, como alternativa a las herramientas comerciales de caja negra.">Undergraduate thesis: a web application that collects, process and visualizes YouTube data  with transparent, reproducible methods, as an alternative to black-box commercial tools.</p>
+              </div>
+              <div class="tech-tags">
+                <span class="tag"><i class="fa-brands fa-python"></i>Python</span>
+<span class="tag"><i class="fa-solid fa-code"></i>TypeScript</span>
+<span class="tag"><i class="fa-brands fa-react"></i>React</span>
+<span class="tag"><i class="fa-solid fa-database"></i>PostgreSQL</span>
+<span class="tag"><i class="fa-brands fa-docker"></i>Docker</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/LONG-TERM-EFFECTS-OF-SUFFERING/thesis" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i><span data-lang="project-code">Code</span>
+          </a>
 
-                    <div class="project-cards">
-                        
-				<div class="project-card" id="portfolio">
-					<div class="project-image">
-						<img src="assets/images/projects/portfolio.webp" alt="Portfolio">
-					</div>
-					<div class="project-info">
-						<h3>Portfolio</h3>
-						<p>Website showcasing my projects and skills.</p>
-					</div>
-					<div class="tech-tags">
-						<span class="tag"><i class="fa-brands fa-js"></i>JavaScript</span>
-						<span class="tag"><i class="fa-brands fa-css3-alt"></i>CSS</span>
-						<span class="tag"><i class="fa-brands fa-html5"></i>HTML</span>
-					</div>
-					<div class="project-links">
-						<a href="https://github.com/Br4z/portfolio" target="_blank" rel="noopener noreferrer">
-							<i class="fa-brands fa-github"></i><span>Code</span>
-						</a>
-						<a href="#" target="_blank" rel="noopener noreferrer">
-							<i class="fa-solid fa-globe"></i><span>Live</span>
-						</a>
-					</div>
-				</div>
+              </div>
+            </div>
 
-				<div class="project-card" >
-					<div class="project-image">
-						<img src="https://placehold.co/1920x1080?text=Placeholder" alt="Placeholder title">
-					</div>
-					<div class="project-info">
-						<h3>Placeholder title</h3>
-						<p>Placeholder description.</p>
-					</div>
-					<div class="tech-tags">
-						
-					</div>
-					<div class="project-links">
-						<a href="#" target="_blank" rel="noopener noreferrer">
-							<i class="fa-brands fa-github"></i><span>Code</span>
-						</a>
-						<a href="#" target="_blank" rel="noopener noreferrer">
-							<i class="fa-solid fa-globe"></i><span>Live</span>
-						</a>
-					</div>
-				</div>
+            <div class="project-card" id="cult-underground-movies">
+              <div class="project-image">
+                <img src="assets/images/projects/cult_and_underground_movies.webp" alt="Cult and Underground Movies">
+              </div>
+              <div class="project-info">
+                <h3 data-en="Cult and Underground Movies" data-es="Cult and Underground Movies">Cult and Underground Movies</h3>
+                <p data-en="Social web platform for cult and underground cinema: personal movie list, reviews with ratings and reactions, a follow system with notifications and advanced search." data-es="Plataforma web social de cine de culto y underground: listas personales, reseñas con calificaciones y reacciones, sistema de seguidores con notificaciones y búsqueda avanzada.">Social web platform for cult and underground cinema: personal movie list, reviews with ratings and reactions, a follow system with notifications and advanced search.</p>
+              </div>
+              <div class="tech-tags">
+                <span class="tag"><i class="fa-solid fa-layer-group"></i>Prisma</span>
+<span class="tag"><i class="fa-solid fa-n"></i>Next.js</span>
+<span class="tag"><i class="fa-solid fa-database"></i>PostgreSQL</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/GetialJuan/CultAndUndergroundMovies" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i><span data-lang="project-code">Code</span>
+          </a>
 
-				<div class="project-card" >
-					<div class="project-image">
-						<img src="https://placehold.co/1920x1080?text=Placeholder" alt="Placeholder title">
-					</div>
-					<div class="project-info">
-						<h3>Placeholder title</h3>
-						<p>Placeholder description.</p>
-					</div>
-					<div class="tech-tags">
-						
-					</div>
-					<div class="project-links">
-						<a href="#" target="_blank" rel="noopener noreferrer">
-							<i class="fa-brands fa-github"></i><span>Code</span>
-						</a>
-						<a href="#" target="_blank" rel="noopener noreferrer">
-							<i class="fa-solid fa-globe"></i><span>Live</span>
-						</a>
-					</div>
-				</div>
-                    </div>
-                    <button class="slider-btn next-btn" type="button" aria-label="Next slide">
-                        <i class="fa-solid fa-chevron-right"></i>
-                    </button>
-                </div>
-                <div class="slider-dots"></div>
-            </section>
+              </div>
+            </div>
 
-            <section id="contact" class="contact-section">
-                <h2>Contact</h2>
-                <form action="https://formsubmit.co/df3edc2bfabf36bb95865ffb51ff7e24" method="POST">
-                    <label for="name">Name <span>*</span></label>
-                    <input type="text" name="name" id="name" required aria-required="true" />
+            <div class="project-card" id="task-project-manager">
+              <div class="project-image">
+                <img src="assets/images/projects/task_project_manager.webp" alt="Task and project manager">
+              </div>
+              <div class="project-info">
+                <h3 data-en="Task and project manager" data-es="Gestor de tareas y proyectos">Task and project manager</h3>
+                <p data-en="Application for managing projects and their tasks." data-es="Aplicación para gestionar proyectos y sus tareas.">Application for managing projects and their tasks.</p>
+              </div>
+              <div class="tech-tags">
+                <span class="tag"><i class="fa-brands fa-java"></i>Java</span>
+<span class="tag"><i class="fa-solid fa-leaf"></i>Spring</span>
+<span class="tag"><i class="fa-solid fa-database"></i>PostgreSQL</span>
+<span class="tag"><i class="fa-solid fa-dharmachakra"></i>Kubernetes</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/UniVHub/Task-And-Project-Manager" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i><span data-lang="project-code">Code</span>
+          </a>
 
-                    <label for="email">Email <span>*</span></label>
-                    <input type="email" name="email" id="email" required aria-required="true" />
+              </div>
+            </div>
 
-                    <label for="message">Message <span>*</span></label>
-                    <textarea id="message" name="message" required aria-required="true"></textarea>
+            <div class="project-card" id="virtual-coach">
+              <div class="project-image">
+                <img src="assets/images/projects/virtual_coach.webp" alt="Virtual Coach">
+              </div>
+              <div class="project-info">
+                <h3 data-en="Virtual Coach" data-es="Virtual Coach">Virtual Coach</h3>
+                <p data-en="Training platform" data-es="Plataforma de entrenamiento">Training platform</p>
+              </div>
+              <div class="tech-tags">
+                <span class="tag"><i class="fa-solid fa-server"></i>Django</span>
+<span class="tag"><i class="fa-solid fa-code"></i>TypeScript</span>
+<span class="tag"><i class="fa-brands fa-react"></i>React</span>
+<span class="tag"><i class="fa-brands fa-docker"></i>Docker</span>
+<span class="tag"><i class="fa-solid fa-server"></i>Nginx</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/LONG-TERM-EFFECTS-OF-SUFFERING/Virtual-Coach_Code" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i><span data-lang="project-code">Code</span>
+          </a>
 
-                    <button type="submit" aria-label="Send contact form">Send</button>
-                </form>
-            </section>
-        </main>
+              </div>
+            </div>
 
-        <footer>
-            <p>Created by Brandon</p>
-        </footer>
+            <div class="project-card" id="mini-py">
+              <div class="project-image">
+                <img src="assets/images/projects/mini-py.webp" alt="Mini-py">
+              </div>
+              <div class="project-info">
+                <h3 data-en="Mini-py" data-es="Mini-py">Mini-py</h3>
+                <p data-en="Interpreter for a small Python-inspired language, written in Racket. Covers its own grammar and lexer, first-class procedures, recursion, mutable bindings, conditionals and composite data types (lists, tuples, dictionaries, hexadecimal numbers)." data-es="Intérprete de un lenguaje pequeño inspirado en Python, escrito en Racket. Incluye su propia gramática y analizador léxico, procedimientos de primera clase, recursión, asignación mutable, condicionales y tipos de datos compuestos (listas, tuplas, diccionarios, números hexadecimales).">Interpreter for a small Python-inspired language, written in Racket. Covers its own grammar and lexer, first-class procedures, recursion, mutable bindings, conditionals and composite data types (lists, tuples, dictionaries, hexadecimal numbers).</p>
+              </div>
+              <div class="tech-tags">
+                <span class="tag"><i class="fa-solid fa-code"></i>Racket</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/LONG-TERM-EFFECTS-OF-SUFFERING/Mini-Py" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i><span data-lang="project-code">Code</span>
+          </a>
 
-        <script src="/js/home/slider.js"></script>
-        <script src="/js/home/form.js"></script>
-        <script src="/js/home/language.js"></script>
-    </body>
+              </div>
+            </div>
+
+            <div class="project-card" id="portfolio">
+              <div class="project-image">
+                <img src="assets/images/projects/portfolio.webp" alt="Portfolio">
+              </div>
+              <div class="project-info">
+                <h3 data-en="Portfolio" data-es="Portafolio">Portfolio</h3>
+                <p data-en="This site: a bilingual static portfolio and blog with no framework, generated from Markdown and JSON by JavaScript scripts and published through GitHub Actions." data-es="Este sitio: un portafolio y blog estático bilingüe sin frameworks, generado desde Markdown y JSON con scripts de JavaScript y publicado mediante GitHub Actions.">This site: a bilingual static portfolio and blog with no framework, generated from Markdown and JSON by JavaScript scripts and published through GitHub Actions.</p>
+              </div>
+              <div class="tech-tags">
+                <span class="tag"><i class="fa-brands fa-js"></i>JavaScript</span>
+<span class="tag"><i class="fa-brands fa-css3-alt"></i>CSS</span>
+<span class="tag"><i class="fa-brands fa-html5"></i>HTML</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/braz9LKDI/braz9LKDI.github.io" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i><span data-lang="project-code">Code</span>
+          </a>
+<a href="https://braz9LKDI.github.io" target="_blank" rel="noopener noreferrer">
+            <i class="fa-solid fa-globe"></i><span data-lang="project-live">Live</span>
+          </a>
+              </div>
+            </div>
+
+            <div class="project-card" id="glitched-max">
+              <div class="project-image">
+                <img src="assets/images/projects/glitched_max.webp" alt="Glitched Max">
+              </div>
+              <div class="project-info">
+                <h3 data-en="Glitched Max" data-es="Glitched Max">Glitched Max</h3>
+                <p data-en="3D platformer built with Godot 4: checkpoints, collectible coins, fall zones, a HUD and a game-over flow, with imported glTF character models." data-es="Plataformas 3D hecho con Godot 4: puntos de control, monedas coleccionables, zonas de caída, HUD y pantalla de game over, con modelos de personajes importados en glTF.">3D platformer built with Godot 4: checkpoints, collectible coins, fall zones, a HUD and a game-over flow, with imported glTF character models.</p>
+              </div>
+              <div class="tech-tags">
+                <span class="tag"><i class="fa-solid fa-gamepad"></i>Godot</span>
+<span class="tag"><i class="fa-solid fa-gamepad"></i>GDScript</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/LONG-TERM-EFFECTS-OF-SUFFERING/glitched_Max" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i><span data-lang="project-code">Code</span>
+          </a>
+<a href="https://long-term-effects-of-suffering.github.io/glitched_Max/" target="_blank" rel="noopener noreferrer">
+            <i class="fa-solid fa-globe"></i><span data-lang="project-live">Live</span>
+          </a>
+              </div>
+            </div>
+
+            <div class="project-card" id="rapidos-furiosos-dw">
+              <div class="project-image">
+                <img src="assets/images/projects/rapidos_y_furiosos_dw.webp" alt="Rapidos y Furiosos data warehouse">
+              </div>
+              <div class="project-info">
+                <h3 data-en="Rapidos y Furiosos data warehouse" data-es="Data warehouse Rapidos y Furiosos">Rapidos y Furiosos data warehouse</h3>
+                <p data-en="Dimensional data warehouse for a Colombia courier company." data-es="Data warehouse dimensional para una empresa colombiana de mensajería.">Dimensional data warehouse for a Colombia courier company.</p>
+              </div>
+              <div class="tech-tags">
+                <span class="tag"><i class="fa-brands fa-python"></i>Python</span>
+<span class="tag"><i class="fa-solid fa-book"></i>Jupyter</span>
+<span class="tag"><i class="fa-solid fa-database"></i>PostgreSQL</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/LONG-TERM-EFFECTS-OF-SUFFERING/rapido_y_furiosos_dw.webp" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i><span data-lang="project-code">Code</span>
+          </a>
+
+              </div>
+            </div>
+
+            <div class="project-card" id="bottle-flip">
+              <div class="project-image">
+                <img src="https://placehold.co/800x500?text=WIP" alt="Bottle Flip">
+              </div>
+              <div class="project-info">
+                <h3 data-en="Bottle Flip" data-es="Bottle Flip">Bottle Flip</h3>
+                <p data-en="Bottle-flip game." data-es="Juego de la Botella.">Bottle-flip game.</p>
+              </div>
+              <div class="tech-tags">
+                <span class="tag"><i class="fa-solid fa-code"></i>Kotlin</span>
+<span class="tag"><i class="fa-brands fa-android"></i>Android</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/LONG-TERM-EFFECTS-OF-SUFFERING/bottle_flip_v2" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i><span data-lang="project-code">Code</span>
+          </a>
+
+              </div>
+            </div>
+
+            <div class="project-card" id="yt-dlp-client">
+              <div class="project-image">
+                <img src="assets/images/projects/yt-dlp_client.webp" alt="yt-dlp client">
+              </div>
+              <div class="project-info">
+                <h3 data-en="yt-dlp client" data-es="Cliente de yt-dlp">yt-dlp client</h3>
+                <p data-en="Python tool that automates downloading the latest videos from a configurable list of YouTube channels." data-es="Herramienta en Python que automatiza la descarga de los últimos vídeos de una lista configurable de canales de YouTube.">Python tool that automates downloading the latest videos from a configurable list of YouTube channels.</p>
+              </div>
+              <div class="tech-tags">
+                <span class="tag"><i class="fa-brands fa-python"></i>Python</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/LONG-TERM-EFFECTS-OF-SUFFERING/yt-dlp_client" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i><span data-lang="project-code">Code</span>
+          </a>
+
+              </div>
+            </div>
+
+            <div class="project-card" id="extremism-minimization">
+              <div class="project-image">
+                <img src="assets/images/projects/extremism_minimization.webp" alt="Minimizing extremism in a population">
+              </div>
+              <div class="project-info">
+                <h3 data-en="Minimizing extremism in a population" data-es="Minimización del extremismo en una población">Minimizing extremism in a population</h3>
+                <p data-en="Optimization problem solved in Python: move people between opinions to minimize the overall extremism of a population, subject to a total cost budget and a maximum number of moves." data-es="Problema de optimización resuelto en Python: mover personas entre opiniones para minimizar el extremismo global de una población, sujeto a un presupuesto total de costo y un número máximo de movimientos.">Optimization problem solved in Python: move people between opinions to minimize the overall extremism of a population, subject to a total cost budget and a maximum number of moves.</p>
+              </div>
+              <div class="tech-tags">
+                <span class="tag"><i class="fa-brands fa-python"></i>Python</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/LONG-TERM-EFFECTS-OF-SUFFERING/analisis_y_diseno_de_algoritmos_II_second_project" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i><span data-lang="project-code">Code</span>
+          </a>
+
+              </div>
+            </div>
+
+            <div class="project-card" id="network-polarization">
+              <div class="project-image">
+                <img src="assets/images/projects/moderating_network.webp" alt="Moderating conflict in a social network">
+              </div>
+              <div class="project-info">
+                <h3 data-en="Moderating conflict in a social network" data-es="Moderación del conflicto en una red social">Moderating conflict in a social network</h3>
+                <p data-en="Algorithmic study of opinion polarization: given groups of agents with two opinions and a rigidity level, find the strategy that most reduces the network's internal conflict within a limited moderation effort. " data-es="Estudio algorítmico de la polarización de opiniones: dados grupos de agentes con dos opiniones y un nivel de rigidez, encontrar la estrategia que más reduce el conflicto interno de la red dentro de un esfuerzo de moderación limitado.">Algorithmic study of opinion polarization: given groups of agents with two opinions and a rigidity level, find the strategy that most reduces the network's internal conflict within a limited moderation effort. </p>
+              </div>
+              <div class="tech-tags">
+                <span class="tag"><i class="fa-brands fa-python"></i>Python</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/LONG-TERM-EFFECTS-OF-SUFFERING/analisis_y_diseno_de_algoritmos_II_first_project" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i><span data-lang="project-code">Code</span>
+          </a>
+
+              </div>
+            </div>
+
+            <div class="project-card" id="yoshis-world">
+              <div class="project-image">
+                <img src="assets/images/projects/yoshis_world.webp" alt="Yoshi's world">
+              </div>
+              <div class="project-info">
+                <h3 data-en="Yoshi's world" data-es="Yoshi's world">Yoshi's world</h3>
+                <p data-en="Two-player board game in Java where each Yoshi moves like a chess knight and paints the tiles it lands on. The computer opponent uses a minimax tree with three difficulty levels (depth 2, 4 and 6)." data-es="Juego de tablero para dos jugadores en Java donde cada Yoshi se mueve como el caballo del ajedrez y pinta las casillas que ocupa. El oponente controlado por la máquina usa un árbol minimax con tres niveles de dificultad (profundidad 2, 4 y 6).">Two-player board game in Java where each Yoshi moves like a chess knight and paints the tiles it lands on. The computer opponent uses a minimax tree with three difficulty levels (depth 2, 4 and 6).</p>
+              </div>
+              <div class="tech-tags">
+                <span class="tag"><i class="fa-brands fa-java"></i>Java</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/LONG-TERM-EFFECTS-OF-SUFFERING/Yoshis_world" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i><span data-lang="project-code">Code</span>
+          </a>
+
+              </div>
+            </div>
+
+            <div class="project-card" id="smart-mandalorian">
+              <div class="project-image">
+                <img src="assets/images/projects/smart_mandalorian.webp" alt="Smart Mandalorian">
+              </div>
+              <div class="project-info">
+                <h3 data-en="Smart Mandalorian" data-es="Smart Mandalorian">Smart Mandalorian</h3>
+                <p data-en="Java simulation that compares classic search strategies on the same problem: breadth-first, depth-first, greedy and A*. Includes a graphical interface to launch the simulation and watch each strategy explore the map." data-es="Simulación en Java que compara estrategias clásicas de búsqueda sobre el mismo problema: amplitud, profundidad, avara y A*. Incluye una interfaz gráfica para lanzar la simulación y ver cómo cada estrategia explora el mapa.">Java simulation that compares classic search strategies on the same problem: breadth-first, depth-first, greedy and A*. Includes a graphical interface to launch the simulation and watch each strategy explore the map.</p>
+              </div>
+              <div class="tech-tags">
+                <span class="tag"><i class="fa-brands fa-java"></i>Java</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/LONG-TERM-EFFECTS-OF-SUFFERING/smart_mandalorian" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i><span data-lang="project-code">Code</span>
+          </a>
+
+              </div>
+            </div>
+
+            <div class="project-card" id="boat-game">
+              <div class="project-image">
+                <img src="assets/images/projects/boat_game.webp" alt="Boat game">
+              </div>
+              <div class="project-info">
+                <h3 data-en="Boat game" data-es="Juego de la barca">Boat game</h3>
+                <p data-en="C++ take on the classic river-crossing puzzle: ferry a fox, a rabbit and a lettuce across a river without leaving a predator alone with its prey." data-es="Versión en C++ del clásico acertijo del cruce del río: transportar un zorro, un conejo y una lechuga sin dejar solos al depredador y su presa.">C++ take on the classic river-crossing puzzle: ferry a fox, a rabbit and a lettuce across a river without leaving a predator alone with its prey.</p>
+              </div>
+              <div class="tech-tags">
+                <span class="tag"><i class="fa-solid fa-code"></i>C++</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/LONG-TERM-EFFECTS-OF-SUFFERING/Object-Oriented-Programming-Project" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i><span data-lang="project-code">Code</span>
+          </a>
+
+              </div>
+            </div>
+
+            <div class="project-card" id="jngs">
+              <div class="project-image">
+                <img src="assets/images/projects/jngs.webp" alt="JNGS - Juego No Genérico de Snake">
+              </div>
+              <div class="project-info">
+                <h3 data-en="JNGS - Juego No Genérico de Snake" data-es="JNGS - Juego No Genérico de Snake">JNGS - Juego No Genérico de Snake</h3>
+                <p data-en="Browser snake game with a Colombian twist." data-es="Juego de la serpiente en el navegador con un toque colombiano.">Browser snake game with a Colombian twist.</p>
+              </div>
+              <div class="tech-tags">
+                <span class="tag"><i class="fa-brands fa-js"></i>JavaScript</span>
+<span class="tag"><i class="fa-brands fa-css3-alt"></i>CSS</span>
+<span class="tag"><i class="fa-brands fa-html5"></i>HTML</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/braz9LKDI/JNGDS" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i><span data-lang="project-code">Code</span>
+          </a>
+<a href="https://braz9LKDI.github.io/JNGDS" target="_blank" rel="noopener noreferrer">
+            <i class="fa-solid fa-globe"></i><span data-lang="project-live">Live</span>
+          </a>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn next-btn" type="button" aria-label="Next slide">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+        <div class="slider-dots"></div>
+      </section>
+
+      <section id="contact" class="contact-section">
+        <h2 data-lang="contact-title">Contact</h2>
+        <form action="https://formsubmit.co/df3edc2bfabf36bb95865ffb51ff7e24" method="POST">
+          <label for="name"><span data-lang="contact-name">Name</span> <span>*</span></label>
+          <input type="text" name="name" id="name" required aria-required="true" />
+
+          <label for="email"><span data-lang="contact-email">Email</span> <span>*</span></label>
+          <input type="email" name="email" id="email" required aria-required="true" />
+
+          <label for="message"
+            ><span data-lang="contact-message">Message</span> <span>*</span></label
+          >
+          <textarea id="message" name="message" required aria-required="true"></textarea>
+
+          <button type="submit" aria-label="Send contact form" data-lang="contact-send">
+            Send
+          </button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p data-lang="footer">Created by Brandon</p>
+    </footer>
+
+    <script src="/js/home/slider.js"></script>
+    <script src="/js/home/form.js"></script>
+    <script src="/js/home/language.js"></script>
+  </body>
 </html>
